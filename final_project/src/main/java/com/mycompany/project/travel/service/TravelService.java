@@ -6,7 +6,7 @@ import com.mycompany.project.travel.model.Criteria;
 import com.mycompany.project.travel.model.VO;
 
 
-public interface TestService {
+public interface TravelService {
 	
 	public List<VO> getList();
 	public List<VO> getListPaging(Criteria cri);
