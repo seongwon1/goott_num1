@@ -74,7 +74,7 @@
 	<beans:bean id="userService"
 		class="com.mycompany.project.common.serviceImpl.UserService">
 		<beans:constructor-arg name="sqlSession"
-			ref="sqlSession" />
+			ref="sqlSessionTemplate" />
 	</beans:bean>
 
 	<!-- 비밀번호 암호화를 위한 빈 -->
