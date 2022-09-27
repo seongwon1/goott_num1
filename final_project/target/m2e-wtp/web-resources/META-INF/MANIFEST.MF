@@ -1,7 +1,5 @@
-
 Manifest-Version: 1.0
-Built-By: kim
-Build-Jdk: 11.0.15.1
+Built-By: hulu
+Build-Jdk: 1.8.0_202
 Created-By: Maven Integration for Eclipse
-
 

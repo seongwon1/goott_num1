@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  
+mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.project.travel.mapper.Mapper">
+
+	<select id="list" resultType="com.mycompany.project.travel.model.FreeBoardDTO">
+		select *
+		from board_free;
+	</select>
+	
+	<select id="listPaging" resultType="com.mycompany.project.travel.model.FreeBoardDTO">
+		select * 
+		from 
+		(select free_board_id, category, title, user_id, regdate
+		from board_free
+		<if test="keyword != null">
+			<include refid="criteria"></include>
+		</if>
+		order by free_board_id desc) as A
+		limit #{skip},#{amount};  
+	</select>
+	
+	<select id="total" resultType="int">
+		select count(*)
+		from 
+		board_free
+		<if test="keyword != null">
+			<include refid="criteria"></include>
+		</if>
+	</select>
+	
+	<select id="getListPaging" resultType="com.mycompany.project.travel.model.VO">	
+		select * 
+		from
+		travel t
+		inner join travle_info t_info
+		on t.travel_content_id = t_info.travel_content_id
+		having firstimage is not null
+		order by location_name desc
+		limit #{skip},#{amount};  
+	</select>
+
+	<select id="getLegPaging" resultType="com.mycompany.project.travel.model.VO">
+		select location_name,address,firstimage,parking,publictransport,wheelchair,elevator
+		from 
+		travel t
+		inner join travle_info t_info
+		on t.travel_content_id = t_info.travel_content_id
+		<if test="keyword != null">
+			where address like concat('%',#{keyword},'%' )
+		</if>
+		having firstimage is not null
+	
+		<if test="type !=  null">
+			<include refid="criteriaLeg"></include>
+		</if>
+		order by location_name desc
+		limit #{skip},#{amount};
+
+	</select>
+
+	<select id="getEyePaging" resultType="com.mycompany.project.travel.model.VO">
+		select location_name,address,firstimage,parking,braileblock,helpdog,guidehuman,brailepromotion,blindhandicapetc
+		from 
+		travel t
+		inner join travle_info t_info
+		on t.travel_content_id = t_info.travel_content_id
+		<if test="keyword != null">
+			where address like concat('%',#{keyword},'%' )
+		</if>
+		having firstimage is not null
+		
+		<if test="type !=  null">
+			<include refid="criteriaEye"></include>
+		</if>
+		order by location_name desc
+		limit #{skip},#{amount};
+	
+	</select>
+
+	<select id="getEarsPaging" resultType="com.mycompany.project.travel.model.VO">
+		select location_name,address,firstimage,parking,signguide,videoguide,hearinghandicapetc,guidehuman
+		from 
+		travel t
+		inner join travle_info t_info
+		on t.travel_content_id = t_info.travel_content_id
+		<if test="keyword != null">
+			where address like concat('%',#{keyword},'%' )
+		</if>
+		having firstimage is not null
+		
+		<if test="type !=  null">
+			<include refid="criteriaEars"></include>
+		</if>
+		order by location_name desc
+		limit #{skip},#{amount};
+	</select>
+	
+		
+	<select id="getTotal" resultType="int">
+		select count(*) from travel;
+	</select>
+	
+	 
+	 <sql id="criteriaLeg">
+		<foreach collection="typeArr">
+			<trim prefix="and">
+				<choose>
+					<when test="type == 'parking'.toString()">
+						parking is not null
+					</when>
+				
+					<when test="type == 'transport'.toString()">
+						publictransport is not null
+					</when>
+				
+					<when test="type == 'wheelchair'.toString()">
+						wheelchair is not null	
+					</when>
+					
+					<when test="type == 'elevator'.toString()">
+						elevator is not null	
+					</when>
+				</choose>
+	         </trim>
+	    </foreach>
+	 </sql>
+	  
+	 <sql id="criteriaEye">
+		<foreach collection="typeArr" item="type">
+			 <trim prefix="and">
+		        <choose>
+		        	<when test="type == 'parking'.toString()">
+						parking is not null
+					</when>
+		        
+					<when test="type == 'braileblock'.toString()">
+						braileblock is not null
+					</when>
+						
+					<when test="type == 'helpdog'.toString()">
+						helpdog is not null
+					</when>
+						
+					<when test="type == 'guidehuman'.toString()">
+						guidehuman is not null
+					</when>
+						
+					<when test="type == 'brailepromotion'.toString()">
+						brailepromotion is not null
+					</when>
+						
+					<when test="type == 'blindhandicapetc'.toString()">
+						blindhandicapetc is not null
+					</when>
+				</choose>
+			</trim>
+		</foreach>
+	</sql>
+	 
+	 <sql id="criteriaEars">
+		<foreach collection="typeArr">
+			<trim prefix="and">
+				<choose>	
+					<when test="type == 'parking'.toString()">
+						parking is not null
+					</when>
+				
+					<when test="type == 'signguide'.toString()">
+						signguide is not null
+					</when>
+					
+					<when test="type == 'guidehuman'.toString()">
+						guidehuman is not null
+					</when>
+						
+					<when test="type == 'videoguide'.toString()">
+						videoguide is not null
+					</when>
+						
+					<when test="type == 'hearinghandicapetc'.toString()">
+						hearinghandicapetc is not null
+					</when>
+				</choose>
+			</trim>
+		</foreach>
+	</sql>
+	 
+	<sql id="criteria">
+	 	<trim prefix="where (" suffix=")" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+	 			<choose>
+	 				<when test="type == ''.toString()">
+	 					user_id like concat('%', #{keyword}, '%')
+						or title like concat('%', #{keyword}, '%')
+						or category like concat('%', #{keyword}, '%')
+	 				</when>
+	 			
+					<when test="type == 'T'.toString()">
+	 					title like concat('%',#{keyword},'%')
+	 				</when>
+						
+ 					<when test="type == 'C'.toString()">
+	 					category like concat('%',#{keyword},'%')
+	 				</when>
+	 				
+	 				<when test="type == 'W'.toString()">
+	 					user_id like concat('%',#{keyword},'%')
+	 				</when>
+				</choose>
+				</trim>
+			</foreach>
+	 	</trim>
+	 </sql>
+</mapper>
