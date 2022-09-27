@@ -20,7 +20,7 @@ import com.mycompany.project.travel.service.FreeBoardService;
 
 
 @Controller
-public class BoardController {
+public class FreeBoardController {
 	@Autowired
 	FreeBoardService boardService;
 	

@@ -22,38 +22,38 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mycompany.project.travel.model.Criteria;
 import com.mycompany.project.travel.model.PageMakerDTO;
 import com.mycompany.project.travel.model.VO;
-import com.mycompany.project.travel.service.TestService;
+import com.mycompany.project.travel.service.TravelService;
 
 @Controller
-public class HomeController {
+public class TravelController {
 	@Autowired
-	private TestService testservice;
+	private TravelService travelService;
 	@Autowired
 	private SqlSession sqlSesstion;
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TravelController.class);
 	
 
-	@RequestMapping(value ="/", method = RequestMethod.GET)
+	@RequestMapping(value ="/travelPage", method = RequestMethod.GET)
 	public String home(Model model, Criteria cri) {
 		
 		return "travel/travelHome";
 		
 	}
 	
-	@RequestMapping(value ="/leg", method = RequestMethod.GET)
+	@RequestMapping(value ="/legPage", method = RequestMethod.GET)
 	public String leg(Model model, Criteria cri) {
 
 		return "travel/leg";
 		
 	}
-	@RequestMapping(value ="/eye", method = RequestMethod.GET)
+	@RequestMapping(value ="/eyePage", method = RequestMethod.GET)
 	public String eye(Model model, Criteria cri) {
 
 		return "travel/eye";
 		
 	}
-	@RequestMapping(value ="/ears", method = RequestMethod.GET)
+	@RequestMapping(value ="/earsPage", method = RequestMethod.GET)
 	public String ears(Model model, Criteria cri) {
 	
 		
