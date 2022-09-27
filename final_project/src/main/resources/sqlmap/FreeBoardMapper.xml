@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FreeBoardMapper">
+
+	<insert id="insert">
+		insert into board_free(category, title, content, user_id )
+		values(#{category}, #{title}, #{content}, #{user_id});
+	</insert>
+	
+	<select id="detail" parameterType="hashMap" resultType="hashMap">
+		select free_board_id, category, title, content, user_id, regdate from board_free
+		where free_board_id=#{free_board_id};
+	</select>
+	
+	<update id="update" parameterType="hashMap">
+		update board_free
+		set title=#{title}, content=#{content}, user_id=#{user_id} ,category=#{category}
+		where free_board_id=#{free_board_id};
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from board_free where free_board_id = #{free_board_id};
+	</delete>
+	
+	<select id="keyword" parameterType="com.mycompany.project.travel.model.VO" resultType="com.mycompany.project.travel.model.VO">
+		select distinct location_name, address, firstimage
+		from travel
+		where address is not null
+		and
+		location_name is not null
+		and
+		firstimage is not null
+		and address like concat('%',#{keyword},'%' );
+	</select>
+	
+	<select id="list" parameterType="com.mycompany.project.travel.model.VO" resultType="com.mycompany.project.travel.model.VO">
+		select distinct location_name, address, firstimage
+		from travel
+		where address is not null
+		and
+		location_name is not null
+		and
+		firstimage is not null;
+	</select>
+</mapper>

@@ -45,5 +45,9 @@
 		<constructor-arg name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
 	</bean>
+	
+	<mybatis-spring:scan base-package="com.mycompany.project.travel.mapper"/>
+    <context:component-scan base-package="com.mycompany.project.travel.model"></context:component-scan>
+    <context:component-scan base-package="com.mycompany.project.travel.service"></context:component-scan>
 
 </beans>
