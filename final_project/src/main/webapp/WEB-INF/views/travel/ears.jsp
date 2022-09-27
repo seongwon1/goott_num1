@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="resources/css/style.css?var=1" rel="stylesheet" type="text/css">
+<link href="resources/css/Travelstyle.css?var=1" rel="stylesheet" type="text/css">
   <script src="resources/js/jquery-3.6.0.min.js"></script>
   <script src="resources/js/script.js"></script>
   <script src="resources/js/magnify.js"></script>
