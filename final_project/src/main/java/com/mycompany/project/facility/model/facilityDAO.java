@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class TestDAO {
+public class facilityDAO {
 	@Inject 
 	private SqlSession sql;
 	private static String namespace = "disabled";

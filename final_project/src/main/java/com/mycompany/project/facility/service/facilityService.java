@@ -3,7 +3,7 @@ package com.mycompany.project.facility.service;
 import java.util.List;
 import java.util.Map;
 
-public interface TestService {
+public interface facilityService {
 
 	List<Map<String, Object>> list(Map<String, Object> map);
 

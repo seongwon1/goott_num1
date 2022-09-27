@@ -12,19 +12,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mycompany.project.facility.service.TestService;
+import com.mycompany.project.facility.service.facilityService;
+
+
 
 
 
 @Controller
-public class TestController {
+public class facilityController {
 	
 	@Autowired
-	TestService testService;
+	facilityService testService;
 	// modelAndview : �����Ϳ� �̵��ϰ��� �ϴ� viewpage�� ���� �����ϴ� ��ü(Ŭ����)
 	// ó�� create �������� ���� ���� ���� ����
 	
-	@RequestMapping(value= "/list")
+	@RequestMapping(value= "/facilitylist")
 	public ModelAndView list(@RequestParam Map<String, Object> map) {
 		List<Map<String, Object>> list = this.testService.list(map);
 		ModelAndView mv = new ModelAndView();
@@ -37,7 +39,7 @@ public class TestController {
 			mv.addObject("keyword", map.get("keyword"));
 		}
 		
-		mv.setViewName("list");
+		mv.setViewName("facility/facility");
 		return mv;
 	}
 	
