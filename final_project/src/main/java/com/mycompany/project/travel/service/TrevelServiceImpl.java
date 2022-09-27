@@ -11,7 +11,7 @@ import com.mycompany.project.travel.model.VO;
 
 
 @Service
-public class TestServiceImpl implements TestService{
+public class TrevelServiceImpl implements TravelService{
 	
 	@Autowired
 	private Mapper mapper;
