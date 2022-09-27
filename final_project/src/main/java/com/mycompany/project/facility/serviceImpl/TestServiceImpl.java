@@ -14,7 +14,7 @@ import com.mycompany.project.facility.service.TestService;
 @Service
 public class TestServiceImpl implements TestService{
 	@Autowired
-	TestDAO testDao;
+TestDAO testDao;
 
 	@Override
 	public List<Map<String, Object>> list(Map<String, Object> map) {

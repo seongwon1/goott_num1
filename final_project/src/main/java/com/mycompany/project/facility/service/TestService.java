@@ -7,6 +7,6 @@ public interface TestService {
 
 	List<Map<String, Object>> list(Map<String, Object> map);
 
-	List<Map<String, Object>> restroom(Map<String, Object> map);
+List<Map<String, Object>> restroom(Map<String, Object> map);
 
 }

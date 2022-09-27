@@ -27,7 +27,6 @@ public class TestController {
 	@RequestMapping(value= "/list")
 	public ModelAndView list(@RequestParam Map<String, Object> map) {
 		List<Map<String, Object>> list = this.testService.list(map);
-		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("data", list);
 

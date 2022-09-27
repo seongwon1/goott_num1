@@ -32,17 +32,5 @@
 		</choose>
 		
 	</select>
-	<select id="select_restroom" parameterType="hashMap" resultType="hashMap">
-	    select
-        distinct
-        address,
-        fac_name,
- 		fac_stateYN,
- 		eval_info
-        from
-        facility_info
-        where 1=1 and 
-        (eval_info like CONCAT('%',#{keyword2},'%'))
- 
-</select> 
+
 </mapper>

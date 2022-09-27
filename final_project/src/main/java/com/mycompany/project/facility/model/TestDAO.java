@@ -20,7 +20,7 @@ public class TestDAO {
 	SqlSessionTemplate sqlSessionTemplate; // root-context�� ����
 	
 	public List<Map<String, Object>> selectList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+		
 		// sqlSessionTemplate.selectList <---- ����� ���� ��� ��ü�� ����.
 		// �׷��� ��� ������ Ÿ���� Map�� ����� LIST�� �ҷ��;��Ѵ�.
 		return this.sqlSessionTemplate.selectList("disabled.select_list", map);
