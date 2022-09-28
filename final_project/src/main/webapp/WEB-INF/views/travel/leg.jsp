@@ -49,31 +49,36 @@
             <div class="category_Con">
                 <div class="category_Ele cateEle_1">
                     <input type="radio" name="type" id="radio1" class="radio">
-                    
+                  
                     <label for="radio1" class="label1">
-                        <i class="fa-solid fa-wheelchair" style="color:#000;"></i>
-                        <span style="color:#000; border-bottom: 3px solid #000;">지체장애</span>
+                   		<a href="/leg">
+                       		<i class="fa-solid fa-wheelchair" style="color:#000;"></i>
+                       		<span style="color:#000; border-bottom: 3px solid #000;">지체장애</span>
+                   		</a>
                     </label>
                 </div>
 
                 <div class="category_Ele cateEle_2">
                     <input type="radio" name="type" id="radio2"class="radio">
-                    
-                    <label for="radio2" class="label1">
-                        <i class="fa-solid fa-ear-deaf"></i>
+                   	<label for="radio2" class="label1">
+                    	<a href="/ears">
+                        	<i class="fa-solid fa-ear-deaf"></i>
                         
-                        <span>청각장애</span>
-                    </label>
+                        	<span>청각장애</span>
+                        </a>
+                    	</label>
                 </div>
 
                 <div class="category_Ele cateEle_3">
                     <input type="radio" name="type" id="radio3"class="radio">
                     
-                    <label for="radio3" class="label1">
+                     <label for="radio3" class="label1">
+                    	<a href="/eye">
                         <i class="fa-solid fa-eye-low-vision"></i>
                         
                         <span>시각장애</span>
-                    </label>
+                        </a>
+	                    </label>
                 </div>
             </div>
 			<!-- 카테고리 bar -->

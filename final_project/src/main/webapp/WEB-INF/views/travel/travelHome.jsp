@@ -10,7 +10,6 @@
 <link href="resources/css/Travelstyle.css?var=1" rel="stylesheet" type="text/css">
 <script src="resources/js/jquery-3.6.0.min.js"></script>
 <script src="resources/js/magnify.js"></script>
-<script src="resources/js/paging.js"></script>
 <script src="resources/js/script.js"></script>
 <script src="resources/js/html2canvas.js"></script>
 	<title>Home</title>
@@ -124,7 +123,7 @@
         </div>
         <!-- footer -->
         <div id="footer">
-
+		
         </div>
     </div>
     <!-- container -->
@@ -141,18 +140,17 @@ let totalData;
 let dataPerPage = 12;
 let pageCount = 10;
 let globalCurrentPage = 1;
-	
+
 	$(document).ready(function(){
 		$.ajax({
 			type:'POST',
 			url:'ajaxHome',
-			dataType:'json',
 			data:{},
 			success:function(result){
+				console.log(result)
 				totalData = result.list.length;
 				paging(totalData, dataPerPage, pageCount, 1);
 				displayData(1, dataPerPage);
-				
 				//페이징 시작
 				function paging(totalData, dataPerPage, pageCount, currentPage) {
 				    totalPage = Math.ceil(totalData / dataPerPage);
@@ -232,6 +230,9 @@ let globalCurrentPage = 1;
 				    displayData(globalCurrentPage, dataPerPage);
 				 });
 			},
+			error:function(){
+				alert('에러');
+			}
 		});
 		
 		$('#sido1').on('change', function(e) {
@@ -242,8 +243,7 @@ let globalCurrentPage = 1;
 		function ajaxSido(){
 			$.ajax({
 				type:'POST',
-				url:'ajaxKeyword',
-				dataType:'json',
+				url:'/ajaxKeyword',
 				data:{
 					keyword: $('#sido1 option:selected').val()
 				},
@@ -251,7 +251,6 @@ let globalCurrentPage = 1;
 					totalData = result.list.length;
 					paging(totalData, dataPerPage, pageCount, 1);
 					displayData(1, dataPerPage);
-					
 					//페이징 시작
 					function paging(totalData, dataPerPage, pageCount, currentPage) {
 					    totalPage = Math.ceil(totalData / dataPerPage);

@@ -19,15 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mycompany.project.travel.model.Criteria;
-import com.mycompany.project.travel.model.PageMakerDTO;
+
 import com.mycompany.project.travel.model.VO;
-import com.mycompany.project.travel.service.TravelService;
+
 
 @Controller
 public class TravelController {
-	@Autowired
-	private TravelService travelService;
+
 	@Autowired
 	private SqlSession sqlSesstion;
 	
@@ -35,26 +33,26 @@ public class TravelController {
 	
 
 	@RequestMapping(value ="/travelPage", method = RequestMethod.GET)
-	public String home(Model model, Criteria cri) {
+	public String home() {
 		
 		return "travel/travelHome";
 		
 	}
 	
-	@RequestMapping(value ="/legPage", method = RequestMethod.GET)
-	public String leg(Model model, Criteria cri) {
+	@RequestMapping(value ="/leg", method = RequestMethod.GET)
+	public String leg() {
 
 		return "travel/leg";
 		
 	}
-	@RequestMapping(value ="/eyePage", method = RequestMethod.GET)
-	public String eye(Model model, Criteria cri) {
+	@RequestMapping(value ="/eye", method = RequestMethod.GET)
+	public String eye() {
 
 		return "travel/eye";
 		
 	}
-	@RequestMapping(value ="/earsPage", method = RequestMethod.GET)
-	public String ears(Model model, Criteria cri) {
+	@RequestMapping(value ="/ears", method = RequestMethod.GET)
+	public String ears() {
 	
 		
 		return "travel/ears";
@@ -62,7 +60,7 @@ public class TravelController {
 	}
 	@ResponseBody
 	@RequestMapping(value ="/ajaxLeg", method = RequestMethod.POST)
-	public HashMap<String, Object> ajaxLeg(Model model, HttpServletRequest request, Criteria cri) {
+	public HashMap<String, Object> ajaxLeg(Model model, HttpServletRequest request) {
 			HashMap<String, Object> result = new HashMap<String, Object>();
 			VO vo = new VO();
 			List<VO> list = sqlSesstion.selectList("FreeBoardMapper.legList",vo);
@@ -73,7 +71,7 @@ public class TravelController {
 	
 	@ResponseBody
 	@RequestMapping(value ="/ajaxHome", method = RequestMethod.POST)
-	public HashMap<String, Object> ajaxHome(Model model, HttpServletRequest request, Criteria cri) {
+	public HashMap<String, Object> ajaxHome(Model model, HttpServletRequest request) {
 			HashMap<String, Object> result = new HashMap<String, Object>();
 			VO vo = new VO();
 			List<VO> list = sqlSesstion.selectList("FreeBoardMapper.list",vo);
@@ -84,7 +82,7 @@ public class TravelController {
 	
 	@ResponseBody
 	@RequestMapping(value ="/ajaxKeyword", method = RequestMethod.POST)
-	public HashMap<String, Object> ajaxTest(Model model, HttpServletRequest request, Criteria cri) {
+	public HashMap<String, Object> ajaxTest(Model model, HttpServletRequest request) {
 			HashMap<String, Object> result = new HashMap<String, Object>();
 			String keyword = request.getParameter("keyword");
 			VO vo = new VO();
