@@ -1,4 +1,4 @@
-package com.mycompany.project.travel.controller;
+package com.mycompany.project.board.controller;
 
 import java.util.List;
 import java.util.Locale;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mycompany.project.travel.model.Criteria;
-import com.mycompany.project.travel.model.FreeBoardDTO;
-import com.mycompany.project.travel.model.PageMakerDTO;
-import com.mycompany.project.travel.service.FreeBoardService;
+import com.mycompany.project.board.model.Criteria;
+import com.mycompany.project.board.model.FreeBoardDTO;
+import com.mycompany.project.board.model.PageMakerDTO;
+import com.mycompany.project.board.service.FreeBoardService;
 
 
 
@@ -32,13 +32,13 @@ public class FreeBoardController {
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
 		model.addAttribute("pageMaker",pageMake);
 		System.out.println(pageMake.toString());
-		return "board/freeList";
+		return "freeBoard/freeList";
 	}
 		
 	@RequestMapping(value = "/freeInsert", method = RequestMethod.GET)
 	public String insert() {
 		
-		return "board/freeInsert";
+		return "freeBoard/freeInsert";
 	}
 	@RequestMapping(value = "/freeInsert", method = RequestMethod.POST)
 	public ModelAndView insert(FreeBoardDTO dto) {
@@ -53,7 +53,7 @@ public class FreeBoardController {
 	public ModelAndView detail(@RequestParam Map<String, Object> map, FreeBoardDTO dto) {
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/freeDetail");
+		mv.setViewName("freeBoard/freeDetail");
 		mv.addObject("data", boardService.detail(map));
 		
 		return mv;
@@ -65,7 +65,7 @@ public class FreeBoardController {
 		Map<String, Object> list = boardService.detail(map);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("data", list);
-		mv.setViewName("board/freeUpdate");
+		mv.setViewName("freeBoard/freeUpdate");
 		
 		return mv;
 	}

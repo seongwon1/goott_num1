@@ -1,4 +1,4 @@
-package com.mycompany.project.travel.model;
+package com.mycompany.project.board.model;
 
 import java.util.List;
 import java.util.Map;

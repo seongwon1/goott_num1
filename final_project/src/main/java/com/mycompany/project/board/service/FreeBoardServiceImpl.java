@@ -1,4 +1,4 @@
-package com.mycompany.project.travel.service;
+package com.mycompany.project.board.service;
 
 import java.util.List;
 import java.util.Map;
@@ -8,10 +8,11 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mycompany.project.travel.mapper.Mapper;
-import com.mycompany.project.travel.model.Criteria;
-import com.mycompany.project.travel.model.FreeBoardDAO;
-import com.mycompany.project.travel.model.FreeBoardDTO;
+import com.mycompany.project.board.mapper.Mapper;
+import com.mycompany.project.board.model.Criteria;
+import com.mycompany.project.board.model.FreeBoardDAO;
+import com.mycompany.project.board.model.FreeBoardDTO;
+
 
 
 
