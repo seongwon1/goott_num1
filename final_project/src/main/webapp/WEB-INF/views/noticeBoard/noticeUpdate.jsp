@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/css/freeInsertStyle..css?var=1" rel="stylesheet" type="text/css">
-<script src="resources/js/jquery-3.6.0.min.js"></script>
-<script src="resources/js/magnify.js"></script>
-<script src="resources/js/script.js"></script>
-<script src="resources/js/html2canvas.js"></script>
+<link href="${path}/resources/css/freeInsertStyle..css?var=1" rel="stylesheet" type="text/css">
+<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${path}/resources/js/magnify.js"></script>
+<script src="${path}/resources/js/script.js"></script>
+<script src="${path}/resources/js/html2canvas.js"></script>
 </head>
 <script>
 	window.onload = function() {
@@ -22,6 +22,10 @@
 		let file_name = document.querySelector('#file_name');
 		let filedelete = document.querySelector('#filedelete');
 		let nboard_id = '${data.nboard_id}';
+		////////////////////////////////////////////////////
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		///////////////////////////////////////////////
 		
 		submitBtn.addEventListener('click',function(){
 			if(title.value === ""){
@@ -42,8 +46,12 @@
 			form1.submit();
 			});
 		filedelete.addEventListener('click',function(){
+			$(document).ajaxSend(function(e, xhr, options) {
+				xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+				});
+			
 			$.ajax({
-				url : "/DeleteAttachFile",
+				url : "/board/merge/DeleteAttachFile",
 				type : "GET",
 				data : {"nboard_id":nboard_id},
 				
@@ -71,12 +79,12 @@
 	<div id="container">
         <div id="header">
             <div>
-                <p><a href="/">로고</a></p>
+                <p><a href="/main">로고</a></p>
                 <span>글 수정</span>
         	
                 <ul>
         		    <li>로그인</li>
-        		    <li><a href="/noticeList">커뮤니티 링크</a></li>
+        		    <li><a href="/board/noticeList">커뮤니티 링크</a></li>
         	    </ul>
             </div>
         </div>
@@ -128,7 +136,7 @@
 					
 					<div id="article2">
 						<div>
-							<a href="/noticeList">글 목록</a>
+							<a href="/board/noticeList">글 목록</a>
 						</div>
 			
 						<div>	

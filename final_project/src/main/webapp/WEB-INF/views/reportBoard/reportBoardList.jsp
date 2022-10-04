@@ -7,23 +7,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link href="resources/css/reportBoardListStyle.css" rel="stylesheet" type="text/css">
-	<script src="resources/js/jquery-3.6.0.min.js"></script>
-  	<script src="resources/js/magnify.js"></script>	
-  	<script src="resources/js/script.js"></script>
-	<script src="resources/js/html2canvas.js"></script>
+	<link href="${path}/resources/css/reportBoardListStyle.css" rel="stylesheet" type="text/css">
+	<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+  	<script src="${path}/resources/js/magnify.js"></script>	
+  	<script src="${path}/resources/js/script.js"></script>
+	<script src="${path}/resources/js/html2canvas.js"></script>
 </head>
 <body>
 <div id="wrap">
 	<div id="container">
         <div id="header">
             <div>
-                <p><a href="/">로고</a></p>
+                <p><a href="/main">로고</a></p>
                 <span>신고합니다</span>
         	
                 <ul>
         		    <li>로그인</li>
-        		    <li><a href="/freeList">커뮤니티 링크</a></li>
+        		    <li><a href="/board/freeList">커뮤니티 링크</a></li>
         	    </ul>
             </div>
         </div>
@@ -71,7 +71,7 @@
                         <th class="table_title">제목</th>
                         <th class="table_writer">작성자</th>
                         <th class="table_regdate">작성일</th>
-                    </tr>r
+                    </tr>
                 </thead>
                 
                 <tbody>
@@ -79,7 +79,7 @@
 						<tr>
 							<td class="table_no">${row.rboard_id}</td>
 							<td class="table_cate">${row.category}</td>
-							<td class="table_title"><a href="/reportBoardDetail?rboard_id=${row.rboard_id}">${row.title}</a></td>
+							<td class="table_title"><a href="/board/reportBoardDetail?rboard_id=${row.rboard_id}">${row.title}</a></td>
 							<td class="table_writer">${row.user_id}</td>
 							<td><fmt:formatDate pattern="yyyy/MM/dd" value="${row.regdate}"/></td>
 						</tr>		
@@ -90,7 +90,7 @@
 		
 		<div id="article2">
 			<div>	
-				<a href="/reportBoardInsert">글 쓰기</a>
+				<a href="/board/merge/reportBoardInsert">글 쓰기</a>
 			</div>
 		</div>
         
@@ -131,7 +131,7 @@
 	$('.pageInfo a').on('click', function(e) {
 		e.preventDefault();
 		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-		moveForm.attr("action", "/reportBoardList");
+		moveForm.attr("action", "/board/reportBoardList");
 		moveForm.submit();
 	});
 	

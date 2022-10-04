@@ -7,11 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="resources/css/style.css?var=1" rel="stylesheet" type="text/css">
-<script src="resources/js/jquery-3.6.0.min.js"></script>
-<script src="resources/js/magnify.js"></script>
-<script src="resources/js/script.js"></script>
-<script src="resources/js/html2canvas.js"></script>
+<link href="${path}/resources/css/style.css?var=1" rel="stylesheet" type="text/css">
+<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${path}/resources/js/magnify.js"></script>
+<script src="${path}/resources/js/script.js"></script>
+<script src="${path}/resources/js/html2canvas.js"></script>
 	<title>Home</title>
 </head>
 
@@ -23,11 +23,11 @@
         <!-- 헤더 -->
         <div id="header">
            <div>
-        		<p><a href="/">로고</a></p>
+        		<p><a href="/main">로고</a></p>
         		
         		<ul>
         			<li>로그인</li>
-        			<li><a href="/freeList">커뮤니티 링크</a></li>
+        			<li><a href="/board/freeList">커뮤니티 링크</a></li>
         		</ul>
         	</div>
         </div>
@@ -264,7 +264,7 @@ let cateCon2 = document.querySelector('.category_Con2');
 	$('.pageInfo a').on('click', function(e) {
 		e.preventDefault();
 		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-		moveForm.attr("action", "/travelHome");
+		moveForm.attr("action", "/board/travelHome");
 		moveForm.submit();
 	});
 

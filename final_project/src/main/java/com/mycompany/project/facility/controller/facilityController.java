@@ -17,7 +17,7 @@ import com.mycompany.project.facility.service.facilityService;
 
 
 
-
+@RequestMapping("/board")
 @Controller
 public class facilityController {
 	
@@ -26,7 +26,7 @@ public class facilityController {
 	// modelAndview : �����Ϳ� �̵��ϰ��� �ϴ� viewpage�� ���� �����ϴ� ��ü(Ŭ����)
 	// ó�� create �������� ���� ���� ���� ����
 	
-	@RequestMapping(value= "/facilitylist")
+	@RequestMapping(value= "/facilityList")
 	public ModelAndView list(@RequestParam Map<String, Object> map) {
 		List<Map<String, Object>> list = this.testService.list(map);
 		ModelAndView mv = new ModelAndView();

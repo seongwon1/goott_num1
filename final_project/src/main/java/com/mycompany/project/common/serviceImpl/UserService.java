@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,7 +33,9 @@ public class UserService implements UserDetailsService {
 		
 		if (user == null) {
 			throw new UsernameNotFoundException(userid);
-			}
+		} else {
+			
+		}
 		
 		List<GrantedAuthority> authority = new ArrayList<GrantedAuthority>();
 		

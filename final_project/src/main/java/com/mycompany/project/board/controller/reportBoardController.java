@@ -36,7 +36,7 @@ import com.mycompany.project.board.service.reportBoardService;
 
 
 
-
+@RequestMapping("/board")
 @Controller
 public class reportBoardController {
 	@Autowired
@@ -53,13 +53,14 @@ public class reportBoardController {
 		return "/reportBoard/reportBoardList";
 	}
 		
-	@RequestMapping(value = "/reportBoardInsert", method = RequestMethod.GET)
+	@RequestMapping(value = "/merge/reportBoardInsert", method = RequestMethod.GET)
 	public String insert() {
 		
 		return "/reportBoard/reportBoardInsert";
 	}
-	@RequestMapping(value = "/reportBoardInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/merge/reportBoardInsert", method = RequestMethod.POST)
 	public ModelAndView insert(reportBoardDTO dto,UploadVO vo,@RequestParam MultipartFile file) {
+		
 		
 		
 	
@@ -102,19 +103,19 @@ public class reportBoardController {
 		boardService.insert(dto,vo);
 	
 		
-		mv.setViewName("redirect:/reportBoardList");
+		mv.setViewName("redirect:/board/reportBoardList");
 
 		return mv;
 		}
 		boardService.insert(dto,vo);
 	
 		
-		mv.setViewName("redirect:/reportBoardList");
+		mv.setViewName("redirect:/board/reportBoardList");
 
 		return mv;
 	}
 	
-    @RequestMapping(value = "fileDownload.do")
+    @RequestMapping(value = "/merge/fileDownload.do")
     public void fileDownload4(HttpServletRequest request,HttpServletResponse response) throws Exception {
         //String path =  request.getSession().getServletContext().getRealPath("���옣寃쎈줈");
         
@@ -178,7 +179,7 @@ public class reportBoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/reportBoardUpdate", method = RequestMethod.GET)
+	@RequestMapping(value="/merge/reportBoardUpdate", method = RequestMethod.GET)
 	public ModelAndView update(@RequestParam Map<String, Object> map) {
 		
 		Map<String, Object> list = boardService.detail(map);
@@ -200,7 +201,7 @@ public class reportBoardController {
 //		return mv;
 //	
 
-	@RequestMapping(value="/reportBoardUpdate", method = RequestMethod.POST)
+	@RequestMapping(value="/merge/reportBoardUpdate", method = RequestMethod.POST)
 	public ModelAndView update(reportBoardDTO dto,UploadVO vo, @RequestParam MultipartFile file) throws Exception {
 		
 		      ModelAndView mv = new ModelAndView();
@@ -232,13 +233,13 @@ public class reportBoardController {
 		               vo.setFile_url(uploadFolder+"\\"+ uniqueName + fileExtension);
 		             
 		 		      boardService.update(dto,vo);
-				      mv.setViewName("redirect:/reportBoardList");
+				      mv.setViewName("redirect:/board/reportBoardList");
 				      
 				      return mv;
 		            
 		            } else {
 		               boardService.content_update(dto);
-		               mv.setViewName("redirect:/reportBoardList");
+		               mv.setViewName("redirect:/board/reportBoardList");
 		               
 		               return mv;
 		            }
@@ -249,7 +250,7 @@ public class reportBoardController {
 		
 	}	
 
-	@RequestMapping(value = "/reportBoardDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/merge/reportBoardDelete", method = RequestMethod.GET)
 	public String delete(@RequestParam("rboard_id") int rboard_id) {
 		
 		String url = boardService.getUrl(rboard_id);
@@ -268,9 +269,9 @@ public class reportBoardController {
 		}
 		boardService.delete(rboard_id);
 		
-		return "redirect:/reportBoardList";
+		return "redirect:/board/reportBoardList";
 	}
-	@RequestMapping(value = "/UpdateDeleteFile", method = RequestMethod.GET)
+	@RequestMapping(value = "/merge/UpdateDeleteFile", method = RequestMethod.GET)
 	public String UpdateDeleteFile(@RequestParam("rboard_id") int rboard_id) {
 		String fileName = boardService.getFileName(rboard_id);
 		String url = boardService.getUrl(rboard_id);
@@ -290,7 +291,7 @@ public class reportBoardController {
 		}
 	
 		
-		return "redirect:/reportBoardUpdate";
+		return "redirect:/board/merge/reportBoardUpdate";
 	}
 
 }

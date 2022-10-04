@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/css/reportBoardInsertStyle.css" rel="stylesheet" type="text/css">
-<script src="resources/js/jquery-3.6.0.min.js"></script>
-<script src="resources/js/magnify.js"></script>
-<script src="resources/js/script.js"></script>
-<script src="resources/js/html2canvas.js"></script>
+<link href="${path}/resources/css/reportBoardInsertStyle.css" rel="stylesheet" type="text/css">
+<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${path}/resources/js/magnify.js"></script>
+<script src="${path}/resources/js/script.js"></script>
+<script src="${path}/resources/js/html2canvas.js"></script>
 </head>
 <script>
 	window.onload = function() {
@@ -22,6 +22,10 @@
 		let fileDel = document.querySelector("#fileDelete");
 		let board_id = "${data.rboard_id}";
 		let nowfile = document.querySelector("#beforeDelFile");
+		////////////////////////////////////////////////////
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		////////////////////////////////////////////////
 	
 		
 		submit.addEventListener('click',function(){
@@ -40,12 +44,18 @@
 				content.focus();
 				return false;	
 			};
+			/* form1.action = "/board/merge/reportBoardUpdate?${_csrf.parameterName}=${_csrf.token}"; */
 			form1.submit();
 			});
-		fileDel.addEventListener('click',function(){
+			fileDel.addEventListener('click',function(){
+			
+			$(document).ajaxSend(function(e, xhr, options) {
+				xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+				});
+			
 			$.ajax({
 			
-				url : "/UpdateDeleteFile",
+				url : "/board/merge/UpdateDeleteFile",
 				type : "GET",
 				data : {"rboard_id":board_id},
 				
@@ -72,12 +82,12 @@
 	<div id="container">
         <div id="header">
             <div>
-                <p><a href="/">로고</a></p>
+                <p><a href="/main">로고</a></p>
                 <span>글 수정</span>
         	
                 <ul>
         		    <li>로그인</li>
-        		    <li><a href="/freeList">커뮤니티 링크</a></li>
+        		    <li><a href="/board/freeList">커뮤니티 링크</a></li>
         	    </ul>
             </div>
         </div>
@@ -120,14 +130,14 @@
 					</div>
 					
 			  <div style="margin-left: 10%">
-                  <p id="beforeDelFile">현재 파일: <a href="fileDownload.do?fileName=${data.file_name}" id="filename">${data.file_name}</a> </p> 
+                  <p id="beforeDelFile">현재 파일: <a href="/board/merge/fileDownload.do?fileName=${data.file_name}" id="filename">${data.file_name}</a> </p> 
                   <input type="button" id="fileDelete" value="첨부파일 삭제">
                   <br>
                   변경할 파일 선택 : <input type="file" name="file">
                </div>
 					<div id="article2">
 						<div>
-							<a href="/reportBoardList">글 목록</a>
+							<a href="/board/reportBoardList">글 목록</a>
 						</div>
 			
 						<div>	

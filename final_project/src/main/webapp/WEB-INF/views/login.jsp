@@ -47,7 +47,7 @@
 		</style>
 		<script>
 			function join() {
-				location.href = "/user/join.do";
+				location.href = "/join.do";
 			}
 		</script>
 	</head>

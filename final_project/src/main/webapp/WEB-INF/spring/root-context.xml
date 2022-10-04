@@ -21,35 +21,42 @@
 			value="com.mysql.cj.jdbc.Driver" />
 		<!-- value의 입력 형식은 jdbc:mysql://localhost:mysql포트번호/연결할 DB명 -->
 		<property name="url"
-         value="jdbc:mysql://database-1.c0vc1omncynq.ap-northeast-2.rds.amazonaws.com/disabled?serverTimezone=Asia/Seoul&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
+			value="jdbc:mysql://database-1.c0vc1omncynq.ap-northeast-2.rds.amazonaws.com/disabled?serverTimezone=Asia/Seoul&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
 
-      <property name="username" value="admin" />
-      <property name="password" value="goottnum1" />
-      <property name="initialSize" value="5"></property>
+		<property name="username" value="admin" />
+		<property name="password" value="goottnum1" />
+		<property name="initialSize" value="5"></property>
 	</bean>
 
 	<bean id="sqlSessionFactory"
-	class="org.mybatis.spring.SqlSessionFactoryBean">
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation"	value="classpath:/mybatis-config.xml" />
-		<property name="mapperLocations" value="classpath:/sqlmap/**/*.xml" />
+		<property name="configLocation"
+			value="classpath:/mybatis-config.xml" />
+		<property name="mapperLocations"
+			value="classpath:/sqlmap/**/*.xml" />
 	</bean>
 	<bean id="sqlSessionTemplate"
 		class="org.mybatis.spring.SqlSessionTemplate"
 		destroy-method="clearCache">
-		<constructor-arg index="0" name="sqlSessionFactory" 
-		ref="sqlSessionFactory" />
+		<constructor-arg index="0" name="sqlSessionFactory"
+			ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="104857600" />
+		<property name="maxInMemorySize" value="102400" />
+		<property name="defaultEncoding" value="utf-8" />
 	</bean>
 	<!-- SqlSession 객체 주입 -->
-<!-- 	<bean id="sqlSession"
-		class="org.mybatis.spring.SqlSessionTemplate"
-		destroy-method="clearCache">
-		<constructor-arg name="sqlSessionFactory"
-			ref="sqlSessionFactory" />
-	</bean> -->
-	
-    <context:component-scan base-package="com.mycompany.project.board.model"></context:component-scan>
-    <context:component-scan base-package="com.mycompany.project.board.service"></context:component-scan>
-	
+	<!-- <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" 
+		destroy-method="clearCache"> <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" 
+		/> </bean> -->
+
+	<context:component-scan
+		base-package="com.mycompany.project.board.model"></context:component-scan>
+	<context:component-scan
+		base-package="com.mycompany.project.board.service"></context:component-scan>
 
 </beans>

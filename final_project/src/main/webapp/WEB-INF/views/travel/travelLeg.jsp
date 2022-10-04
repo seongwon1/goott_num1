@@ -7,11 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <link href="resources/css/style.css?var=1" rel="stylesheet" type="text/css">
-  <script src="resources/js/jquery-3.6.0.min.js"></script>
-  <script src="resources/js/magnify.js"></script>
-  <script src="resources/js/script.js"></script>
-  <script src="resources/js/html2canvas.js"></script>
+  <link href="${path}/resources/css/style.css?var=1" rel="stylesheet" type="text/css">
+  <script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+  <script src="${path}/resources/js/magnify.js"></script>
+  <script src="${path}/resources/js/script.js"></script>
+  <script src="${path}/resources/js/html2canvas.js"></script>
 	<title>Home</title>
 </head>
 
@@ -22,7 +22,7 @@
         <!-- 헤더 -->
         <div id="header">
            <div>
-        		<p><a href="/travelHome">로고</a></p>  		
+        		<p><a href="/main">로고</a></p>  		
         		<div id="search_Con">
         			<select name="type" id="search_option">
         					<option value="">검색</option>
@@ -38,7 +38,7 @@
         		
         		<ul>
         			<li>로그인</li>
-        			<li><a href="/freeList">커뮤니티 링크</a></li>
+        			<li><a href="/board/freeList">커뮤니티 링크</a></li>
         		</ul>
         	</div>
         </div>
@@ -73,7 +73,7 @@
                     <input type="radio" name="type" id="radio2"class="radio">
                     
                     <label for="radio2" class="label1">
-                    <a href="/travelEars">
+                    <a href="/board/travelEars">
                         <i class="fa-solid fa-ear-deaf"></i>
                         
                         <span>청각장애</span>
@@ -85,7 +85,7 @@
                     <input type="radio" name="type" id="radio3"class="radio">
                     
                     <label for="radio3" class="label1">
-                    <a href="/travelEyes">
+                    <a href="/board/travelEyes">
                         <i class="fa-solid fa-eye-low-vision"></i>
                         
                         <span>시각장애</span>
@@ -283,6 +283,10 @@ let totalData;
 let dataPerPage = 12;
 let pageCount = 10;
 let globalCurrentPage = 1;
+////////////////////////////////////////////////////
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+/////////////////////유효성 검사///////////////////////////
 
 	$('.pageInfoLeg a').on('click', function(e) {
 		e.preventDefault();
@@ -324,10 +328,14 @@ let globalCurrentPage = 1;
 		$("input[name='chkArr']:checked").each(function(i) {
 	        chkArr.push($(this).val());
 		});
+		
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+			});
 
 		$.ajax({
 			type:'POST',
-			url:'ajaxLegCate',
+			url:'/board/ajaxLegCate',
 			data:{
 				sido:sido,
 				chkArry:chkArr,
@@ -476,11 +484,7 @@ let globalCurrentPage = 1;
 			},
 			
 			error: function (request, status, error) {
-				console.log("code: " + request.status)
-				console.log("message: " + request.responseText)
-				console.log("error: " + error);
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				
+				alert("잘못된 접근 입니다. 관리자에게 문의하세요.");
 			}
 		})
 	}

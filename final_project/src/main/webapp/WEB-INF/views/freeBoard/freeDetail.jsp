@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/css/freeDetailStyle.css?var=1" rel="stylesheet" type="text/css">
-<script src="resources/js/jquery-3.6.0.min.js"></script>
-<script src="resources/js/magnify.js"></script>
-<script src="resources/js/script.js"></script>
-<script src="resources/js/html2canvas.js"></script>
+<link href="${path}/resources/css/freeDetailStyle.css?var=1" rel="stylesheet" type="text/css">
+<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${path}/resources/js/magnify.js"></script>
+<script src="${path}/resources/js/script.js"></script>
+<script src="${path}/resources/js/html2canvas.js"></script>
 </head>
 <style>
 
@@ -21,12 +21,12 @@
 	<div id="container">
 		<div id="header">
             <div>
-                <p><a href="/">로고</a></p>
+                <p><a href="/main">로고</a></p>
                 <span>상세보기</span>
         	
                 <ul>
         		    <li>로그인</li>
-        		    <li><a href="/freeList">커뮤니티 링크</a></li>
+        		    <li><a href="/board/freeList">커뮤니티 링크</a></li>
         	    </ul>
             </div>
         </div>
@@ -66,15 +66,15 @@
        
 		<div id="article2">
 			<div>
-				<a href="/freeList">목록</a>
+				<a href="/board/freeList">목록</a>
 			</div>
 			
 			<div>
-				<a href="/freeDelete?free_board_id=${data.free_board_id}">글 삭제</a>
+				<a href="/board/merge/freeDelete?free_board_id=${data.free_board_id}">글 삭제</a>
 			</div>
 			
 			<div>
-				<a href="/freeUpdate?free_board_id=${data.free_board_id}">글 수정</a>
+				<a href="/board/merge/freeUpdate?free_board_id=${data.free_board_id}">글 수정</a>
 			</div>
 			
 			<div id="reply_Modal">
@@ -149,12 +149,17 @@ const cri = {
 		amount : 5
 }
 
+////////////////////////////////////////////////////
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+///////////////////////////////////////////////
+
 $(document).ready(function(){
 	const free_board_id = '${data.free_board_id}';
 
 	$.ajax({
 		type:'GET',
-		url:'replyList',
+		url:'/board/replyList',
 		dataType:'JSON',
 		data:{
 			free_board_id:free_board_id,
@@ -177,9 +182,14 @@ $(".insert").on("click", function(e){
 	const free_board_id = '${data.free_board_id}'
 	const userID = $('#reply_ID').val();
 	const content = $("textarea").val();
+	
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+		});
 	$.ajax({
+		
 		type:'POST',
-		url:'replyInsert',
+		url:'/board/merge/replyInsert',
 		data:{
 			user_id:userID,
 			content:content,
@@ -198,13 +208,15 @@ $(".insert").on("click", function(e){
 	
 });
 $(document).on('click','update_reply_btn',function(){
-	
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+		});
 	$.ajax({
 		data : {
 			replyId : replyId,
 			free_board_id : '${data.free_board_id}'
 		},
-		url : 'replyDelete',
+		url : '/board/merge/replyDelete',
 		type : 'POST',
 		success : function(result){
 			replyListInit();
@@ -286,7 +298,7 @@ $(document).on('click', '.pageMaker_btn a', function(e){
  });
 
 let replyListInit = function(){
-	$.getJSON("replyList", cri , function(obj){
+	$.getJSON("/board/replyList", cri , function(obj){
 		
 		makeReplyContent(obj);
 		
