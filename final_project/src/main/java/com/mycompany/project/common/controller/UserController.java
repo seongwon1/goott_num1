@@ -12,15 +12,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.project.common.model.UserDAO;
-
+import com.mycompany.project.common.model.dao.UserDAO;
 
 @Controller
 public class UserController {
 	@Inject
-	BCryptPasswordEncoder pwdEncoder; // 비밀번호 암호화 ㅎ객체
+	BCryptPasswordEncoder pwdEncoder; // 비밀번호 암호화 객체
 	@Inject
 	UserDAO userDao;
 
@@ -60,14 +63,18 @@ public class UserController {
 		return "admin/main";
 	}
 
-	@RequestMapping("/user/insert") //
-	public String insert(String userid, String passwd, String name, String authority) {
+	@RequestMapping("user/insert.do") //
+	public String insert(String user_id, String user_password, String user_name, String authority, 
+			String address, String address_detail, String zipcode) {
+
 		Map<String, Object> map = new HashMap();
-		map.put("userid", userid);
-		String pwd = pwdEncoder.encode(passwd);
-		map.put("passwd", pwd);
-		map.put("name", name);
+		map.put("user_id", user_id);
+		String pwd = pwdEncoder.encode(user_password);
+		map.put("user_password", pwd);
+		map.put("user_name", user_name);
 		map.put("authority", authority);
+		map.put("address", address);
+		map.put("address_detail", address_detail);
 		userDao.insert(map);
 		return "user/login"; // 로그인 페이지로 이동
 	}
@@ -78,4 +85,12 @@ public class UserController {
 		session.invalidate(); // 세션 초기화
 		return "redirect:/home";// 시작 페이지로 이동
 	}
+	
+	@RequestMapping("/user/idCheck")
+	@ResponseBody
+	public int idCheck(@RequestParam("user_id") String user_id) {
+	
+		return userDao.idCheck(user_id);
+	}
+
 }

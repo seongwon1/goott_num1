@@ -1,4 +1,4 @@
-package com.mycompany.project.common.model;
+package com.mycompany.project.common.model.dao;
 
 import java.util.Map;
 import javax.inject.Inject;
@@ -18,5 +18,10 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public Map<String, Object> detail(String userid) {
 		return sqlSession.selectOne("user.detail", userid);
+	}
+
+	@Override
+	public int idCheck(String user_id) {
+		return sqlSession.selectOne("user.idCheck",user_id);
 	}
 }

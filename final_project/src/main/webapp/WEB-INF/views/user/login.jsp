@@ -1,37 +1,95 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script>
-	function join() {
-		location.href = "/user/join.do";
-	}
-</script>
-</head>
-<body>
-	<h2>로그인 하세요</h2>
-	<span style="color:red">${message}</span>
-	<form action="/user/login_check.do" method="post">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		<table>
-			<tr>
-				<td>아이디</td>
-				<td><input type="text" name="userid">
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td><input type="password" name="passwd">
-			</td>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="로그인">
-					<input type="button" value="회원가입" onclick="join()">
-				</td>
-			</tr>
-		</table>
-	</form>
-</body>	
-		
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<!DOCTYPE html>
+	<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style>
+			* {
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 60%;
+				height: 60%;
+			}
+
+			.loginBtn {
+				width: 100%;
+			}
+
+			.joinBtn {
+				width: 100%;
+			}
+
+			.loginHead {
+				text-align: center;
+				font-size: 4rem;
+				font-weight: bold;
+			}
+			
+			input{
+				width: 100%
+			}
+		</style>
+		<script>
+			function join() {
+				location.href = "/user/join.do";
+			}
+		</script>
+	</head>
+
+	<body>
+
+		<div class="container">
+			<span style="color:red">${message}</span>
+			<form action="/user/login_check.do" method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				<table>
+					<tr>
+						<td>
+							<p class="loginHead">로그인</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>아이디</p>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="text" name="userid">
+					</tr>
+					<tr>
+						<td>
+							비밀번호
+						</td>
+					</tr>
+					<tr>
+						<td><input type="password" name="passwd">
+						</td>
+					<tr>
+						<td class="login">
+							<input type="submit" value="로그인" class="loginBtn">
+					</tr>
+					<tr>
+						<td class="join">
+							<input type="button" value="회원가입" class="joinBtn" onclick="join()">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
