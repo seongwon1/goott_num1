@@ -1,4 +1,4 @@
-package com.mycompany.project.board.service;
+package com.mycompany.project.board.serviceImpl;
 
 import java.util.List;
 import java.util.Map;
@@ -8,10 +8,11 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mycompany.project.board.mapper.Mapper;
 import com.mycompany.project.board.model.Criteria;
 import com.mycompany.project.board.model.FreeBoardDAO;
 import com.mycompany.project.board.model.FreeBoardDTO;
+import com.mycompany.project.board.service.FreeBoardService;
+import com.mycompany.project.travel.model.VO;
 
 
 
@@ -22,9 +23,6 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	@Autowired
 	FreeBoardDAO boardDAO;
 	
-	@Autowired
-	Mapper mapper;
-
 	@Override
 	public void insert(FreeBoardDTO dto) {
 		boardDAO.insert(dto);	
@@ -46,16 +44,50 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	@Override
 	public List<FreeBoardDTO> list() {
 		// TODO Auto-generated method stub
-		return mapper.list();
+		return boardDAO.list();
 	}
 	@Override
 	public List<FreeBoardDTO> listPaging(Criteria cri) {
 		// TODO Auto-generated method stub
-		return mapper.listPaging(cri);
+		return boardDAO.listPaging(cri);
 	}
 	@Override
 	public int total() {
-		return mapper.total();
+		return boardDAO.total();
 	}
+	
+	
+	
+	@Override
+	public List<VO> keyword(Criteria cri) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<VO> legPaing(Criteria cri) {
+		// TODO Auto-generated method stub
+		return boardDAO.legPaging(cri);
+	}
+	@Override
+	public List<VO> homePaing(Criteria cri) {
+		// TODO Auto-generated method stub
+		return boardDAO.homePaging(cri);
+	}
+	@Override
+	public int travelTotal() {
+		// TODO Auto-generated method stub
+		return boardDAO.travelTotal();
+	}
+	@Override
+	public List<VO> eyesPaing(Criteria cri) {
+		// TODO Auto-generated method stub
+		return boardDAO.eyesPaging(cri);
+	}
+	@Override
+	public List<VO> earsPaing(Criteria cri) {
+		// TODO Auto-generated method stub
+		return boardDAO.earsPaging(cri);
+	}
+
 
 }

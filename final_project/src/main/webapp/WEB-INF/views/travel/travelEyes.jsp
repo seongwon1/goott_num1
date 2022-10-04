@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <link href="resources/css/Travelstyle.css?var=1" rel="stylesheet" type="text/css">
+  <link href="resources/css/style.css?var=1" rel="stylesheet" type="text/css">
   <script src="resources/js/jquery-3.6.0.min.js"></script>
   <script src="resources/js/magnify.js"></script>
   <script src="resources/js/script.js"></script>
@@ -21,8 +21,20 @@
     <div id="container">
         <!-- 헤더 -->
         <div id="header">
-           <div>
-        		<p><a href="/">로고</a></p>
+             <div>
+        		<p><a href="/travelHome">로고</a></p>  		
+        		<div id="search_Con">
+        			<select name="type" id="search_option">
+        					<option value="">검색</option>
+                			<option value="D">전체</option>
+                			<option value="A">시/도</option>
+							<option value="B">구/군</option>
+							<option value="C">관광지명</option>
+        	       	</select>
+        			
+        			<input type="text" name="search" id="search" onkeyup="inputEnter();" placeholder="관광지를 검색해보세요">
+					<button type="button" id="searchBtn" ><i class="fa-solid fa-magnifying-glass"></i></button>
+        		</div>
         		
         		<ul>
         			<li>로그인</li>
@@ -50,8 +62,10 @@
                     <input type="radio" name="type" id="radio1" class="radio">
                     
                     <label for="radio1" class="label1">
+                    	<a href="/travelLeg">
                         <i class="fa-solid fa-wheelchair"></i>
                         <span>지체장애</span>
+                        </a>
                     </label>
                 </div>
 
@@ -59,9 +73,11 @@
                     <input type="radio" name="type" id="radio2"class="radio">
                     
                     <label for="radio2" class="label1">
+                    <a href="/travelEars">
                         <i class="fa-solid fa-ear-deaf"></i>
                         
                         <span>청각장애</span>
+                        </a>
                     </label>
                 </div>
 
@@ -69,9 +85,11 @@
                     <input type="radio" name="type" id="radio3"class="radio">
                     
                     <label for="radio3" class="label1">
+                    <a href="/travelEyes">
                         <i class="fa-solid fa-eye-low-vision" style="color:#000;"></i>
                         
                         <span  style="color:#000; border-bottom: 3px solid #000;">시각장애</span>
+                        </a>
                     </label>
                 </div>
             </div>
@@ -79,33 +97,38 @@
             <div class="category_Bar"></div>
 			<!-- 카테고리 선택 -->
             <div class="category_Con2">
-				<ul class="category_Con2_ul">
+            		<ul class="category_Con2_ul">
 					<li class='category_Ele2'>
-						<button value="parking" name="type" class="btnActive ${pageMaker.cri.type eq 'parking'?'active':'' }"><i class="fa-solid fa-square-parking"></i>주차안내</button>
+						<input type="checkbox" name="chkArr" id="chkArr1" value="A">
+						<label for="chkArr1" class="labelActive"><i class="fa-solid fa-square-parking"></i><span>주차안내</span></label>
 					</li>
 
 					<li class='category_Ele2'>
-						<button value="braileblock" name="type" class="btnActive ${pageMaker.cri.type eq 'braileblock'?'active':'' }"><i class="fa-solid fa-ellipsis"></i>점자블록</button>
+						<input type="checkbox" name="chkArr" id="chkArr2" class="btnActive" value="B">
+						<label for="chkArr2" class="labelActive"><i class="fa-solid fa-ellipsis"></i><span>점자블록</span></label>
 					</li>
 
 					<li class='category_Ele2'>
-						<button value="helpdog" name="type" class="btnActive ${pageMaker.cri.type eq 'helpdog'?'active':'' }"><i class="fa-solid fa-dog"></i>안내견</button>
+						<input type="checkbox" name="chkArr" id="chkArr3" class="btnActive" value="C">
+						<label for="chkArr3" class="labelActive"><i class="fa-solid fa-dog"></i><span>안내견</span></label>
 					</li>
 
 					<li class='category_Ele2'>
-						<button value="guidehuman" name="type" class="btnActive ${pageMaker.cri.type eq 'guidehuman'?'active':'' }"><i class="fa-solid fa-user"></i>안내요원</button>
+						<input type="checkbox" name="chkArr" id="chkArr4" class="btnActive" value="D">
+						<label for="chkArr4" class="labelActive"><i class="fa-solid fa-user"></i><span>안내요원</span></label>
 					</li>
-
+					
 					<li class='category_Ele2'>
-						<button value="brailepromotion" name="type" class="btnActive ${pageMaker.cri.type eq 'brailepromotion'?'active':'' }"><i class="fa-solid fa-clipboard"></i>점자책</button>
+						<input type="checkbox" name="chkArr" id="chkArr5" class="btnActive" value="E">
+						<label for="chkArr5" class="labelActive"><i class="fa-solid fa-clipboard"></i><span>점자책</span></label>
 					</li>
 				</ul>
 				<!-- 지역 select box --> 
 				<div class="category_area">
                     <p>지역선택</p>
                     <div class="form">
-                        <select name="keyword" id="sido1">
-                        	<option value="시/도" <c:out value="${pageMaker.cri.keyword == null?'selected':'' }"/>>시/도 선택</option>
+                         <select name="keyword" id="sido1">
+                        	<option value="" <c:out value="${pageMaker.cri.keyword == null?'selected':'' }"/>>시/도 선택</option>
                 			<option value="서울특별시" <c:out value="${pageMaker.cri.keyword eq '서울특별시'?'selected':'' }"/>>서울특별시</option>
                 			<option value="인천광역시" <c:out value="${pageMaker.cri.keyword eq '인천광역시'?'selected':'' }"/>>인천광역시</option>
                 			<option value="대전광역시" <c:out value="${pageMaker.cri.keyword eq '대전광역시'?'selected':'' }"/>>대전광역시</option>
@@ -129,7 +152,7 @@
         </div>
         <!-- section 시작 -->  
         <div id="section">
-        	<c:forEach items="${eyeList}" var="eyeList" varStatus="vs">
+        	<c:forEach items="${eyesList}" var="eyeList" varStatus="vs">
                 <div class="section_Con">
                 	<!-- 이미지 -->
                 	<span class="section_Ele_Img">
@@ -214,7 +237,7 @@
 			</c:forEach> 
         </div>
        	<div class="section_Page">
-           	<ul class="pageInfoEye" id="pageInfoEye">
+           	<ul class="pageInfoEyes" id="pageInfoEyes">
                	<c:if test="${pageMaker.prev}">
                    	<li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">이전</a></li>
                	</c:if>
@@ -229,9 +252,7 @@
        
        	<form id="moveForm" method="GET">
        		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-       		<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-       		<input type="hidden" name="type" value="${pageMaker.cri.type}">
-       		<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">  	 
+       		<input type="hidden" name="amount" value="${pageMaker.cri.amount }">	 
         </form>
    
         <div id="footer">
@@ -254,54 +275,216 @@ let cateEle_2 = document.querySelector('.cateEle_2');
 let cateEle_3 = document.querySelector('.cateEle_3');
 let cateUl = document.querySelector('.category_Con2_ul');
 let cateCon2 = document.querySelector('.category_Con2');
+let iconEle = document.querySelectorAll('.section_Ele_Cont_Li');
+let detailEle = document.querySelectorAll('.section_Ele_Cont_Detail');
+let totalData;
+let dataPerPage = 12;
+let pageCount = 10;
+let globalCurrentPage = 1;
 
-	$('.pageInfoEye a').on('click', function(e) {
+	$('.pageInfoEyes a').on('click', function(e) {
 		e.preventDefault();
 		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-		moveForm.attr("action", "/eye");
 		moveForm.submit();
 	});
-	$('#radio1').on('click', function(e) {
-		e.preventDefault();
-		moveForm.attr("action", "/leg");
-		moveForm.find("input[name='type']").val("");
-		moveForm.find("input[name='keyword']").val("");
-		moveForm.find("input[name='pageNum']").val(1);
-		moveForm.submit();
+	$()
+	
+	$('#sido1').on('change',function(){
+		ajaxEyesCate();
 	})
-	$('#radio2').on('click', function(e) {
-		e.preventDefault();
-		moveForm.attr("action", "/ears");
-		moveForm.find("input[name='type']").val("");
-		moveForm.find("input[name='keyword']").val("");
-		moveForm.find("input[name='pageNum']").val(1);
-		moveForm.submit();
+	$('input[name="chkArr"]').change(function(){
+		if($('input[name="chkArr"]').is(':checked')){
+			
+			ajaxEyesCate();
+		} 
 	})
-	$('#radio3').on('click', function(e) {
-		e.preventDefault();
-		moveForm.attr("action", "/eye");
-		moveForm.find("input[name='type']").val("");
-		moveForm.find("input[name='keyword']").val("");
-		moveForm.find("input[name='pageNum']").val(1);
-		moveForm.submit();
-	})
-	$('.btnActive').on('click', function(e) {
-		e.preventDefault();
-		let type = $(this).val();
-		moveForm.find("input[name='type']").val(type);
-		moveForm.find("input[name='pageNum']").val(1);
-		moveForm.submit();
-	})
-	$('#sido1').on('change', function(e) {
-		e.preventDefault();
-		let keyword = $('#sido1').val();
-		moveForm.find("input[name='keyword']").val(keyword);
-		moveForm.find("input[name='pageNum']").val(1);
-		if(moveForm.find("input[name='keyword']").val() == '시/도'){
-			moveForm.find("input[name='keyword']").val("");
+	
+	$('#searchBtn').on('click', function(e){
+		ajaxEyesCate();
+	});
+	
+	function inputEnter(){
+		if(window.event.keyCode == 13){
+			ajaxEyesCate();
 		}
-		moveForm.submit();
+			
+	}
+	$('#search_option').on('change',function(){
+		ajaxEyesCate();
 	})
+	
+
+	function ajaxEyesCate(){
+		let sido = $('#sido1 option:selected').val();
+		let search = $('#search').val();
+		let chkArr = [];
+		let searchOp = $('#search_option option:selected').val();
+		$("input[name='chkArr']:checked").each(function(i) {
+	        chkArr.push($(this).val());
+		});
+
+		$.ajax({
+			type:'POST',
+			url:'/ajaxEyesCate',
+			data:{
+				sido:sido,
+				chkArry:chkArr,
+				search:search,
+				searchOp:searchOp
+				
+			},
+			success:function(data){
+				console.log(data)
+				if(data.eyesList.length < 12){
+					dataPerPage = data.eyesList.length
+				}
+				totalData = data.eyesList.length;
+				paging(totalData, dataPerPage, pageCount, 1);
+				displayData(1, dataPerPage);
+				
+				function paging(totalData, dataPerPage, pageCount, currentPage) {
+				    totalPage = Math.ceil(totalData / dataPerPage);
+				    if(totalPage<pageCount){
+				    pageCount=totalPage;
+				    }
+				    let pageGroup = Math.ceil(currentPage / pageCount);
+				    let last = pageGroup * pageCount;
+				  
+				    if (last > totalPage) {
+				        last = totalPage;
+				    }
+				    let first = last - (pageCount - 1);
+				    let next = last + 1;
+				    let prev = first - 1;
+				    let pageHtml = "";
+				    pageHtml += ' <ul class="pageInfoEyes" id="pageInfoEyes">'
+					    if (prev > 0) {
+					        pageHtml += "<li class='pageInfo_btn previous'><a href='#' id='prev'> 이전 </a></li>";
+					    }
+					    for (var i = first; i <= last; i++) {
+					        if (currentPage == i) {
+					            pageHtml += "<li class='pageInfo_btn'><a href='#' id='" + i + "'>" + i + "</a></li>";
+					        } 
+					        else {
+					            pageHtml += "<li class='pageInfo_btn'><a href='#' id='" + i + "'>" + i + "</a></li>";
+					        }
+					    }
+					    if (last < totalPage) {
+					    pageHtml += "<li class ='pageInfo_btn next'><a href='#' id='next'> 다음 </a></li>";
+					    }
+					    pageHtml += '</ul>'
+				    $(".section_Page").html(pageHtml);
+				    let displayCount = "";
+				    displayCount = "현재 1 - " + totalPage + " 페이지 / " + totalData + "건";
+				    $("#displayCount").text(displayCount);
+
+				    $(".pageInfoEyes li a").click(function () {
+				        let $id = $(this).attr("id");
+				        selectedPage = $(this).text();
+				        if ($id == "next") selectedPage = next;
+				        if ($id == "prev") selectedPage = prev;
+				        globalCurrentPage = selectedPage;
+				    
+				        paging(totalData, dataPerPage, pageCount, selectedPage);
+				        
+				        displayData(selectedPage, dataPerPage);
+				    });
+				}
+				
+				function displayData(currentPage, dataPerPage) {
+				
+				var dataHtml = '';
+				
+				 currentPage = Number(currentPage);
+				 dataPerPage = Number(dataPerPage);
+				  
+				 for (var i = (currentPage - 1) * dataPerPage; i < (currentPage - 1) * dataPerPage + dataPerPage; i++) {
+					
+					dataHtml += '<div class="section_Con">'
+					dataHtml += '<span class="section_Ele_Img">'
+					dataHtml += "<img src="+data.eyesList[i].firstimage+">"
+					dataHtml += '</span>'
+					dataHtml += '<div class="section_Ele_Cont">'
+					dataHtml += '<ul class="section_Ele_cont_Ul1">'
+					dataHtml += "<li style='font-size:1.4rem; color:#1A1A1A; font-weight:700;'>"+data.eyesList[i].location_name+"</li>"
+					dataHtml += '<li style="colir:#5D5E5D">'+data.eyesList[i].address+'</li>'
+					dataHtml += '</ul>'
+					dataHtml += '<span class="section_Ele_cont_bar"></span>'
+					dataHtml += '<ul class="section_Ele_cont_Ul2">'
+					dataHtml += '<li class="section_Ele_Cont_Li" onmouseover = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="flex" onmouseleave = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="none">'
+					if(data.eyesList[i].parking != null){
+					dataHtml += '<i class="fa-solid fa-square-parking"></i>'	
+					}
+					dataHtml += '</li>'
+					dataHtml += '<li class="section_Ele_Cont_Li" onmouseover = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="flex" onmouseleave = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="none">'
+					if(data.eyesList[i].braileblock != null){
+					dataHtml += '<i class="fa-solid fa-ellipsis"></i>'
+					}
+					dataHtml += '</li>'
+					dataHtml += '<li class="section_Ele_Cont_Li" onmouseover = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="flex" onmouseleave = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="none">'
+					if(data.eyesList[i].helpdog != null){
+					dataHtml += '<i class="fa-solid fa-dog"></i>'
+					}
+					dataHtml += '</li>'
+					dataHtml += '<li class="section_Ele_Cont_Li" onmouseover = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="flex" onmouseleave = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="none">'
+					if(data.eyesList[i].brailepromotion != null){
+					dataHtml += '<i class="fa-solid fa-clipboard"></i>'
+					dataHtml += '</li>'
+					}
+					dataHtml += '<li class="section_Ele_Cont_Li" onmouseover = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="flex" onmouseleave = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="none">'
+					if(data.eyesList[i].guidehuman != null){
+					dataHtml += '<i class="fa-solid fa-user"></i>'
+					dataHtml += '</li>'
+					}
+					dataHtml += '</ul>'
+					dataHtml += '<ul class="section_Ele_Cont_Detail" id="section_Ele_Cont_Detail'+[i]+'">'
+					if(data.eyesList[i].parking != null){
+					dataHtml += '<li class="section_Ele_Cont_Detail_Li">'
+					dataHtml += '<span>'+data.eyesList[i].parking+'</span>'
+					}
+					dataHtml += '</li>'
+					if(data.eyesList[i].braileblock != null){
+					dataHtml += '<li class="section_Ele_Cont_Detail_Li">'
+					dataHtml += '<span>'+data.eyesList[i].braileblock+'</span>'
+					}
+					dataHtml += '</li>'
+					if(data.eyesList[i].helpdog != null){
+					dataHtml += '<li class="section_Ele_Cont_Detail_Li">'
+					dataHtml += '<span>'+data.eyesList[i].helpdog+'</span>'
+					}
+					dataHtml += '</li>'
+					if(data.eyesList[i].brailepromotion != null){
+					dataHtml += '<li class="section_Ele_Cont_Detail_Li">'
+					dataHtml += '<span>'+data.eyesList[i].brailepromotion+'</span>'
+					}
+					dataHtml += '</li>'
+					if(data.eyesList[i].guidehuman != null){
+						dataHtml += '<li class="section_Ele_Cont_Detail_Li">'
+						dataHtml += '<span>'+data.eyesList[i].guidehuman+'</span>'
+					}
+					dataHtml += '</li>'
+					dataHtml += '</ul>'
+					dataHtml += '</div>'
+					dataHtml += '</div>'
+
+				}
+				 $('#section').html(dataHtml)
+				
+				}
+				
+				
+			},
+			
+			error: function (request, status, error) {
+				console.log("code: " + request.status)
+				console.log("message: " + request.responseText)
+				console.log("error: " + error);
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				
+			}
+		})
+	}
+
 </script>
 <script src="https://kit.fontawesome.com/f9f8c57db8.js" crossorigin="anonymous"></script>
 </html>
