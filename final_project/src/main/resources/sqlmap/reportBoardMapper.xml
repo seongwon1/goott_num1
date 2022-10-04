@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reportBoardMapper">
+
+	<insert id="insert">
+		insert into board_report(category, title, content, user_id ,file_name , file_url)
+		values(#{category}, #{title}, #{content}, #{user_id}, #{file} , #{file_url});
+	</insert>
+	
+	<select id="detail" parameterType="hashMap" resultType="hashMap">
+		select rboard_id, category, title, content, user_id, regdate, file_name from board_report
+		where rboard_id=#{rboard_id};
+	</select>
+	
+	<update id="update">
+		update board_report
+		set title=#{title}, content=#{content}, user_id=#{user_id} ,category=#{category} ,file_name=#{file}, file_url = #{file_url}
+		where rboard_id=#{rboard_id};
+	</update>
+	
+	 <update id="content_update" parameterType="hashMap">
+      update board_report
+      set title=#{title}, content=#{content}, user_id=#{user_id} ,category=#{category}
+      where rboard_id=#{rboard_id};
+   </update>
+	
+	
+	<delete id="delete">
+		delete from board_report where rboard_id = #{rboard_id};
+	</delete>
+	<select id="fileDel" resultType="String">
+		select file_url from board_report where rboard_id = #{rboard_id};
+	</select>
+	
+<update id="columnDel">
+
+
+	
+	update board_report set file_name = null, file_url = null where rboard_id = #{rboard_id}; 
+
+	</update> 
+	
+	<select id="getFile"  resultType="String">
+		select file_name from board_report where rboard_id = #{rboard_id};
+	</select>
+	   
+
+
+	
+	
+</mapper>
