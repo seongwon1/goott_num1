@@ -25,10 +25,13 @@ a{
 #header{
     /* 헤더 */
     width: 100%;
-    height: 100px;
+    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid #DADADA;
+    background-color: white;
+    z-index: 100001;
 }
 #header > div{
 	width: 88%;
@@ -52,12 +55,55 @@ a{
 #header > div > ul >li{
 	margin: 0 10px;	
 }
-
+#search_Con{
+	width: 30%;
+    height: 50px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    border-radius:100px;
+	border: 1px solid rgba(207 207 207);
+}
+#search_Con > input[type="text"]{
+	width: 55%;
+    height: 50px;
+    padding: 20px;
+    font-size: 1.5rem;
+    border: 1px solid rgba(207 207 207);
+	border-left: none;
+	border-right: none;
+}
+#search_Con > input[type="text"]::placeholder{
+	font-size: 1.1rem;
+	
+}
+#search_Con > button{
+	width: 13%;
+    height: 44px;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+}
+#search_Con > select{
+	width: 27%;
+	height: 35px;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1.2rem;
+	
+}
+#search_Con > button > i{
+	font-size: 1.3rem;
+}
+select:focus{
+	outline: none;
+}
 #category{
     /* 카테고리 시작 */
     width: 100%;
     height: 300px;
-    border-top: 1px solid #DADADA;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -143,8 +189,9 @@ input[type = radio]{
     justify-content: center;
     align-items: center;
 	margin-right: 10px;
+	
 }
-.category_Ele2 > button{
+.category_Ele2 > label{
 	width: 160px;
 	height: 50px;
 	border-radius: 50px;
@@ -154,19 +201,22 @@ input[type = radio]{
 	border: 1px solid rgba(207 207 207);
 	background-color: white;
 }
+input[type="checkbox"]{
+	display: none;
+}
 
-.btnActive.active {
+input[type="checkbox"]:checked + .labelActive {
 /* 카테고리 버튼클릭시 효과 */ 
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	color: #000;
 	font-weight: 800;
 }
-.btnActive > i{
+.labelActive > i{
 	font-size: 1.7rem;
 	color: #5F6368;
 	margin: 0 10px;
 }
-.btnActive:hover{
+.labelActive:hover{
 	transition:all 0.3s;
 	transform:scale(1.03);
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -340,7 +390,7 @@ input[type = radio]{
     margin: 0 5px;
 }
 
-.pageInfoEye{
+.pageInfoEyes{
 	width: 100%;
     display: flex;
     justify-content: center;
@@ -348,7 +398,7 @@ input[type = radio]{
     list-style-type: none;
 }
 
-.pageInfoEye a{
+.pageInfoEyes a{
     color: #5F6368;
     font-size:1.6rem;
     margin: 0 5px;
@@ -371,7 +421,6 @@ input[type = radio]{
 .pageInfo_btn.active{
 	border-bottom:1px solid #000;
 }
-
 #footer{
 /* 풋터 */
     width: 100%;
@@ -441,15 +490,10 @@ html.invert {
 } 
 .magnify_lense {
 	position:absolute; 
-	width:230px; 
-	height:230px; 
+	width:180px; 
+	height:180px; 
 	border-radius:100%; 
 	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85),  0 0 5px 7px rgba(0, 0, 0, 0.25),  inset 0 0 5px 1px rgba(0, 0, 0, 0.25); 
 	background-color:#fff; 
 	display:none;
-}
-html.invert {
-	-webkit-filter: invert(); /* WebKit */
-	filter: progid:DXImageTransform.Microsoft.BasicImage(invert=1);/* IE 6-7 */
-	-ms-filter: 'progid:DXImageTransform.Microsoft.BasicImage(invert=1)';/* IE 8 */
 }

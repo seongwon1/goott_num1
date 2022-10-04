@@ -16,14 +16,17 @@ import com.mycompany.project.board.model.Criteria;
 import com.mycompany.project.board.model.FreeBoardDTO;
 import com.mycompany.project.board.model.PageMakerDTO;
 import com.mycompany.project.board.service.FreeBoardService;
+import com.mycompany.project.board.service.FreeReplyService;
 
 
 
 @Controller
 public class FreeBoardController {
+	
 	@Autowired
 	FreeBoardService boardService;
-	
+	@Autowired
+	FreeReplyService replyService;
 	
 	@RequestMapping(value = "/freeList", method = RequestMethod.GET)
 	public String list(Model model, Criteria cri) {
@@ -31,7 +34,7 @@ public class FreeBoardController {
 		int total = boardService.total();
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
 		model.addAttribute("pageMaker",pageMake);
-		System.out.println(pageMake.toString());
+		
 		return "freeBoard/freeList";
 	}
 		
@@ -46,12 +49,12 @@ public class FreeBoardController {
 		boardService.insert(dto);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/freeList");
-
+		
 		return mv;
 	}
+	
 	@RequestMapping(value="/freeDetail", method = RequestMethod.GET)
-	public ModelAndView detail(@RequestParam Map<String, Object> map, FreeBoardDTO dto) {
-		
+	public ModelAndView detail(@RequestParam Map<String, Object> map, FreeBoardDTO dto, Criteria cri) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("freeBoard/freeDetail");
 		mv.addObject("data", boardService.detail(map));
@@ -72,7 +75,6 @@ public class FreeBoardController {
 	
 	@RequestMapping(value="/freeUpdate", method = RequestMethod.POST)
 	public ModelAndView update(FreeBoardDTO dto) {
-		
 		
 		ModelAndView mv = new ModelAndView();
 		int free_board_id = boardService.update(dto);

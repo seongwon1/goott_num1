@@ -1,5 +1,8 @@
 package com.mycompany.project.travel.model;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class VO {
 	String location_name;
 	String address;
@@ -16,13 +19,30 @@ public class VO {
 	String videoguide;
 	String hearinghandicapetc;
 	String firstimage;
-	String keyword;
+	String Sido;
+	String search;
+	String searchOp;
+	List<String> chkArry;
 	
-	public String getKeyword() {
-		return keyword;
+	
+	public String getSearchOp() {
+		return searchOp;
 	}
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
+	public void setSearchOp(String searchOp) {
+		this.searchOp = searchOp;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
+	public String getSido() {
+		return Sido;
+	}
+	public void setSido(String sido) {
+		Sido = sido;
 	}
 	public String getLocation_name() {
 		return location_name;
@@ -115,7 +135,14 @@ public class VO {
 	public void setFirstimage(String firstimage) {
 		this.firstimage = firstimage;
 	}
+
 	
+	public List<String> getChkArry() {
+		return chkArry;
+	}
+	public void setChkArry(List<String> chkArry) {
+		this.chkArry = chkArry;
+	}
 	@Override
 	public String toString() {
 		return "VO [location_name=" + location_name + ", address=" + address + ", parking=" + parking
@@ -123,6 +150,12 @@ public class VO {
 				+ ", braileblock=" + braileblock + ", helpdog=" + helpdog + ", guidehuman=" + guidehuman
 				+ ", brailepromotion=" + brailepromotion + ", blindhandicapetc=" + blindhandicapetc + ", signguide="
 				+ signguide + ", videoguide=" + videoguide + ", hearinghandicapetc=" + hearinghandicapetc
-				+ ", firstimage=" + firstimage + "]";
+				+ ", firstimage=" + firstimage + ", Sido=" + Sido + ", search=" + search + ", searchOp=" + searchOp
+				+ ", chkArry=" + chkArry + "]";
 	}
+	
+	
+	
+	
+	
 }

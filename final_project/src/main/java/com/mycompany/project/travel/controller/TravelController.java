@@ -19,80 +19,133 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.mycompany.project.board.model.Criteria;
+import com.mycompany.project.board.model.PageMakerDTO;
+import com.mycompany.project.board.service.FreeBoardService;
 import com.mycompany.project.travel.model.VO;
+
+
 
 
 @Controller
 public class TravelController {
 
 	@Autowired
+	private FreeBoardService boardService;
+	@Autowired
 	private SqlSession sqlSesstion;
 	
-	private static final Logger logger = LoggerFactory.getLogger(TravelController.class);
 	
 
-	@RequestMapping(value ="/travelPage", method = RequestMethod.GET)
-	public String home() {
+	@RequestMapping(value ="/travelHome", method = RequestMethod.GET)
+	public ModelAndView travelHome(ModelAndView mv, Criteria cri) {
 		
-		return "travel/travelHome";
+		mv.addObject("homeList",boardService.homePaing(cri));
+		int total = boardService.travelTotal();
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+		mv.setViewName("travel/travelHome");
+		mv.addObject("pageMaker",pageMake);
+		
+		return mv;
 		
 	}
 	
-	@RequestMapping(value ="/leg", method = RequestMethod.GET)
-	public String leg() {
+	@RequestMapping(value ="/travelLeg", method = RequestMethod.GET)
+	public ModelAndView travelLeg(ModelAndView mv, Criteria cri) {
+		
+		int total = boardService.travelTotal();
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+		mv.addObject("leglist",boardService.homePaing(cri));
+		mv.addObject("pageMaker",pageMake);
+		mv.setViewName("travel/travelLeg");
 
-		return "travel/leg";
+		return mv;
 		
 	}
-	@RequestMapping(value ="/eye", method = RequestMethod.GET)
-	public String eye() {
+	
+	
+	@RequestMapping(value ="/travelEyes", method = RequestMethod.GET)
+	public ModelAndView travelEye(ModelAndView mv, Criteria cri) {
+		
+		int total = boardService.travelTotal();
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+		mv.addObject("eyesList",boardService.homePaing(cri));
+		mv.addObject("pageMaker",pageMake);
+		mv.setViewName("travel/travelEyes");
 
-		return "travel/eye";
+		return mv;
 		
 	}
-	@RequestMapping(value ="/ears", method = RequestMethod.GET)
-	public String ears() {
-	
+	@RequestMapping(value ="/travelEars", method = RequestMethod.GET)
+	public ModelAndView travelEars(ModelAndView mv, Criteria cri) {
 		
-		return "travel/ears";
+		int total = boardService.travelTotal();
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+		mv.addObject("earslist",boardService.homePaing(cri));
+		mv.addObject("pageMaker",pageMake);
+		mv.setViewName("travel/travelEars");
+
+		return mv;
 		
 	}
+	@RequestMapping(value ="/ajaxLegCate", method = RequestMethod.POST)
 	@ResponseBody
-	@RequestMapping(value ="/ajaxLeg", method = RequestMethod.POST)
-	public HashMap<String, Object> ajaxLeg(Model model, HttpServletRequest request) {
-			HashMap<String, Object> result = new HashMap<String, Object>();
-			VO vo = new VO();
-			List<VO> list = sqlSesstion.selectList("FreeBoardMapper.legList",vo);
-			result.put("list", list);
-			
-			return result;
+	public HashMap<String, Object> ajaxLegCate(@RequestParam(value="chkArry[]",required = false) List<String> chkArry,  HttpServletRequest request){
+		HashMap<String, Object> result = new HashMap<String, Object>();
+
+		VO vo = new VO();
+		String sido = request.getParameter("sido");
+		String search = request.getParameter("search");
+		String searchOp = request.getParameter("searchOp");
+		vo.setSido(sido);
+		vo.setChkArry(chkArry);
+		vo.setSearch(search);
+		vo.setSearchOp(searchOp);
+		List<VO> list = sqlSesstion.selectList("travelMapper.legPaging",vo);
+		result.put("leglist", list);
+		System.out.println(list);
+		return result;
 	}
 	
+	@RequestMapping(value ="/ajaxEarsCate", method = RequestMethod.POST)
 	@ResponseBody
-	@RequestMapping(value ="/ajaxHome", method = RequestMethod.POST)
-	public HashMap<String, Object> ajaxHome(Model model, HttpServletRequest request) {
-			HashMap<String, Object> result = new HashMap<String, Object>();
-			VO vo = new VO();
-			List<VO> list = sqlSesstion.selectList("FreeBoardMapper.list",vo);
-			result.put("list", list);
-			
-			return result;
+	public HashMap<String, Object> ajaxEarsCate(@RequestParam(value="chkArry[]",required = false) List<String> chkArry,  HttpServletRequest request){
+		HashMap<String, Object> result = new HashMap<String, Object>();
+
+		VO vo = new VO();
+		String sido = request.getParameter("sido");
+		String search = request.getParameter("search");
+		String searchOp = request.getParameter("searchOp");
+		vo.setSido(sido);
+		vo.setChkArry(chkArry);
+		vo.setSearch(search);
+		vo.setSearchOp(searchOp);
+		List<VO> list = sqlSesstion.selectList("travelMapper.earsPaging",vo);
+		result.put("earslist", list);
+		System.out.println(list);
+
+		return result;
 	}
 	
+	@RequestMapping(value ="/ajaxEyesCate", method = RequestMethod.POST)
 	@ResponseBody
-	@RequestMapping(value ="/ajaxKeyword", method = RequestMethod.POST)
-	public HashMap<String, Object> ajaxTest(Model model, HttpServletRequest request) {
-			HashMap<String, Object> result = new HashMap<String, Object>();
-			String keyword = request.getParameter("keyword");
-			VO vo = new VO();
-			vo.setKeyword(keyword);
-			List<VO> list = sqlSesstion.selectList("FreeBoardMapper.keyword",vo);
-			result.put("list", list);
+	public HashMap<String, Object> ajaxEyesCate(@RequestParam(value="chkArry[]",required = false) List<String> chkArry,  HttpServletRequest request){
+		HashMap<String, Object> result = new HashMap<String, Object>();
+
+		VO vo = new VO();
+		String sido = request.getParameter("sido");
+		String search = request.getParameter("search");
+		String searchOp = request.getParameter("searchOp");
+		vo.setSido(sido);
+		vo.setChkArry(chkArry);
+		vo.setSearch(search);
+		vo.setSearchOp(searchOp);
+		List<VO> list = sqlSesstion.selectList("travelMapper.eyesPaging",vo);
+		result.put("eyesList", list);
 		
-			return result;
-	
+		return result;
 	}
+	
 	
 	
 }

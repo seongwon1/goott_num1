@@ -27,6 +27,19 @@
         	    </ul>
             </div>
         </div>
+        
+        <div id="a11yMenu" class="a11y_menu" aria-label="접근성메뉴">
+			<h2 class="blind">접근성메뉴<span><i class="fa-solid fa-x"></i></span></h2>
+        	
+        	<ul id="ally_Menu_Ul">
+        		<li class="a11y_invert"><button id="setInvert" aria-pressed="false"><span>색상반전</span></button></li>
+				<li class="a11y_zoomin"><button id="setZoomin"><span>확대</span></button></li>
+				<li class="a11y_zoomout"><button id="setZoomout"><span>축소</span></button></li>
+				<li class="a11y_magnify"><button id="setMagnify" aria-pressed="false"><span>돋보기</span></button></li>
+			</ul>
+			
+			<dl aria-live="polite"></dl> 
+		</div>
 
         <div id="article">
             <div>
@@ -49,18 +62,7 @@
             </div>
         </div>
         
-        <div id="a11yMenu" class="a11y_menu" aria-label="접근성메뉴">
-			<h2 class="blind">접근성메뉴<span><i class="fa-solid fa-x"></i></span></h2>
-        	
-        	<ul id="ally_Menu_Ul">
-        		<li class="a11y_invert"><button id="setInvert" aria-pressed="false"><span>색상반전</span></button></li>
-				<li class="a11y_zoomin"><button id="setZoomin"><span>확대</span></button></li>
-				<li class="a11y_zoomout"><button id="setZoomout"><span>축소</span></button></li>
-				<li class="a11y_magnify"><button id="setMagnify" aria-pressed="false"><span>돋보기</span></button></li>
-			</ul>
-			
-			<dl aria-live="polite"></dl> 
-		</div>
+        
 			
         <div id="section">
             <table>

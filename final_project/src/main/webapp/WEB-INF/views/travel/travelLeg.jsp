@@ -1,29 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="resources/css/style.css?var=1" rel="stylesheet" type="text/css">
-<script src="resources/js/jquery-3.6.0.min.js"></script>
-<script src="resources/js/magnify.js"></script>
-<script src="resources/js/script.js"></script>
-<script src="resources/js/html2canvas.js"></script>
+  <link href="resources/css/style.css?var=1" rel="stylesheet" type="text/css">
+  <script src="resources/js/jquery-3.6.0.min.js"></script>
+  <script src="resources/js/magnify.js"></script>
+  <script src="resources/js/script.js"></script>
+  <script src="resources/js/html2canvas.js"></script>
 	<title>Home</title>
 </head>
 
 <body>
-
 <div id="wrap">
-  <!-- 컨테이너 -->
-    <div id="container">
+   <!-- 컨테이너 -->
+       <div id="container">
         <!-- 헤더 -->
         <div id="header">
            <div>
-        		<p><a href="/">로고</a></p>
+        		<p><a href="/travelHome">로고</a></p>  		
+        		<div id="search_Con">
+        			<select name="type" id="search_option">
+        					<option value="">검색</option>
+                			<option value="D">전체</option>
+                			<option value="A">시/도</option>
+							<option value="B">구/군</option>
+							<option value="C">관광지명</option>
+        	       	</select>
+        			
+        			<input type="text" name="search" id="search" onkeyup="inputEnter();" placeholder="관광지를 검색해보세요">
+					<button type="button" id="searchBtn" ><i class="fa-solid fa-magnifying-glass"></i></button>
+        		</div>
         		
         		<ul>
         			<li>로그인</li>
@@ -52,8 +63,8 @@
                     
                     <label for="radio1" class="label1">
                     <a href="/travelLeg">
-                        <i class="fa-solid fa-wheelchair"></i>
-                        <span>지체장애</span>
+                        <i class="fa-solid fa-wheelchair" style="color:#000;"></i>
+                        <span style="color:#000; border-bottom: 3px solid #000;">지체장애</span>
                         </a>
                     </label>
                 </div>
@@ -88,23 +99,28 @@
             <div class="category_Con2">
 				<ul class="category_Con2_ul">
 					<li class='category_Ele2'>
-						
+						<input type="checkbox" name="chkArr" id="chkArr1" value="A">
+						<label for="chkArr1" class="labelActive"><i class="fa-solid fa-square-parking"></i><span>주차안내</span></label>
 					</li>
 
 					<li class='category_Ele2'>
-						
+						<input type="checkbox" name="chkArr" id="chkArr2" class="btnActive" value="B">
+						<label for="chkArr2" class="labelActive"><i class="fa-solid fa-stairs"></i><span>경사로</span></label>
 					</li>
 
 					<li class='category_Ele2'>
-						
+						<input type="checkbox" name="chkArr" id="chkArr3" class="btnActive" value="C">
+						<label for="chkArr3" class="labelActive"><i class="fa-solid fa-elevator"></i><span>엘리베이터</span></label>
 					</li>
 
 					<li class='category_Ele2'>
-						
+						<input type="checkbox" name="chkArr" id="chkArr4" class="btnActive" value="D">
+						<label for="chkArr4" class="labelActive"><i class="fa-solid fa-wheelchair"></i><span>휠체어</span></label>
 					</li>
-
+					
 					<li class='category_Ele2'>
-						
+						<input type="checkbox" name="chkArr" id="chkArr5" class="btnActive" value="E">
+						<label for="chkArr5" class="labelActive"><i class="fa-solid fa-user"></i><span>안내요원</span></label>
 					</li>
 				</ul>
 				<!-- 지역 select box --> 
@@ -112,7 +128,7 @@
                     <p>지역선택</p>
                     <div class="form">
                         <select name="keyword" id="sido1">
-                        	<option value="시/도" <c:out value="${pageMaker.cri.keyword == null?'selected':'' }"/>>시/도 선택</option>
+                        	<option value="" <c:out value="${pageMaker.cri.keyword == null?'selected':'' }"/>>시/도 선택</option>
                 			<option value="서울특별시" <c:out value="${pageMaker.cri.keyword eq '서울특별시'?'selected':'' }"/>>서울특별시</option>
                 			<option value="인천광역시" <c:out value="${pageMaker.cri.keyword eq '인천광역시'?'selected':'' }"/>>인천광역시</option>
                 			<option value="대전광역시" <c:out value="${pageMaker.cri.keyword eq '대전광역시'?'selected':'' }"/>>대전광역시</option>
@@ -136,48 +152,48 @@
         </div>
         <!-- section 시작 -->  
         <div id="section">
-        	<c:forEach items="${homeList}" var="homeList" varStatus="vs">
+        	<c:forEach items="${leglist}" var="leglist" varStatus="vs">
                 <div class="section_Con">
                 	<!-- 이미지 -->
                 	<span class="section_Ele_Img">
-                		<img src="${homeList.firstimage}">
+                		<img src="${leglist.firstimage}">
                 	</span>
                 	<!-- 정보창 -->
                 	<div class="section_Ele_Cont">
                 		<ul class="section_Ele_cont_Ul1">
-                			<li style="font-size:1.4rem; color:#1A1A1A; font-weight:700;"><c:out value="${homeList.location_name}"></c:out></li>
-                			<li style="colir:#5D5E5D"><c:out value="${homeList.address} "></c:out></li>
+                			<li style="font-size:1.4rem; color:#1A1A1A; font-weight:700;"><c:out value="${leglist.location_name}"></c:out></li>
+                			<li style="colir:#5D5E5D"><c:out value="${leglist.address} "></c:out></li>
                 		</ul>
                 		<!-- section_Ele bar -->
                 		<span class="section_Ele_cont_bar"></span>
                 		<!-- 정보창 아이콘 -->
                 		<ul class="section_Ele_cont_Ul2">
-                			<c:set var="homeList1" value="${homeList}" />
-                				<c:if test="${homeList1.parking != null}">
+                			<c:set var="leglist" value="${leglist}" />
+                				<c:if test="${leglist.parking != null}">
                 					<li class="section_Ele_Cont_Li" onmouseover="document.getElementById('section_Ele_Cont_Detail${vs.index}').style.display='flex'" onmouseleave="document.getElementById('section_Ele_Cont_Detail${vs.index}').style.display='none'">
                 						<i class="fa-solid fa-square-parking"></i>
                 					</li>
                 				</c:if>
                 				
-                				<c:if test="${homeList1.braileblock != null}">
+                				<c:if test="${leglist.publictransport != null}">
                 					<li class="section_Ele_Cont_Li" onmouseover="document.getElementById('section_Ele_Cont_Detail${vs.index}').style.display='flex'" onmouseleave="document.getElementById('section_Ele_Cont_Detail${vs.index}').style.display='none'">
-                						<i class="fa-solid fa-ellipsis"></i>
+                					<i class="fa-solid fa-stairs"></i>
                 					</li>
                 				</c:if>
                 				
-                				<c:if test="${homeList1.helpdog != null}">
+                				<c:if test="${leglist.elevator != null}">
                 					<li class="section_Ele_Cont_Li" onmouseover="document.getElementById('section_Ele_Cont_Detail${vs.index}').style.display='flex'" onmouseleave="document.getElementById('section_Ele_Cont_Detail${vs.index}').style.display='none'">
-                						<i class="fa-solid fa-dog"></i>
+                						<i class="fa-solid fa-elevator"></i>
                 					</li>
                 				</c:if>
                 				
-                				<c:if test="${homeList1.brailepromotion != null}">
+                				<c:if test="${leglist.wheelchair != null}">
                 					<li class="section_Ele_Cont_Li" onmouseover="document.getElementById('section_Ele_Cont_Detail${vs.index}').style.display='flex'" onmouseleave="document.getElementById('section_Ele_Cont_Detail${vs.index}').style.display='none'">
-                						<i class="fa-solid fa-clipboard"></i>
+                						<i class="fa-solid fa-wheelchair"></i>
                 					</li>
                 				</c:if>
                 				
-                				<c:if test="${homeList1.guidehuman != null}">
+                				<c:if test="${leglist.guidehuman != null}">
                 					<li class="section_Ele_Cont_Li" onmouseover="document.getElementById('section_Ele_Cont_Detail${vs.index}').style.display='flex'" onmouseleave="document.getElementById('section_Ele_Cont_Detail${vs.index}').style.display='none'">
                 						<i class="fa-solid fa-user"></i>
                 					</li>
@@ -186,66 +202,68 @@
                 		</ul>
                 		<!-- 정보상세 -->
                			<ul class="section_Ele_Cont_Detail" id="section_Ele_Cont_Detail${vs.index}">
-               				<c:if test="${homeList1.parking != null}">
+               				<c:if test="${leglist.parking != null}">
                					<li class="section_Ele_Cont_Detail_Li">
-               						<span>${homeList1.parking}</span>
+               						<span>${leglist.parking}</span>
                					</li>
                				</c:if>
                				
-                			<c:if test="${homeList1.braileblock != null}">
+                			<c:if test="${leglist.publictransport != null}">
                 				<li class="section_Ele_Cont_Detail_Li">
-                					<span>${homeList1.braileblock}</span>
+                					<span>${leglist.publictransport}</span>
                					</li>
                				</c:if>
                				
-               				<c:if test="${homeList1.helpdog != null}">
+               				<c:if test="${leglist.elevator != null}">
                					<li class="section_Ele_Cont_Detail_Li">
-               						<span>${homeList1.helpdog}</span>
+               						<span>${leglist.elevator}</span>
                					</li>
                				</c:if>
                				
-               				<c:if test="${homeList1.brailepromotion != null}">
+               				<c:if test="${leglist.wheelchair != null}">
                 				<li class="section_Ele_Cont_Detail_Li">
-                					<span>${homeList1.brailepromotion}</span>
+                					<span>${leglist.wheelchair}</span>
                 				</li>
                 			</c:if>
-                				
-                			<c:if test="${homeList1.guidehuman != null}">
+                			
+                			<c:if test="${leglist.guidehuman != null}">
                 				<li class="section_Ele_Cont_Detail_Li">
-               						<span>${homeList1.guidehuman}</span>
-               					</li>
-               				</c:if>
+                					<span>${leglist.guidehuman}</span>
+                				</li>
+                			</c:if>
                			</ul>       
                		</div>
                	</div>			
 			</c:forEach> 
         </div>
-       	<div class="section_Page">
-           	<ul class="pageInfo" id="pageInfo">
-               	<c:if test="${pageMaker.prev}">
-                   	<li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">이전</a></li>
-               	</c:if>
-               	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                   	<li class="pageInfo_btn ${pageMaker.cri.pageNum == num? 'active':''}"><a href="${num}">${num}</a></li>
-               	</c:forEach>
-               	<c:if test="${pageMaker.next}">
-                   	<li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">다음</a></li>
+		<!-- 페이징 -->
+        <div class="section_Page">
+        	<ul class="pageInfoLeg" id="pageInfoLeg">
+                <c:if test="${pageMaker.prev}">
+                    <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">이전</a></li>
                 </c:if>
-           	</ul>
-       	</div>
-       
-       	<form id="moveForm" method="GET">
+                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                    <li class="pageInfo_btn ${pageMaker.cri.pageNum == num? 'active':''}"><a href="${num}">${num}</a></li>
+                </c:forEach>
+                <c:if test="${pageMaker.next}">
+                    <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">다음</a></li>
+                </c:if>
+            </ul>
+        </div>
+        <!-- form -->
+        
+		<form id="moveForm" method="GET">
        		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-       		<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-       		<input type="hidden" name="type" value="${pageMaker.cri.type}">
-       		<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">  	 
+       		<input type="hidden" name="amount" value="${pageMaker.cri.amount }">  	 
         </form>
-   
+    	<!-- footer -->
         <div id="footer">
 
-        </div>
-    </div>
-    <!-- container -->
+        </div>	
+	</div>
+
+	
+<!-- container -->
 	<div id="magnifyImg" class="magnify_area">
 		<div id="magnifyLense" class="magnify_lense"></div>
 	</div>
@@ -253,39 +271,78 @@
 <!-- wrap -->
 </body>
 <script>
-
 let moveForm = $("#moveForm");
 let cateEle_1 = document.querySelector('.cateEle_1');
 let cateEle_2 = document.querySelector('.cateEle_2');
 let cateEle_3 = document.querySelector('.cateEle_3');
 let cateUl = document.querySelector('.category_Con2_ul');
 let cateCon2 = document.querySelector('.category_Con2');
-
-	$('.pageInfo a').on('click', function(e) {
-		e.preventDefault();
-		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-		moveForm.attr("action", "/travelHome");
-		moveForm.submit();
-	});
-
-let keyword = $('#sido1 option:selected').val();
+let iconEle = document.querySelectorAll('.section_Ele_Cont_Li');
+let detailEle = document.querySelectorAll('.section_Ele_Cont_Detail');
 let totalData;
 let dataPerPage = 12;
 let pageCount = 10;
 let globalCurrentPage = 1;
+
+	$('.pageInfoLeg a').on('click', function(e) {
+		e.preventDefault();
+		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+		moveForm.submit();
+	});
+	$()
 	
-/* 	$(document).ready(function(){
+	$('#sido1').on('change',function(){
+		ajaxCate();
+	})
+	$('input[name="chkArr"]').change(function(){
+		if($('input[name="chkArr"]').is(':checked')){
+			
+			ajaxCate();
+		} 
+	})
+	
+	$('#searchBtn').on('click', function(e){
+		ajaxCate();
+	});
+	
+	function inputEnter(){
+		if(window.event.keyCode == 13){
+			ajaxCate();
+		}
+			
+	}
+	$('#search_option').on('change',function(){
+		ajaxCate();
+	})
+	
+
+	function ajaxCate(){
+		let sido = $('#sido1 option:selected').val();
+		let search = $('#search').val();
+		let chkArr = [];
+		let searchOp = $('#search_option option:selected').val();
+		$("input[name='chkArr']:checked").each(function(i) {
+	        chkArr.push($(this).val());
+		});
+
 		$.ajax({
 			type:'POST',
-			url:'/ajaxHome',
-			dataType:'json',
-			data:{},
-			success:function(result){
-				totalData = result.list.length;
+			url:'ajaxLegCate',
+			data:{
+				sido:sido,
+				chkArry:chkArr,
+				search:search,
+				searchOp:searchOp
+				
+			},
+			success:function(data){
+				if(data.leglist.length < 12){
+					dataPerPage = data.leglist.length
+				}
+				totalData = data.leglist.length;
 				paging(totalData, dataPerPage, pageCount, 1);
 				displayData(1, dataPerPage);
 				
-				//페이징 시작
 				function paging(totalData, dataPerPage, pageCount, currentPage) {
 				    totalPage = Math.ceil(totalData / dataPerPage);
 				    if(totalPage<pageCount){
@@ -301,7 +358,7 @@ let globalCurrentPage = 1;
 				    let next = last + 1;
 				    let prev = first - 1;
 				    let pageHtml = "";
-				    pageHtml += ' <ul class="pageInfo" id="pageInfo">'
+				    pageHtml += ' <ul class="pageInfoLeg" id="pageInfoLeg">'
 					    if (prev > 0) {
 					        pageHtml += "<li class='pageInfo_btn previous'><a href='#' id='prev'> 이전 </a></li>";
 					    }
@@ -322,7 +379,7 @@ let globalCurrentPage = 1;
 				    displayCount = "현재 1 - " + totalPage + " 페이지 / " + totalData + "건";
 				    $("#displayCount").text(displayCount);
 
-				    $(".pageInfo li a").click(function () {
+				    $(".pageInfoLeg li a").click(function () {
 				        let $id = $(this).attr("id");
 				        selectedPage = $(this).text();
 				        if ($id == "next") selectedPage = next;
@@ -334,146 +391,101 @@ let globalCurrentPage = 1;
 				        displayData(selectedPage, dataPerPage);
 				    });
 				}
-
+				
 				function displayData(currentPage, dataPerPage) {
-
-				  let dataHtml = "";
-
-				  currentPage = Number(currentPage);
-				  dataPerPage = Number(dataPerPage);
+				
+				var dataHtml = '';
+				
+				 currentPage = Number(currentPage);
+				 dataPerPage = Number(dataPerPage);
 				  
-				  for (var i = (currentPage - 1) * dataPerPage; i < (currentPage - 1) * dataPerPage + dataPerPage; i++) {
-				    	dataHtml += '<div class="section_Con">'
-						dataHtml += '<span class="section_Ele_Img">'
-						dataHtml += '<img src='+result.list[i].firstimage+'>'
-						dataHtml += '</span>'
-						dataHtml += '<div class="section_Ele_Cont">'
-						dataHtml += '<ul class="section_Ele_cont_Ul1">'
-						dataHtml += '<li style="font-size:1.4rem; color:#1A1A1A; font-weight:700;">'+result.list[i].location_name+'</li>'
-						dataHtml += '<li style="colir:#5D5E5D">'+result.list[i].address+'</li>'
-						dataHtml += '</ul>'
-						dataHtml += '<span class="section_Ele_cont_bar"></span>'
-						dataHtml += '</div>'
-						dataHtml += '</div>'
-				  }
-				  $("#section").html(dataHtml);
-				}
-				$("#dataPerPage").change(function () {
-				    dataPerPage = $("#dataPerPage").val();
-				    paging(totalData, dataPerPage, pageCount, globalCurrentPage);
-				    displayData(globalCurrentPage, dataPerPage);
-				 });
-			},
-			error:function(){
-				alert('에러')
-			}
-		});
-		
-		$('#sido1').on('change', function(e) {
-			ajaxSido();
-		});
-		
-		
-		function ajaxSido(){
-			$.ajax({
-				type:'POST',
-				url:'ajaxKeyword',
-				dataType:'json',
-				data:{
-					keyword: $('#sido1 option:selected').val()
-				},
-				success:function(result){
-					totalData = result.list.length;
-					paging(totalData, dataPerPage, pageCount, 1);
-					displayData(1, dataPerPage);
+				 for (var i = (currentPage - 1) * dataPerPage; i < (currentPage - 1) * dataPerPage + dataPerPage; i++) {
 					
-					//페이징 시작
-					function paging(totalData, dataPerPage, pageCount, currentPage) {
-					    totalPage = Math.ceil(totalData / dataPerPage);
-					    if(totalPage<pageCount){
-					    pageCount=totalPage;
-					    }
-					    let pageGroup = Math.ceil(currentPage / pageCount);
-					    let last = pageGroup * pageCount;
-					  
-					    if (last > totalPage) {
-					        last = totalPage;
-					    }
-					    let first = last - (pageCount - 1);
-					    let next = last + 1;
-					    let prev = first - 1;
-					    let pageHtml = "";
-					    pageHtml += ' <ul class="pageInfo" id="pageInfo">'
-						    if (prev > 0) {
-						        pageHtml += "<li class='pageInfo_btn previous'><a href='#' id='prev'> 이전 </a></li>";
-						    }
-						    for (var i = first; i <= last; i++) {
-						        if (currentPage == i) {
-						            pageHtml += "<li class='pageInfo_btn'><a href='#' id='" + i + "'>" + i + "</a></li>";
-						        } 
-						        else {
-						            pageHtml += "<li class='pageInfo_btn'><a href='#' id='" + i + "'>" + i + "</a></li>";
-						        }
-						    }
-						    if (last < totalPage) {
-						    pageHtml += "<li class ='pageInfo_btn next'><a href='#' id='next'> 다음 </a></li>";
-						    }
-						    pageHtml += '</ul>'
-					    $(".section_Page").html(pageHtml);
-					    let displayCount = "";
-					    displayCount = "현재 1 - " + totalPage + " 페이지 / " + totalData + "건";
-					    $("#displayCount").text(displayCount);
-
-					    $(".pageInfo li a").click(function () {
-					        let $id = $(this).attr("id");
-					        selectedPage = $(this).text();
-					        if ($id == "next") selectedPage = next;
-					        if ($id == "prev") selectedPage = prev;
-					        globalCurrentPage = selectedPage;
-					    
-					        paging(totalData, dataPerPage, pageCount, selectedPage);
-					        
-					        displayData(selectedPage, dataPerPage);
-					    });
+					dataHtml += '<div class="section_Con">'
+					dataHtml += '<span class="section_Ele_Img">'
+					dataHtml += "<img src="+data.leglist[i].firstimage+">"
+					dataHtml += '</span>'
+					dataHtml += '<div class="section_Ele_Cont">'
+					dataHtml += '<ul class="section_Ele_cont_Ul1">'
+					dataHtml += "<li style='font-size:1.4rem; color:#1A1A1A; font-weight:700;'>"+data.leglist[i].location_name+"</li>"
+					dataHtml += '<li style="colir:#5D5E5D">'+data.leglist[i].address+'</li>'
+					dataHtml += '</ul>'
+					dataHtml += '<span class="section_Ele_cont_bar"></span>'
+					dataHtml += '<ul class="section_Ele_cont_Ul2">'
+					dataHtml += '<li class="section_Ele_Cont_Li" onmouseover = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="flex" onmouseleave = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="none">'
+					if(data.leglist[i].parking != null){
+					dataHtml += '<i class="fa-solid fa-square-parking"></i>'	
 					}
-
-					function displayData(currentPage, dataPerPage) {
-
-					  let dataHtml = "";
-
-					  currentPage = Number(currentPage);
-					  dataPerPage = Number(dataPerPage);
-					  
-					  for (var i = (currentPage - 1) * dataPerPage; i < (currentPage - 1) * dataPerPage + dataPerPage; i++) {
-					    	dataHtml += '<div class="section_Con">'
-							dataHtml += '<span class="section_Ele_Img">'
-							dataHtml += '<img src='+result.list[i].firstimage+'>'
-							dataHtml += '</span>'
-							dataHtml += '<div class="section_Ele_Cont">'
-							dataHtml += '<ul class="section_Ele_cont_Ul1">'
-							dataHtml += '<li style="font-size:1.4rem; color:#1A1A1A; font-weight:700;">'+result.list[i].location_name+'</li>'
-							dataHtml += '<li style="colir:#5D5E5D">'+result.list[i].address+'</li>'
-							dataHtml += '</ul>'
-							dataHtml += '<span class="section_Ele_cont_bar"></span>'
-							dataHtml += '</div>'
-							dataHtml += '</div>'
-					  }
-					  $("#section").html(dataHtml);
+					dataHtml += '</li>'
+					dataHtml += '<li class="section_Ele_Cont_Li" onmouseover = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="flex" onmouseleave = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="none">'
+					if(data.leglist[i].publictransport != null){
+					dataHtml += '<i class="fa-solid fa-stairs"></i>'
 					}
-					$("#dataPerPage").change(function () {
-					    dataPerPage = $("#dataPerPage").val();
-					    paging(totalData, dataPerPage, pageCount, globalCurrentPage);
-					    displayData(globalCurrentPage, dataPerPage);
-					 });
-				},
-			});
-		}
-	
-	}); */
-	
-	
+					dataHtml += '</li>'
+					dataHtml += '<li class="section_Ele_Cont_Li" onmouseover = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="flex" onmouseleave = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="none">'
+					if(data.leglist[i].elevator != null){
+					dataHtml += '<i class="fa-solid fa-elevator"></i>'
+					}
+					dataHtml += '</li>'
+					dataHtml += '<li class="section_Ele_Cont_Li" onmouseover = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="flex" onmouseleave = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="none">'
+					if(data.leglist[i].wheelchair != null){
+					dataHtml += '<i class="fa-solid fa-wheelchair"></i>'
+					dataHtml += '</li>'
+					}
+					dataHtml += '<li class="section_Ele_Cont_Li" onmouseover = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="flex" onmouseleave = document.querySelector("#section_Ele_Cont_Detail'+[i]+'").style.display="none">'
+					if(data.leglist[i].guidehuman != null){
+					dataHtml += '<i class="fa-solid fa-user"></i>'
+					dataHtml += '</li>'
+					}
+					dataHtml += '</ul>'
+					dataHtml += '<ul class="section_Ele_Cont_Detail" id="section_Ele_Cont_Detail'+[i]+'">'
+					if(data.leglist[i].parking != null){
+					dataHtml += '<li class="section_Ele_Cont_Detail_Li">'
+					dataHtml += '<span>'+data.leglist[i].parking+'</span>'
+					}
+					dataHtml += '</li>'
+					if(data.leglist[i].publictransport != null){
+					dataHtml += '<li class="section_Ele_Cont_Detail_Li">'
+					dataHtml += '<span>'+data.leglist[i].publictransport+'</span>'
+					}
+					dataHtml += '</li>'
+					if(data.leglist[i].elevator != null){
+					dataHtml += '<li class="section_Ele_Cont_Detail_Li">'
+					dataHtml += '<span>'+data.leglist[i].elevator+'</span>'
+					}
+					dataHtml += '</li>'
+					if(data.leglist[i].wheelchair != null){
+					dataHtml += '<li class="section_Ele_Cont_Detail_Li">'
+					dataHtml += '<span>'+data.leglist[i].wheelchair+'</span>'
+					}
+					if(data.leglist[i].guidehuman != null){
+						dataHtml += '<li class="section_Ele_Cont_Detail_Li">'
+						dataHtml += '<span>'+data.leglist[i].guidehuman+'</span>'
+						}
+					dataHtml += '</li>'
+					dataHtml += '</ul>'
+					dataHtml += '</div>'
+					dataHtml += '</div>'
+
+				}
+				 $('#section').html(dataHtml)
+				
+				}
+				
+				
+			},
+			
+			error: function (request, status, error) {
+				console.log("code: " + request.status)
+				console.log("message: " + request.responseText)
+				console.log("error: " + error);
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				
+			}
+		})
+	}
+
 	
 </script>
 <script src="https://kit.fontawesome.com/f9f8c57db8.js" crossorigin="anonymous"></script>
-
 </html>

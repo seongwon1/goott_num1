@@ -2,59 +2,205 @@
 <!DOCTYPE  
 mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mycompany.project.board.mapper.Mapper">
-
-	<select id="list" resultType="com.mycompany.project.board.model.FreeBoardDTO">
-		select *
-		from board_free;
-	</select>
+<mapper namespace="travelMapper">
 	
-	<select id="listPaging" resultType="com.mycompany.project.board.model.FreeBoardDTO">
+	<select id="homePaging" resultType="com.mycompany.project.travel.model.VO">
 		select * 
-		from 
-		(select free_board_id, category, title, user_id, regdate
-		from board_free
-		<if test="keyword != null">
-			<include refid="criteria"></include>
+		from
+		travel t
+		inner join travle_info t_info
+		on t.travel_content_id = t_info.travel_content_id
+		where firstimage is not null
+		<if test="sido != null">
+			<trim prefix="and">
+				address like concat('%',#{sido},'%' )
+			</trim>
 		</if>
-		order by free_board_id desc) as A
+		order by location_name desc
 		limit #{skip},#{amount};  
 	</select>
 	
-	<select id="total" resultType="int">
-		select count(*)
+	<select id="legPaging" resultType="com.mycompany.project.travel.model.VO">
+		select location_name,address,firstimage,parking,publictransport,wheelchair,elevator,guidehuman
 		from 
-		board_free
-		<if test="keyword != null">
-			<include refid="criteria"></include>
+		travel t
+		inner join travle_info t_info
+		on t.travel_content_id = t_info.travel_content_id
+		<if test="sido != null">
+			<trim prefix="where">
+					address like concat('%',#{sido},'%' )
+			</trim>
+		</if>		
+		
+		<if test='search != null and searchOp != ""'>
+			<trim prefix="and">
+				<choose>
+					<when test="searchOp == 'D'.toString()">
+						location_name like concat('%',#{search},'%' )
+						or address like concat('%',#{search},'%' )
+					</when>
+						<when test="searchOp =='A'.toString()">
+						address like concat('%',#{search},'%' )
+					</when>
+					<when test="searchOp == 'B'.toString()">
+						address like concat('%',#{search},'%' )		
+					</when>
+					<when test="searchOp == 'C'.toString()">
+						location_name like concat('%',#{search},'%' )
+					</when>
+					
+				</choose>
+			</trim>
 		</if>
+		
+		<if test="chkArry != null and chkArry.size > 0">
+			<foreach item="chkArry" collection="chkArry" index="key">
+				<if test="chkArry == 'A'.toString()">
+					and parking is not null
+				</if>
+				
+				<if test="chkArry == 'B'.toString()">
+					and publictransport is not null
+				</if>
+				
+				<if test="chkArry == 'C'.toString()">
+					and elevator is not null
+				</if>
+				
+				<if test="chkArry == 'D'.toString()">
+					and wheelchair is not null
+				</if>
+				
+				<if test="chkArry == 'D'.toString()">
+					and guidehuman is not null
+				</if>
+			</foreach>
+    	</if>
+    	and firstimage is not null
+		order by location_name desc
 	</select>
 	
-	<sql id="criteria">
-	 	<trim prefix="where (" suffix=")" prefixOverrides="OR">
-			<foreach collection="typeArr" item="type">
-				<trim prefix="OR">
-	 			<choose>
-	 				<when test="type == ''.toString()">
-	 					user_id like concat('%', #{keyword}, '%')
-						or title like concat('%', #{keyword}, '%')
-						or category like concat('%', #{keyword}, '%')
-	 				</when>
-	 			
-					<when test="type == 'T'.toString()">
-	 					title like concat('%',#{keyword},'%')
-	 				</when>
-						
- 					<when test="type == 'C'.toString()">
-	 					category like concat('%',#{keyword},'%')
-	 				</when>
-	 				
-	 				<when test="type == 'W'.toString()">
-	 					user_id like concat('%',#{keyword},'%')
-	 				</when>
+	<select id="eyesPaging" resultType="com.mycompany.project.travel.model.VO">
+		select location_name,address,firstimage,parking,braileblock,helpdog,guidehuman,brailepromotion,blindhandicapetc
+		from 
+		travel t
+		inner join travle_info t_info
+		on t.travel_content_id = t_info.travel_content_id
+		<if test="sido != null">
+			<trim prefix="where">
+					address like concat('%',#{sido},'%' )
+			</trim>
+		</if>				
+		
+		<if test='search != null and searchOp != ""'>
+			<trim prefix="and">
+				<choose>
+					<when test="searchOp == 'D'.toString()">
+						location_name like concat('%',#{search},'%' )
+						or address like concat('%',#{search},'%' )
+					</when>
+					<when test="searchOp =='A'.toString()">
+						address like concat('%',#{search},'%' )
+					</when>
+					<when test="searchOp == 'B'.toString()">
+						address like concat('%',#{search},'%' )		
+					</when>
+					<when test="searchOp == 'C'.toString()">
+						location_name like concat('%',#{search},'%' )
+					</when>
 				</choose>
-				</trim>
+			</trim>
+		</if>
+		
+		<if test="chkArry != null and chkArry.size > 0">
+			<foreach item="chkArry" collection="chkArry" index="key">
+				<if test="chkArry == 'A'.toString()">
+					and parking is not null
+				</if>
+				
+				<if test="chkArry == 'B'.toString()">
+					and braileblock is not null
+				</if>
+				
+				<if test="chkArry == 'C'.toString()">
+					and helpdog is not null
+				</if>
+				
+				<if test="chkArry == 'D'.toString()">
+					and guidehuman is not null
+				</if>
+				
+				<if test="chkArry == 'E'.toString()">
+					and brailepromotion is not null
+				</if>
 			</foreach>
-	 	</trim>
-	 </sql>
+    	</if>
+		and firstimage is not null
+		order by location_name desc
+	</select>
+	
+	<select id="earsPaging" resultType="com.mycompany.project.travel.model.VO">
+		select location_name,address,firstimage,parking,signguide,videoguide,hearinghandicapetc,guidehuman
+		from 
+		travel t
+		inner join travle_info t_info
+		on t.travel_content_id = t_info.travel_content_id
+		<if test="sido != null">
+			<trim prefix="where">
+					address like concat('%',#{sido},'%' )
+			</trim>
+		</if>			
+		
+		<if test='search != null and searchOp != ""'>
+			<trim prefix="and">
+				<choose>
+					<when test="searchOp == 'D'.toString()">
+						location_name like concat('%',#{search},'%' )
+						or address like concat('%',#{search},'%' )
+					</when>
+						<when test="searchOp =='A'.toString()">
+						address like concat('%',#{search},'%' )
+					</when>
+					<when test="searchOp == 'B'.toString()">
+						address like concat('%',#{search},'%' )		
+					</when>
+					<when test="searchOp == 'C'.toString()">
+						location_name like concat('%',#{search},'%' )
+					</when>
+				</choose>
+			</trim>
+		</if>
+		
+		<if test="chkArry != null and chkArry.size > 0">
+			<foreach item="chkArry" collection="chkArry" index="key">
+				<if test="chkArry == 'A'.toString()">
+					and parking is not null
+				</if>
+				
+				<if test="chkArry == 'B'.toString()">
+					and signguide is not null
+				</if>
+				
+				<if test="chkArry == 'C'.toString()">
+					and videoguide is not null
+				</if>
+				
+				<if test="chkArry == 'D'.toString()">
+					and guidehuman is not null
+				</if>
+				
+				<if test="chkArry == 'E'.toString()">
+					and hearinghandicapetc is not null
+				</if>
+			</foreach>
+    	</if>
+		and firstimage is not null
+		order by location_name desc
+	</select>
+	
+	<select id="travelTotal" resultType="int">
+		select count(*)
+		from 
+		travel
+	</select>
 </mapper>

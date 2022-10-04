@@ -1,23 +1,43 @@
 package com.mycompany.project.board.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Criteria {
 	
-	/* 현재 페이지 */
     private int pageNum;
-    
-//    한페이지에 보여지는 게시물 수
     private int amount;
-    
-    /* 스킵 할 게시물 수( (pageNum-1) * amount ) */
     private int skip;
-    
-    private String keyword;
-    
+    private String sido;
+	private String keyword;
     private String type;
-    
     private String[] typeArr;
+    private int replyId;
+    private int free_board_id;
+
+	public int getFree_board_id() {
+		return free_board_id;
+	}
+
+	public void setFree_board_id(int free_board_id) {
+		this.free_board_id = free_board_id;
+	}
+
+	public int getReplyId() {
+		return replyId;
+	}
+
+	public void setReplyId(int replyId) {
+		this.replyId = replyId;
+	}
+
+	public String getSido() {
+		return sido;
+	}
+
+	public void setSido(String sido) {
+		this.sido = sido;
+	}
     
    
     public String getType() {
@@ -86,8 +106,12 @@ public class Criteria {
 	
 	@Override
 	public String toString() {
-		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", skip=" + skip + ", keyword=" + keyword
-				+ ", type=" + type + ", typeArr=" + Arrays.toString(typeArr) + "]";
+		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", skip=" + skip + ", sido=" + sido
+				+ ", keyword=" + keyword + ", type=" + type + ", typeArr=" + Arrays.toString(typeArr) + ", replyId="
+				+ replyId + ", free_board_id=" + free_board_id + "]";
 	}
+
+	
+	
     
 }
