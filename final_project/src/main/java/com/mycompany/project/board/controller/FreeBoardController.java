@@ -26,7 +26,7 @@ public class FreeBoardController {
 	@Autowired
 	FreeBoardService boardService;
 	@Autowired
-	FreeReplyService replyService;
+	FreeReplyService replyService;  
 	
 	@RequestMapping(value = "/freeList", method = RequestMethod.GET)
 	public String list(Model model, Criteria cri) {
