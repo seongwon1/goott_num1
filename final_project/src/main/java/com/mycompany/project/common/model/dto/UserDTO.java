@@ -1,11 +1,11 @@
-package com.mycompany.project.common.model;
+package com.mycompany.project.common.model.dto;
 
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-public class UserDTO extends User{
+public class UserDTO extends User {
 	
 	private String userid;
 
@@ -14,7 +14,7 @@ public class UserDTO extends User{
 		authorities,String userid) {
 		
 			super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-			this.userid =  userid;
+			this.userid = userid;
 	}
 
 	public String getUserid() {
@@ -22,9 +22,9 @@ public class UserDTO extends User{
 	}
 
 	@Override
-	public String toString() { 
+	public String toString() {
 
-		return "UserDTO [userid=" + userid + "] ";
+		return "UserDTO [userid=" + userid + "]";
 	}
 
 	public void setUserid(String userid) {
