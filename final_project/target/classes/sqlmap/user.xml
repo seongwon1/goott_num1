@@ -4,33 +4,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
 	<insert id="insert">
-		insert into users (
-			userid,
-			passwd,
-			name,
-			enabled,
+		insert into user (
+			user_id,
+			user_password,
+			user_name,
+			address,
+			address_detail,
 			authority
 		)
-		values 
+		values
 		(
-			#{userid},
-			#{passwd},
-			#{name}, 
-			1, 
-			#{authority} 
+			#{user_id},
+			#{user_password},
+			#{user_name}, 
+			#{address}, 
+			#{address_detail},
+			'ROLE_USER'
 		)
 			 
 	</insert>
 	<select id="detail" resultType="hashmap">
 		select
-			userid as username,
-			passwd as password,
-			name,
-			enabled, 
+			user_id as username,
+			user_password as password,
+			user_name,
+			enabled_YN, 
 			authority
 		from 
-			users
+			user
 		where 
-			userid=#{userid}
+			user_id=#{user_id}
+	</select>
+	
+	<select id="idCheck" resultType="int">
+		select
+			count(*)
+		from
+			user
+		where
+			user_id=#{user_id};
 	</select>
 </mapper>

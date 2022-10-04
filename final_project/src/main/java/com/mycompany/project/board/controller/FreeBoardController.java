@@ -82,7 +82,7 @@ public class FreeBoardController {
 		
 		return mv;
 	}
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/freeDelete", method = RequestMethod.GET)
 	public String delete(@RequestParam("free_board_id") int free_board_id ) {
 		boardService.delete(free_board_id);
 		

@@ -146,7 +146,7 @@ public class noticeBoardController {
 		
 		return mv;
 	}
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/noticedelete", method = RequestMethod.GET)
 	public String delete(@RequestParam("nboard_id") int nboard_id ) {
 		
 		String url = boardService.getUrl(nboard_id);
@@ -191,7 +191,7 @@ public class noticeBoardController {
 		return "redirect:/noticeUpdate";
 	}
 	
-	 @RequestMapping(value = "fileDownload.do")
+	 @RequestMapping(value = "noticeBoardFileDownload.do")
 	    public void fileDownload4(HttpServletRequest request,HttpServletResponse response) throws Exception {
 	        //String path =  request.getSession().getServletContext().getRealPath("C:\\Users\\Public\\Downloads");
 	        

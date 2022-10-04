@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/css/reportBoardDetailStyle.css?var=1" rel="stylesheet" type="text/css">
+<link href="resources/css/freeDetailStyle.css?var=1" rel="stylesheet" type="text/css">
 <script src="resources/js/jquery-3.6.0.min.js"></script>
 <script src="resources/js/magnify.js"></script>
 <script src="resources/js/script.js"></script>
@@ -22,7 +22,7 @@
         	
                 <ul>
         		    <li>로그인</li>
-        		    <li><a href="/freeList">커뮤니티 링크</a></li>
+        		    <li><a href="/noticeList">커뮤니티 링크</a></li>
         	    </ul>
             </div>
         </div>
@@ -42,6 +42,7 @@
 
         <div id="section">
         	<div id="section_Con">
+        	
         		<div class="section_Con_Ele1">
         			<div>${data.category}</div>
         			<div>${data.title}</div>
@@ -49,33 +50,30 @@
         		
         		<div class="section_Con_Ele2">
         			<div>${data.user_id}</div>
-        			<fmt:parseDate value="${data.regdate}" pattern="yyyy-MM-dd HH:mm:ss" 
+        			<fmt:parseDate value="${data.regdate}" pattern="yyyy-MM-dd'T'HH:mm:ss" 
 						var="date1" type="both" />
-					<div>작성일자 : <fmt:formatDate value="${date1}" pattern="yyyy-MM-dd HH:mm:ss" /></div>
+					<div>작성일자 : <fmt:formatDate value="${date1}" pattern="yyyy-MM-dd a HH:mm:ss" /></div>
         		</div>
         	
         		<div class="section_Con_Ele3">
         			<div>${data.content}</div>
         		</div>
-        		<div>
-        		<a href="fileDownload.do?fileName=${data.file_name}">${data.file_name}</a>
-        				
-			</div>
         	</div>
         </div>
        
 		<div id="article2">
 			<div>
-				<a href="/reportBoardList">목록</a>
+				<a href="/noticeList">목록</a>
 			</div>
 			
 			<div>
-				<a href="/reportBoardDelete?rboard_id=${data.rboard_id}">글 삭제</a>
+				<a href="/noticedelete?nboard_id=${data.nboard_id}">글 삭제</a>
 			</div>
 			
 			<div>
-				<a href="/reportBoardUpdate?rboard_id=${data.rboard_id}">글 수정</a>
+				<a href="/noticeUpdate?nboard_id=${data.nboard_id}">글 수정</a>
 			</div>
+			첨부파일 : <a href="noticeBoardFileDownload.do?fileName=${data.file_name}">${data.file_name}</a>
 		</div>
 		
 		<div id="replyCon">
@@ -96,7 +94,7 @@
         <div id="magnifyLense" class="magnify_lense"></div>
 	</div>
 
-	<input type="hidden" value="${data.rboard_id}"/>
+	<input type="hidden" value="${data.nboard_id}"/>
 </body>
 <script src="https://kit.fontawesome.com/f9f8c57db8.js" crossorigin="anonymous"></script>	
 </html>

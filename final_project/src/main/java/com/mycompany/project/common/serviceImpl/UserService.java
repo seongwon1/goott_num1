@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.mycompany.project.common.model.dao.UserDTO;
+import com.mycompany.project.common.model.dto.UserDTO;
 
 
 public class UserService implements UserDetailsService {
@@ -39,7 +39,7 @@ public class UserService implements UserDetailsService {
 		authority.add(new SimpleGrantedAuthority(user.get("authority").toString()));
 		
 		return new UserDTO(user.get("username").toString(), user.get("password").toString(), 
-				(Integer) Integer.valueOf(user.get("enabled").toString()) == 1, true, true, true, authority,
-				user.get("username").toString());
+				(Integer) Integer.valueOf(user.get("enabled_YN").toString()) == 1, true, true, true, authority,
+				user.get("user_name").toString());
 	}
 }

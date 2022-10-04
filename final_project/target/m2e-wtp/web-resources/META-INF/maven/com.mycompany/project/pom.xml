@@ -220,6 +220,12 @@
 			<version>1.9.13</version>
 
 		</dependency>
+
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.9.2</version>
+	</dependency>
 		
 		<!-- Commons FileUpload -->
 		<!-- 서블릿 3.0이상 사용 가능한 파일 업로드 api-->
@@ -237,6 +243,7 @@
 		</dependency>
 		
 	</dependencies>
+	
 	<build>
 		<plugins>
 			<plugin>

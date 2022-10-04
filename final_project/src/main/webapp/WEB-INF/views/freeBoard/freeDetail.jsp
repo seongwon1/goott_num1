@@ -70,7 +70,7 @@
 			</div>
 			
 			<div>
-				<a href="/delete?free_board_id=${data.free_board_id}">글 삭제</a>
+				<a href="/freeDelete?free_board_id=${data.free_board_id}">글 삭제</a>
 			</div>
 			
 			<div>
