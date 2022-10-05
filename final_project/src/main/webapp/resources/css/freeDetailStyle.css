@@ -32,7 +32,7 @@ html,bodys{
     align-items: center;
     border-bottom: 1px solid #DADADA;
     background-color: white;
-    z-index: 100001;
+    z-index: 1001;
 }
 #header > div{
 	width: 88%;
@@ -98,7 +98,7 @@ html,bodys{
 }
 .section_Con_Ele3{
     width: 100%;
-    height: 150px;
+    height: 350px;
     float: left;
     border: 1px solid rgba(207 207 207);
 }
@@ -125,7 +125,7 @@ html,bodys{
 	line-height:40px;
 	text-decoration: none;
 	font-size: 1.2rem;
-	color: black;
+	color: #fff;
 	border: 1px solid rgba(207 207 207);
 	
 }
@@ -137,10 +137,29 @@ html,bodys{
 	line-height:40px;
 	text-decoration: none;
 	font-size: 1.2rem;
-	color: black;
-	background-color:#fff;
-	border: 1px solid rgba(207 207 207);
+	color:#fff;
+	background-color: #343434;
+	border:none;
 	cursor: pointer;
+}
+.detailBtn_1 > a{
+	background-color: #868787;
+}
+.detailBtn_1  > a:hover{
+	background-color: #343434;
+	transition: all 0.3s;
+}
+.detailBtn_2  > a{
+	background-color: #868787;
+}
+.detailBtn_2 > a:hover{
+	background-color: #343434;
+	transition: all 0.3s;
+}
+#article2 > div > button:hover{
+	background-color: #343434;
+	transition: all 0.3s;
+	
 }
 #reply_InsertWrap{
 	width: 100%;
@@ -152,6 +171,7 @@ html,bodys{
 	justify-content:center;
 	align-items:center;
 	background-color: rgba(0,0,0,0.3);
+	z-index: 10001;
 }
 #reply_InsertCon{
 	width: 70%;
@@ -200,11 +220,14 @@ html,bodys{
 	cursor: pointer;
 }
 .reply_not_div{
-	border: 1px solid black;
+	width: 70%;
+	margin-top: 60px;
+	padding:20px;
+	font-size:1.3rem;
 }
 .reply_content_ul{
 	width: 70%;
-	margin-top: 130px;
+	margin-top: 100px;
 	list-style-type: none;
 }
 .reply_top{
@@ -224,13 +247,17 @@ html,bodys{
 	float: right;
 	text-align: center;
 	line-height:25px;
-	background-color:#EBEBEB;
+	background-color:#868787;
 	border: none;
-	color:#000;
+	color:#fff;
 	font-weight: 350;
 	cursor: pointer;
 	font-size: 0.9rem;
 	
+}
+.reply_top > a:hover{
+	background-color: #343434;
+	transition:all 0.3s;
 }
 .reply_top > button{
 	width:50px;
@@ -239,16 +266,37 @@ html,bodys{
 	float: right;
 	text-align: center;
 	line-height:25px;
-	background-color:#EBEBEB;
+	background-color:#343434;
 	border: none;
-	color:#000;
+	color:#fff;
 	font-weight: 350;
 	cursor: pointer;
 	font-size: 0.9rem;
 }
+.reply_top > button:hover{
+	background-color: #868787;
+	transition:all 0.3s;
+}
+
 .reply_bottom{
 	padding:15px 0;
 	border-bottom: 1px solid #e8e8e8;
+}
+.insert{
+	background-color: #868787;
+	color:#fff;
+}
+.insert:hover{
+	background-color: #343434;
+	transition:all 0.3s;
+}
+.close{
+	background-color: #343434;
+	color:#fff;
+}
+.close:hover{
+	background-color: #868787;
+	transition:all 0.3s;
 }
 .repy_pageInfo_div{
     width: 70%;
@@ -272,6 +320,9 @@ html,bodys{
 .pageInfo_btn.active{
 	border-bottom:1px solid #000;
 }
+.active{
+	border-bottom : 1px solid black;	
+}
 #footer{
     width: 100%;
     height: 250px;
@@ -288,7 +339,8 @@ html,bodys{
 	top:180px;
 	width:150px; 
 	background:none;
-	z-index:10001;}
+	z-index:10002;
+}
    
 .blind{
 	height:50px; 

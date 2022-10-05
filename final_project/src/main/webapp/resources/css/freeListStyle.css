@@ -178,9 +178,13 @@ tbody > tr > td{
 	line-height:40px;
 	text-decoration: none;
 	font-size: 1.2rem;
-	color: black;
-	border: 1px solid rgba(207 207 207);
+	color: #fff;
+	background-color: #868787;
 	
+}
+#article2 > div > a:hover{
+	background-color: #343434;
+	transition: all 0.3s;
 }
 #pageNation{
     width: 88%;

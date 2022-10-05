@@ -53,9 +53,9 @@
         		
         		<div class="section_Con_Ele2">
         			<div>${data.user_id}</div>
-        			<fmt:parseDate value="${data.regdate}" pattern="yyyy-MM-dd'T'HH:mm:ss" 
+        			<fmt:parseDate value="${data.regdate}" pattern="yyyy-MM-dd HH:mm:ss" 
 						var="date1" type="both" />
-					<div>작성일자 : <fmt:formatDate value="${date1}" pattern="yyyy-MM-dd a HH:mm:ss" /></div>
+					<div>작성일자 : <fmt:formatDate value="${date1}" pattern="yyyy-MM-dd HH:mm:ss" /></div>
         		</div>
         	
         		<div class="section_Con_Ele3">
@@ -65,19 +65,19 @@
         </div>
        
 		<div id="article2">
-			<div>
-				<a href="/board/freeList">목록</a>
-			</div>
-			
-			<div>
+			<div class="detailBtn_1">
 				<a href="/board/merge/freeDelete?free_board_id=${data.free_board_id}">글 삭제</a>
 			</div>
 			
-			<div>
+			<div class="detailBtn_1">
 				<a href="/board/merge/freeUpdate?free_board_id=${data.free_board_id}">글 수정</a>
 			</div>
 			
-			<div id="reply_Modal">
+			<div class="detailBtn_2">
+				<a href="/board/freeList">목록</a>
+			</div>
+			
+			<div id="reply_Modal" class="detailBtn_2">
 				<button>댓글작성</button>
 			</div>
 		</div>
@@ -102,7 +102,6 @@
 					<textarea rows="5" cols="116" placeholder="내용"></textarea>
 				</div>
 				<div id="replyBtn">
-					<button class="replyBtnEle modify">댓글 수정</button>
 					<button class="replyBtnEle insert">댓글 작성</button>
 					<button class="replyBtnEle close">취소</button>
 				</div>
@@ -120,7 +119,7 @@
 					</div>
 					<div class="reply_bottom">
 						<div class="reply_bottom_txt"></div>
-						<div id="modifyReply"></div>
+						
 					</div>	
 				</div>
 			</li>
@@ -205,7 +204,8 @@ function updateBtn(replyId,user_id){
 	$.ajax({
 		url:"reply/detail/"+replyId,
 		success:function(result){
-			$('#modifyReply').html(result);
+			$('#modifyReply'+replyId).css("display","block");
+			$('#modifyReply'+replyId).html(result);
 		}
 	});
 }
@@ -226,6 +226,9 @@ $(".insert").on("click", function(e){
 			free_board_id:free_board_id
 		},
 		success:function(data){
+			alert('댓글작성 성공')
+			$('#reply_InsertWrap').css('display','none');
+			replyListInit();
 		},
 		error: function (request, status, error) {
 			console.log("code: " + request.status)
@@ -257,7 +260,7 @@ let replyListInit = function(){
 function makeReplyContent(obj){
 	
 	if(obj.list.length === 0){
-		$(".reply_not_div").html('<span>리뷰가 없습니다.</span>');
+		$(".reply_not_div").html('<span>댓글을 작성해보세요.</span>');
 		$(".reply_content_ul").html('');
 		$(".pageMaker").html('');
 	}
@@ -268,7 +271,6 @@ function makeReplyContent(obj){
 		let free_board_id = '${data.free_board_id}'
 		let reply_list = '';			
 		$(list).each(function(i,obj){
-			console.log(obj)
 			reply_list += '<li>';
 			reply_list += '<div class="comment_wrap">';
 			reply_list += '<div class="reply_top">';
@@ -278,6 +280,7 @@ function makeReplyContent(obj){
 			reply_list += '</div>'; 
 			reply_list += '<div class="reply_bottom">';
 			reply_list += '<div class="reply_bottom_txt">'+ obj.content +'</div>';
+			reply_list += '<div id="modifyReply'+this.replyId+'" class="modifyReply"></div>'
 			reply_list += '</div>';
 			reply_list += '</div>';
 			reply_list += '</li>';
