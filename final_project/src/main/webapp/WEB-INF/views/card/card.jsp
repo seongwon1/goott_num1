@@ -198,11 +198,15 @@ input[type=button] {
 		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 		crossorigin="anonymous"></script>
 	<script>
+	////////////////////////////////////////////////////
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	///////////////////////////////////////////////
 
 		var container = document.getElementById('map'); // 지도를 표시할 div 
 		var options = {
 			center : new kakao.maps.LatLng(37.5666805, 126.9784147), // 지도의 중심좌표
-			level : 8
+			level : 9
 		};
 		var map = new kakao.maps.Map(container, options); // 지도를 생성합니다    
 		
@@ -247,11 +251,14 @@ input[type=button] {
 		top_btn.addEventListener('click',function(){
 			window.scrollTo(0,0);
 		})
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+		});
 		
 		function getlist() {
 		$.ajax({
 			type:"POST",           
-			url:"/getList",  // 호출할 requestMapping value 이름         
+			url:"/board/getList",  // 호출할 requestMapping value 이름         
 			//dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨  
 			/* contentType : "application/json; charset=UTF-8", */
 			data : $("form[name=search-form]").serialize(),
@@ -292,7 +299,7 @@ function map_marker(result){
 					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 					
 					if(category[i].innerText=="편의점"){
-					var imageSrc = 'resources/img/red_pin.png', // 마커이미지의 주소입니다    
+					var imageSrc = '${path}/resources/markerImg/red_pin.png', // 마커이미지의 주소입니다    
 				    imageSize = new kakao.maps.Size(40, 45), // 마커이미지의 크기입니다
 				    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 					// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
@@ -305,7 +312,7 @@ function map_marker(result){
 						})
 						markers.push(marker);
 				    } else if(category[i].innerText=="한식" || category[i].innerText=="중식" || category[i].innerText=="일식" || category[i].innerText=="양식" || category[i].innerText=="일반대중음식" ){
-				    	var imageSrc = 'resources/img/pink_pin.png', // 마커이미지의 주소입니다    
+				    	var imageSrc = '${path}/resources/markerImg/pink_pin.png', // 마커이미지의 주소입니다    
 					    imageSize = new kakao.maps.Size(40, 45), // 마커이미지의 크기입니다
 					    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 						// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
@@ -318,7 +325,7 @@ function map_marker(result){
 						})
 						markers.push(marker);
 				    } else if(category[i].innerText=="패스트푸드"){
-				    	var imageSrc = 'resources/img/gray_pin.png', // 마커이미지의 주소입니다    
+				    	var imageSrc = '${path}/resources/markerImg/gray_pin.png', // 마커이미지의 주소입니다    
 					    imageSize = new kakao.maps.Size(40, 45), // 마커이미지의 크기입니다
 					    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 						// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
@@ -331,7 +338,7 @@ function map_marker(result){
 						})
 						markers.push(marker);
 				    } else if(category[i].innerText=="제과점"){
-				    	var imageSrc = 'resources/img/yellow_pin.png', // 마커이미지의 주소입니다    
+				    	var imageSrc = '${path}/resources/markerImg/yellow_pin.png', // 마커이미지의 주소입니다    
 					    imageSize = new kakao.maps.Size(40, 45), // 마커이미지의 크기입니다
 					    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 						// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
@@ -344,7 +351,7 @@ function map_marker(result){
 						})
 						markers.push(marker);
 				    } else{
-				    	var imageSrc = 'resources/img/brown_pin.png', // 마커이미지의 주소입니다    
+				    	var imageSrc = '${path}/resources/markerImg/brown_pin.png', // 마커이미지의 주소입니다    
 					    imageSize = new kakao.maps.Size(40, 45), // 마커이미지의 크기입니다
 					    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 						// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
@@ -375,7 +382,7 @@ function map_marker(result){
 				infowindow.setPosition(this.getPosition()); // 인포윈도우의 좌표를 지정한다.
 				infowindow.open(map,this); // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
 				var close_btn = document.getElementById("close_btn");
-				map.setCenter(this.getPosition()); 
+				 
 				
 				// 마커 클릭시 지도의 중심좌표를 마커위치로 이동
 				// 인포윈도우 클릭시 해당 목록으로 이동
@@ -408,8 +415,6 @@ function map_marker(result){
 	}
 }
 	
-	
-	
 	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
 	function removeMarker() {
 	    for ( var i = 0; i < markers.length; i++ ) {
@@ -421,7 +426,7 @@ function map_marker(result){
 	var clusterer = new kakao.maps.MarkerClusterer({
     	map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
     	averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-    	minLevel: 4 // 클러스터 할 최소 지도 레벨 
+    	minLevel: 5 // 클러스터 할 최소 지도 레벨 
 	});
         
 

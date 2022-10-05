@@ -13,7 +13,7 @@ btnUpdate.addEventListener('click',function(){
 	let content = document.querySelector('#detail_replytext').value;
 	$.ajax({
 		type:"POST",
-		url:"/reply/update/${dto.replyId}",
+		url:"/noticeReply/noticeUpdate/${dto.replyId}",
 		headers:{"Content-Type":"application/json;charset=UTF-8"},
 		data:JSON.stringify({content:content}),
 		dataType:"text",
