@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${path}/resources/style.css" rel="stylesheet"/>
+<link href="${path}/resources/css/mainPageStyle.css" rel="stylesheet"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@500&display=swap" rel="stylesheet">
@@ -14,12 +14,12 @@
     <div class="container">
         <div class="top-menu">
             <div class="logo"><img src="${path}/resources/image/logo.png" alt=""></div>
-            <div class="regist"> <a href="regist.html">로그인</a></div>
+            <div class="regist"> <a href="/login">로그인</a></div>
         </div>
         <div class="header">
 
-            <div class="${path}/resources/image/main_image">
-                <img src="${path}/resources/image/main_image2.png" alt="">
+            <div>
+                <img src="${path}/resources/image/main_image2.png" alt="" class="main_img" width="450px">
             </div>
 
         </div>
