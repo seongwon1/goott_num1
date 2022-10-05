@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${path}/resources/css/reportBoardInsertStyle.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/freeInsertStyle..css" rel="stylesheet" type="text/css">
 <script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${path}/resources/js/magnify.js"></script>
 <script src="${path}/resources/js/script.js"></script>

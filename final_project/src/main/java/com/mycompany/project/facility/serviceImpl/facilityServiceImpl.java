@@ -21,8 +21,7 @@ facilityDAO testDao;
 	@Override
 	public List<Map<String, Object>> list(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		System.out.println(map.get("keyword"));
-		System.out.println(map.get("keyword2"));
+
 		return this.testDao.selectList(map);
 		
 	}

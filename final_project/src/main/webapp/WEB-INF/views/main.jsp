@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <div class="top-menu">
-            <div class="logo"><img src="${path}/resources/image/logo.png" alt=""></div>
+            <div class="logo"><img src="${path}/resources/image/siteLogo.png" alt=""></div>
             <div class="regist"> <a href="/login">로그인</a></div>
         </div>
         <div class="header">

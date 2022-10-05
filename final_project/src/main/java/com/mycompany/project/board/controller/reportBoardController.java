@@ -49,7 +49,7 @@ public class reportBoardController {
 		int total = boardService.total();
 		reportBoardPageMakerDTO pageMake = new reportBoardPageMakerDTO(cri, total);
 		model.addAttribute("pageMaker",pageMake);
-		System.out.println(pageMake.toString());
+
 		return "/reportBoard/reportBoardList";
 	}
 		
@@ -121,7 +121,7 @@ public class reportBoardController {
         
         String filename =request.getParameter("fileName");
         String realFilename="";
-        System.out.println(filename);
+        
          
         try {
             String browser = request.getHeader("User-Agent"); 
@@ -134,10 +134,10 @@ public class reportBoardController {
                 filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
             }
         } catch (UnsupportedEncodingException ex) {
-            System.out.println("UnsupportedEncodingException");
+     
         }
         realFilename = "/Users/kim/Desktop/springImage/\\" + filename;
-        System.out.println(realFilename);
+
         File file1 = new File(realFilename);
         if (!file1.exists()) {
             return ;
@@ -147,7 +147,7 @@ public class reportBoardController {
         response.setContentType("application/octer-stream");
         response.setHeader("Content-Transfer-Encoding", "binary;");
         response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-        try {
+       
             OutputStream os = response.getOutputStream();
             FileInputStream fis = new FileInputStream(realFilename);
  
@@ -159,9 +159,9 @@ public class reportBoardController {
             }
             fis.close();
             os.close();
-        } catch (Exception e) {
-            System.out.println("FileNotFoundException : " + e);
-        }
+         
+        	
+        
     }
 
 	
@@ -190,16 +190,6 @@ public class reportBoardController {
 		return mv;
 	}
 	
-//	@RequestMapping(value="/reportBoardUpdate", method = RequestMethod.POST)
-//	public ModelAndView update(reportBoardDTO dto) {
-//		
-//		
-//		ModelAndView mv = new ModelAndView();
-//		int free_board_id = boardService.update(dto);
-//		mv.setViewName("redirect:/reportBoardList");
-//		
-//		return mv;
-//	
 
 	@RequestMapping(value="/merge/reportBoardUpdate", method = RequestMethod.POST)
 	public ModelAndView update(reportBoardDTO dto,UploadVO vo, @RequestParam MultipartFile file) throws Exception {
@@ -260,36 +250,31 @@ public class reportBoardController {
 			File file = new File(path);
 			
 			if(file.delete()) {
-				System.out.println("�뙆�씪�궘�젣");
+				
 			}else {
-				System.out.println("�뙆�씪�궘�젣 �떎�뙣");
+		
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 		}
 		boardService.delete(rboard_id);
 		
 		return "redirect:/board/reportBoardList";
 	}
+	
 	@RequestMapping(value = "/merge/UpdateDeleteFile", method = RequestMethod.GET)
 	public String UpdateDeleteFile(@RequestParam("rboard_id") int rboard_id) {
 		String fileName = boardService.getFileName(rboard_id);
 		String url = boardService.getUrl(rboard_id);
 		
 		boardService.columnDel(rboard_id);
-		try {
+
 			String path = url;
 			File file = new File(path);
 			
-			if(file.delete()) {
-				System.out.println("�뙆�씪�궘�젣");
-			}else {
-				System.out.println("�뙆�씪�궘�젣 �떎�뙣");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	
+			file.delete();
+
+
 		
 		return "redirect:/board/merge/reportBoardUpdate";
 	}

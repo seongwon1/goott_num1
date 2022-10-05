@@ -6,7 +6,7 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${path}/resources/css/reportBoardInsertStyle.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/freeInsertStyle..css" rel="stylesheet" type="text/css">
 <script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${path}/resources/js/magnify.js"></script>
 <script src="${path}/resources/js/script.js"></script>
@@ -44,12 +44,27 @@
 			});
 		}
 </script>
+
+<style>
+.logo{
+    width: 100%;
+    flex-grow: 1;
+}
+
+.logo img{
+    height: 200px;
+    margin-left: 30px;
+    margin-top : 100px;
+    padding: 15px;
+    width:200px;
+}
+</style>
 <body>
 <div id="wrap">
 	<div id="container">
         <div id="header">
             <div>
-                <p><a href="/main">로고</a></p>
+            	<a href="/main"><div class="logo"><img src="${path}/resources/image/siteLogo.png" alt=""></div></a>
                 <span>글 작성</span>
         	
                 <ul>

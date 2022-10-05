@@ -31,9 +31,11 @@ a{
 }
 
 .logo img{
-    height: 100px;
-    margin-left: 50px;
+    height: 200px;
+    margin-left: 30px;
+    margin-top : 100px;
     padding: 15px;
+    width:200px;
 }
 
 .regist{
