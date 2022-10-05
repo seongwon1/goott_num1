@@ -27,7 +27,7 @@ import com.mycompany.project.board.model.PageMakerDTO;
 import com.mycompany.project.board.service.noticeBoardService;
 
 
-
+@RequestMapping("/board")
 @Controller
 public class noticeBoardController {
 	
@@ -44,31 +44,31 @@ public class noticeBoardController {
 		return "noticeBoard/noticeList";
 	}
 		
-	@RequestMapping(value = "/noticeInsert", method = RequestMethod.GET)
+	@RequestMapping(value = "/merge/noticeInsert", method = RequestMethod.GET)
 	public String insert() {
 		
 		return "noticeBoard/noticeInsert";
 	}
-	@RequestMapping(value = "/noticeInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/merge/noticeInsert", method = RequestMethod.POST)
 	public ModelAndView insert(noticeBoardDTO dto,@RequestParam MultipartFile file) throws Exception{	
 		ModelAndView mv = new ModelAndView();
-		// ÆÄÀÏ ¾÷·Îµå Ã³¸®
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ Ã³ï¿½ï¿½
 		String file_name = null;
 		MultipartFile uploadFile = dto.getFile();
 		if (!uploadFile.isEmpty()) {
 			String originalFileName = uploadFile.getOriginalFilename();
-			String ext = FilenameUtils.getExtension(originalFileName); // È®ÀåÀÚ ±¸ÇÏ±â
-			long size = file.getSize(); //ÆÄÀÏ »çÀÌÁî
-			System.out.println("ÆÄÀÏ¸í : "  + originalFileName);
-			System.out.println("¿ë·®Å©±â(byte) : " + size);
+			String ext = FilenameUtils.getExtension(originalFileName); // È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
+			long size = file.getSize(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½Ï¸ï¿½ : "  + originalFileName);
+			System.out.println("ï¿½ë·®Å©ï¿½ï¿½(byte) : " + size);
 			String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."),originalFileName.length());
 			String uploadFolder = "C:\\Users\\Public\\Downloads\\";
 			
-			UUID uuid = UUID.randomUUID(); // UUID ±¸ÇÏ±â
+			UUID uuid = UUID.randomUUID(); // UUID ï¿½ï¿½ï¿½Ï±ï¿½
 			String[] uuids = uuid.toString().split("-");
 			String uniqueName = uuids[0];
-			System.out.println("»ý¼ºµÈ °íÀ¯¹®ÀÚ¿­" + uniqueName);
-			System.out.println("È®ÀåÀÚ¸í" + fileExtension);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½" + uniqueName);
+			System.out.println("È®ï¿½ï¿½ï¿½Ú¸ï¿½" + fileExtension);
 			file_name = uuid + "." + ext;
 			uploadFile.transferTo(new File(uploadFolder +"\\"+ uniqueName+ fileExtension ));
 		
@@ -79,7 +79,7 @@ public class noticeBoardController {
 		
 		boardService.insert(dto);
 	
-		mv.setViewName("redirect:/noticeList");
+		mv.setViewName("redirect:/board/noticeList");
 
 		return mv;
 
@@ -94,39 +94,40 @@ public class noticeBoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/noticeUpdate", method = RequestMethod.GET)
+	@RequestMapping(value="/merge/noticeUpdate", method = RequestMethod.GET)
 	public ModelAndView update(@RequestParam Map<String, Object> map, noticeBoardDTO dto) {
 		
 		Map<String, Object> list = boardService.detail(map);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("data", list);		
 		mv.setViewName("noticeBoard/noticeUpdate");
+		System.out.println(map+"///"+dto);
 		
 		return mv;
 	}
 	
-	@RequestMapping(value="/noticeUpdate", method = RequestMethod.POST)
+	@RequestMapping(value="/merge/noticeUpdate", method = RequestMethod.POST)
 	public ModelAndView update(noticeBoardDTO dto,@RequestParam MultipartFile file) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		//int free_board_id = boardService.update(dto);
-		// ÆÄÀÏ ¾÷·Îµå Ã³¸®
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ Ã³ï¿½ï¿½
 				String file_name = null;
 				MultipartFile uploadFile = dto.getFile();
 				if (!uploadFile.isEmpty()) {
 					String originalFileName = uploadFile.getOriginalFilename();
-					String ext = FilenameUtils.getExtension(originalFileName); // È®ÀåÀÚ ±¸ÇÏ±â
-					long size = file.getSize(); //ÆÄÀÏ »çÀÌÁî
-					System.out.println("ÆÄÀÏ¸í : "  + originalFileName);
-					System.out.println("¿ë·®Å©±â(byte) : " + size);
+					String ext = FilenameUtils.getExtension(originalFileName); // È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
+					long size = file.getSize(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					System.out.println("ï¿½ï¿½ï¿½Ï¸ï¿½ : "  + originalFileName);
+					System.out.println("ï¿½ë·®Å©ï¿½ï¿½(byte) : " + size);
 					String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."),originalFileName.length());
 					String uploadFolder = "C:\\Users\\Public\\Downloads\\";
 					
-					UUID uuid = UUID.randomUUID(); // UUID ±¸ÇÏ±â
+					UUID uuid = UUID.randomUUID(); // UUID ï¿½ï¿½ï¿½Ï±ï¿½
 					String[] uuids = uuid.toString().split("-");
 					String uniqueName = uuids[0];
-					System.out.println("»ý¼ºµÈ °íÀ¯¹®ÀÚ¿­" + uniqueName);
-					System.out.println("È®ÀåÀÚ¸í" + fileExtension);
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½" + uniqueName);
+					System.out.println("È®ï¿½ï¿½ï¿½Ú¸ï¿½" + fileExtension);
 					file_name = uuid + "." + ext;
 					uploadFile.transferTo(new File(uploadFolder +"\\"+ uniqueName+ fileExtension ));
 				
@@ -134,19 +135,19 @@ public class noticeBoardController {
 					dto.setFile_url(uploadFolder+"\\"+ uniqueName + fileExtension);
 				} else {
 					boardService.content_update(dto);
-					mv.setViewName("redirect:/noticeList");
-					
+					mv.setViewName("redirect:/board/noticeList");
+					System.out.println(dto);
 					return mv;
 				}
 					
 				
 			
 		boardService.update(dto);
-		mv.setViewName("redirect:/noticeList");
-		
+		mv.setViewName("redirect:/board/noticeList");
+		System.out.println("contorller check");
 		return mv;
 	}
-	@RequestMapping(value = "/noticedelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/merge/noticedelete", method = RequestMethod.GET)
 	public String delete(@RequestParam("nboard_id") int nboard_id ) {
 		
 		String url = boardService.getUrl(nboard_id);
@@ -156,9 +157,9 @@ public class noticeBoardController {
 			File file = new File(path);
 			
 			if(file.delete()) {
-				System.out.println("ÆÄÀÏ»èÁ¦");
+				System.out.println("ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½");
 			}else {
-				System.out.println("ÆÄÀÏ»èÁ¦ ½ÇÆÐ");
+				System.out.println("ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 		} catch (Exception e) {
 
@@ -167,10 +168,10 @@ public class noticeBoardController {
 		
 		boardService.delete(nboard_id);
 		
-		return "redirect:/noticeList";
+		return "redirect:/board/noticeList";
 	}
 	
-	@RequestMapping(value = "/DeleteAttachFile", method = RequestMethod.GET)
+	@RequestMapping(value = "/merge/DeleteAttachFile", method = RequestMethod.GET)
 	public String DeleteAttachFile(@RequestParam("nboard_id") int nboard_id ) {
 		String fileName = boardService.getFile_Name(nboard_id);
 		String url = boardService.getUrl(nboard_id);
@@ -181,17 +182,17 @@ public class noticeBoardController {
 			File file = new File(path);
 			
 			if(file.delete()) {
-				System.out.println("ÆÄÀÏ»èÁ¦");
+				System.out.println("ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½");
 			}else {
-				System.out.println("ÆÄÀÏ»èÁ¦ ½ÇÆÐ");
+				System.out.println("ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 		} catch (Exception e) {
 
 		}
-		return "redirect:/noticeUpdate";
+		return "redirect:/board/merge/noticeUpdate";
 	}
 	
-	 @RequestMapping(value = "noticeBoardFileDownload.do")
+	 @RequestMapping(value = "/merge/noticeBoardFileDownload.do")
 	    public void fileDownload4(HttpServletRequest request,HttpServletResponse response) throws Exception {
 	        //String path =  request.getSession().getServletContext().getRealPath("C:\\Users\\Public\\Downloads");
 	        
@@ -201,7 +202,7 @@ public class noticeBoardController {
 	         
 	        try {
 	            String browser = request.getHeader("User-Agent"); 
-	            //ÆÄÀÏ ÀÎÄÚµù 
+	            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ 
 	            if (browser.contains("MSIE") || browser.contains("Trident")
 	                    || browser.contains("Chrome")) {
 	                filename = URLEncoder.encode(filename, "UTF-8").replaceAll("\\+", "%20");
@@ -218,7 +219,7 @@ public class noticeBoardController {
 	            return ;
 	        }
 	         
-	        // ÆÄÀÏ¸í ÁöÁ¤        
+	        // ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½        
 	        response.setContentType("application/octer-stream");
 	        response.setHeader("Content-Transfer-Encoding", "binary;");
 	        response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");

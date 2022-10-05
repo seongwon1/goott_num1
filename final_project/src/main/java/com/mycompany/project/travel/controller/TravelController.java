@@ -26,7 +26,7 @@ import com.mycompany.project.travel.model.VO;
 
 
 
-
+@RequestMapping("/board")
 @Controller
 public class TravelController {
 

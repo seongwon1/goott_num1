@@ -17,7 +17,7 @@ import com.mycompany.project.board.model.FreeReplyPageDTO;
 import com.mycompany.project.board.service.FreeBoardService;
 import com.mycompany.project.board.service.FreeReplyService;
 
-
+@RequestMapping("/board")
 @Controller
 public class FreeReplyController {
 
@@ -27,7 +27,7 @@ public class FreeReplyController {
 		FreeBoardService boardService;
 		
 		@ResponseBody
-		@RequestMapping(value = "/replyInsert", method = RequestMethod.POST)
+		@RequestMapping(value = "/merge/replyInsert", method = RequestMethod.POST)
 		public void replyInsert(FreeReplyDTO dto) {
 			
 			replyService.insertReply(dto);
@@ -40,11 +40,11 @@ public class FreeReplyController {
 			
 			System.out.println(cri);
 			return  replyService.replyList(cri);
-			
-			
 		}
+		
+		
 		@ResponseBody
-		@RequestMapping(value = "/replyDelete", method = RequestMethod.POST)
+		@RequestMapping(value = "/merge/replyDelete", method = RequestMethod.POST)
 		public void replyDelete(FreeReplyDTO dto) {
 			
 			 replyService.deleteReply(dto);
@@ -53,7 +53,7 @@ public class FreeReplyController {
 		
 		
 		@ResponseBody
-		@RequestMapping(value = "/Update", method = RequestMethod.GET)
+		@RequestMapping(value = "/merge/Update", method = RequestMethod.GET)
 		public void replyUpdateGet(FreeReplyDTO dto,Model model) {
 			
 			replyService.updateReply(dto);

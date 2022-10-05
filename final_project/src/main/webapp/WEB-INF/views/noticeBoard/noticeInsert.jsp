@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/css/freeInsertStyle..css?var=1" rel="stylesheet" type="text/css">
-<script src="resources/js/jquery-3.6.0.min.js"></script>
-<script src="resources/js/magnify.js"></script>
-<script src="resources/js/script.js"></script>
-<script src="resources/js/html2canvas.js"></script>
+<link href="${path}/resources/css/freeInsertStyle..css?var=1" rel="stylesheet" type="text/css">
+<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${path}/resources/js/magnify.js"></script>
+<script src="${path}/resources/js/script.js"></script>
+<script src="${path}/resources/js/html2canvas.js"></script>
 </head>
 <script>
 	window.onload = function() {
@@ -35,6 +35,7 @@
 				content.focus();
 				return false;	
 			};
+			form1.action = "/board/merge/noticeInsert?${_csrf.parameterName}=${_csrf.token}";
 			form1.submit();
 			});
 		}
@@ -44,12 +45,12 @@
 	<div id="container">
         <div id="header">
             <div>
-                <p><a href="/noticeList">로고</a></p>
+                <p><a href="/board/noticeList">로고</a></p>
                 <span>글 작성</span>
         	
                 <ul>
         		    <li>로그인</li>
-        		    <li><a href="/noticeList">커뮤니티 링크</a></li>
+        		    <li><a href="/board/noticeList">커뮤니티 링크</a></li>
         	    </ul>
             </div>
         </div>
@@ -95,7 +96,7 @@
 					
 					<div id="article2">
 						<div>
-							<a href="/noticeList">글 목록</a>
+							<a href="/board/noticeList">글 목록</a>
 						</div>
 			
 						<div>	

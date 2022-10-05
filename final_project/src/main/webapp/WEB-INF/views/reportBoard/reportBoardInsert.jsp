@@ -3,13 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/css/reportBoardInsertStyle.css" rel="stylesheet" type="text/css">
-<script src="resources/js/jquery-3.6.0.min.js"></script>
-<script src="resources/js/magnify.js"></script>
-<script src="resources/js/script.js"></script>
-<script src="resources/js/html2canvas.js"></script>
+<link href="${path}/resources/css/reportBoardInsertStyle.css" rel="stylesheet" type="text/css">
+<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${path}/resources/js/magnify.js"></script>
+<script src="${path}/resources/js/script.js"></script>
+<script src="${path}/resources/js/html2canvas.js"></script>
 </head>
 <script>
 	window.onload = function() {
@@ -19,6 +20,7 @@
 		let submit = document.querySelector("input[type='button']");
 		let form1 = document.querySelector('form'); 
 		
+
 		submit.addEventListener('click',function(){
 			if(title.value === ""){
 				alert('제목을 입력해주세요.');
@@ -35,7 +37,8 @@
 				content.focus();
 				return false;	
 			};
-			form1.action = "/reportBoardInsert";
+			
+			form1.action = "/board/merge/reportBoardInsert?${_csrf.parameterName}=${_csrf.token}";
 			form1.submit();
 
 			});
@@ -46,12 +49,12 @@
 	<div id="container">
         <div id="header">
             <div>
-                <p><a href="/">로고</a></p>
+                <p><a href="/main">로고</a></p>
                 <span>글 작성</span>
         	
                 <ul>
         		    <li>로그인</li>
-        		    <li><a href="/freeList">커뮤니티 링크</a></li>
+        		    <li><a href="/board/freeList">커뮤니티 링크</a></li>
         	    </ul>
             </div>
         </div>
@@ -72,7 +75,9 @@
         <div id="section">
         	<div id="section_Con">
         		<form id="form1" name="form1" method="POST" enctype="multipart/form-data">
+        			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         			<div class="section_Con_Select">
+        			
         				<select name="category" id="category">
         					<option>시설 유/무</option>
         					<option>추가요청</option>
@@ -95,7 +100,7 @@
 								파일 선택 : <input type="file" name="file">
 					<div id="article2">
 						<div>
-							<a href="/reportBoardList">글 목록</a>
+							<a href="/board/reportBoardList">글 목록</a>
 						</div>
 			
 						<div>	

@@ -7,11 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <link href="resources/css/style.css?var=1" rel="stylesheet" type="text/css">
-  <script src="resources/js/jquery-3.6.0.min.js"></script>
-  <script src="resources/js/magnify.js"></script>
-  <script src="resources/js/script.js"></script>
-  <script src="resources/js/html2canvas.js"></script>
+  <link href="${path}/resources/css/style.css?var=1" rel="stylesheet" type="text/css">
+  <script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+  <script src="${path}/resources/js/magnify.js"></script>
+  <script src="${path}/resources/js/script.js"></script>
+  <script src="${path}/resources/js/html2canvas.js"></script>
 	<title>Home</title>
 </head>
 
@@ -22,7 +22,7 @@
         <!-- 헤더 -->
         <div id="header">
              <div>
-        		<p><a href="/travelHome">로고</a></p>  		
+        		<p><a href="/main">로고</a></p>  		
         		<div id="search_Con">
         			<select name="type" id="search_option">
         					<option value="">검색</option>
@@ -38,7 +38,7 @@
         		
         		<ul>
         			<li>로그인</li>
-        			<li><a href="/freeList">커뮤니티 링크</a></li>
+        			<li><a href="/board/freeList">커뮤니티 링크</a></li>
         		</ul>
         	</div>
         </div>
@@ -62,7 +62,7 @@
                     <input type="radio" name="type" id="radio1" class="radio">
                     
                     <label for="radio1" class="label1">
-                    	<a href="/travelLeg">
+                    	<a href="/board/travelLeg">
                         <i class="fa-solid fa-wheelchair"></i>
                         <span>지체장애</span>
                         </a>
@@ -73,7 +73,7 @@
                     <input type="radio" name="type" id="radio2"class="radio">
                     
                     <label for="radio2" class="label1">
-                    <a href="/travelEars">
+                    <a href="/board/travelEars">
                         <i class="fa-solid fa-ear-deaf"></i>
                         
                         <span>청각장애</span>
@@ -85,7 +85,7 @@
                     <input type="radio" name="type" id="radio3"class="radio">
                     
                     <label for="radio3" class="label1">
-                    <a href="/travelEyes">
+                    <a href="/board/travelEyes">
                         <i class="fa-solid fa-eye-low-vision" style="color:#000;"></i>
                         
                         <span  style="color:#000; border-bottom: 3px solid #000;">시각장애</span>
@@ -325,7 +325,7 @@ let globalCurrentPage = 1;
 
 		$.ajax({
 			type:'POST',
-			url:'/ajaxEyesCate',
+			url:'/board/ajaxEyesCate',
 			data:{
 				sido:sido,
 				chkArry:chkArr,

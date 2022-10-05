@@ -4,8 +4,6 @@
 <html>
 
 <head>
-<meta name="_csrf" th:content="${_csrf.token}">
-<meta name="_csrf_header" th:content="${_csrf.headerName}">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="/css/regist_page.css"></link>
@@ -85,8 +83,7 @@ button{
 </style>
 <body>
 	<form method="post" id="form">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		<table>
 			<tr>
 				<td>
@@ -512,7 +509,7 @@ button{
 			} else {
 				$.ajax({
 					type: "get",
-					url: '/user/idCheck',
+					url: '/idCheck',
 					data: {
 						"user_id" : userid
 					},

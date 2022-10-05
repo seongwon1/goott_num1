@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/css/freeInsertStyle..css?var=1" rel="stylesheet" type="text/css">
-<script src="resources/js/jquery-3.6.0.min.js"></script>
-<script src="resources/js/magnify.js"></script>
-<script src="resources/js/script.js"></script>
-<script src="resources/js/html2canvas.js"></script>
+<link href="${path}/resources/css/freeInsertStyle..css?var=1" rel="stylesheet" type="text/css">
+<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${path}/resources/js/magnify.js"></script>
+<script src="${path}/resources/js/script.js"></script>
+<script src="${path}/resources/js/html2canvas.js"></script>
 </head>
 <script>
 	window.onload = function() {
@@ -36,6 +36,7 @@
 				content.focus();
 				return false;	
 			};
+			form1.action = "/board/merge/freeUpdate?${_csrf.parameterName}=${_csrf.token}";
 			form1.submit();
 			});
 		}
@@ -49,12 +50,12 @@
 	<div id="container">
         <div id="header">
             <div>
-                <p><a href="/">로고</a></p>
+                <p><a href="/main">로고</a></p>
                 <span>글 수정</span>
         	
                 <ul>
         		    <li>로그인</li>
-        		    <li><a href="/freeList">커뮤니티 링크</a></li>
+        		    <li><a href="/board/freeList">커뮤니티 링크</a></li>
         	    </ul>
             </div>
         </div>
@@ -75,6 +76,7 @@
         <div id="section">
         	<div id="section_Con">
         		<form id="form1" name="form1" method="POST">
+        		<input type="hidden" name="free_board_id" value="${data.free_board_id}">
         			<div class="section_Con_Select">
         				<select name="category" id="category" >
         					<option>전체</option>
@@ -98,7 +100,7 @@
 					
 					<div id="article2">
 						<div>
-							<a href="/freeList">글 목록</a>
+							<a href="/board/freeList">글 목록</a>
 						</div>
 			
 						<div>	

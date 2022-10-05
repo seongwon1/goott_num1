@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="3, /security">
+<!-- <meta http-equiv="refresh" content="3, /main"> -->
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
+
 <body>
 	<p>${message}</p>
 </body>
