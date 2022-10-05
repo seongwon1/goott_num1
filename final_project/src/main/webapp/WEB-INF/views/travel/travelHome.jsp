@@ -23,7 +23,11 @@
         <!-- 헤더 -->
         <div id="header">
            <div>
-        		<p><a href="/main">로고</a></p>
+        		<p>
+        			<a href="/main">
+        			<img alt="이미지x" src="/resources/image/headerLogo.png">
+        			</a>
+        		</p>
         		
         		<ul>
         			<li>로그인</li>

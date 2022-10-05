@@ -162,7 +162,7 @@ $(document).ready(function(){
 
 	$.ajax({
 		type:'GET',
-		url:'replyList',
+		url:'/board/replyList',
 		dataType:'JSON',
 		data:{
 			free_board_id:free_board_id,
@@ -171,8 +171,6 @@ $(document).ready(function(){
 		},
 		success:function(obj){
 			makeReplyContent(obj);
-			
-			
 		}
 	})
 		
@@ -181,6 +179,7 @@ $(document).on('click', '.delete_reply_btn', function(e){
 	$(document).ajaxSend(function(e, xhr, options) {
 		xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
 		});
+
 	e.preventDefault();
 	let replyId = $(this).attr("href");	
 	
@@ -189,9 +188,10 @@ $(document).on('click', '.delete_reply_btn', function(e){
 			replyId : replyId,
 			free_board_id : '${data.free_board_id}'
 		},
-		url : '/board/merge/replyDelete',
+		url : 'merge/replyDelete',
 		type : 'POST',
 		success : function(result){
+			
 			replyListInit();
 			alert('삭제가 완료되엇습니다.');
 		}
@@ -203,7 +203,7 @@ function updateBtn(replyId,user_id){
 		xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
 		});
 	$.ajax({
-		url:"/board/reply/detail/"+replyId,
+		url:"reply/detail/"+replyId,
 		success:function(result){
 			$('#modifyReply').html(result);
 		}
@@ -219,14 +219,13 @@ $(".insert").on("click", function(e){
 	const content = $("textarea").val();
 	$.ajax({
 		type:'POST',
-		url:'board/merge/replyInsert',
+		url:'merge/replyInsert',
 		data:{
 			user_id:userID,
 			content:content,
 			free_board_id:free_board_id
 		},
 		success:function(data){
-			console.log(data)
 		},
 		error: function (request, status, error) {
 			console.log("code: " + request.status)
@@ -250,13 +249,11 @@ $(document).on('click', '.pageMaker_btn a', function(e){
  });
 let replyListInit = function(){
 	$.getJSON("replyList", cri , function(obj){
-		
+
 		makeReplyContent(obj);
 		
 	});		
 }
-
-
 function makeReplyContent(obj){
 	
 	if(obj.list.length === 0){
@@ -281,7 +278,6 @@ function makeReplyContent(obj){
 			reply_list += '</div>'; 
 			reply_list += '<div class="reply_bottom">';
 			reply_list += '<div class="reply_bottom_txt">'+ obj.content +'</div>';
-			reply_list += '<div id="modifyReply"></div>'
 			reply_list += '</div>';
 			reply_list += '</div>';
 			reply_list += '</li>';

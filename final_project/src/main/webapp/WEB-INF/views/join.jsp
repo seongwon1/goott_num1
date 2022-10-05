@@ -24,9 +24,9 @@ body {
 }
 
 #form {
-	border: 1px black solid;
 	padding: 20px;
 	margin-top: 150px;
+	
 }
 
 input {

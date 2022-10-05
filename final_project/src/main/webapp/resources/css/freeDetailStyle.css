@@ -183,7 +183,7 @@ html,bodys{
 	margin-top:15px;
 	padding: 10px;
 	border: 1px solid rgba(207 207 207);
-
+	resize: none;
 }
 #replyBtn{
 	margin-top:10px;
@@ -204,7 +204,7 @@ html,bodys{
 }
 .reply_content_ul{
 	width: 70%;
-	margin-top: 50px;
+	margin-top: 130px;
 	list-style-type: none;
 }
 .reply_top{
@@ -228,7 +228,23 @@ html,bodys{
 	border: none;
 	color:#000;
 	font-weight: 350;
+	cursor: pointer;
+	font-size: 0.9rem;
 	
+}
+.reply_top > button{
+	width:50px;
+	height:25px;
+	margin-left:10px;
+	float: right;
+	text-align: center;
+	line-height:25px;
+	background-color:#EBEBEB;
+	border: none;
+	color:#000;
+	font-weight: 350;
+	cursor: pointer;
+	font-size: 0.9rem;
 }
 .reply_bottom{
 	padding:15px 0;
