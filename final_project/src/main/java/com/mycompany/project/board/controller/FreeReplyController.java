@@ -1,10 +1,13 @@
 package com.mycompany.project.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,16 +32,14 @@ public class FreeReplyController {
 		@ResponseBody
 		@RequestMapping(value = "/merge/replyInsert", method = RequestMethod.POST)
 		public void replyInsert(FreeReplyDTO dto) {
-			
+			System.out.println(dto);
 			replyService.insertReply(dto);
-			
 		}
 		
 		@ResponseBody
 		@RequestMapping(value = "/replyList", method = RequestMethod.GET)
 		public FreeReplyPageDTO replyList(Criteria cri) {
 			
-			System.out.println(cri);
 			return  replyService.replyList(cri);
 		}
 		
@@ -58,5 +59,32 @@ public class FreeReplyController {
 			
 			replyService.updateReply(dto);
 			
-		}		
+		}	
+		@ResponseBody
+		@RequestMapping("/reply/detail/{replyId}")
+		public ModelAndView detail(@PathVariable("replyId") int replyId, ModelAndView mv) {
+			FreeReplyDTO dto = replyService.detail(replyId);	
+			mv.setViewName("freeBoard/freeUpdateDetail");
+			mv.addObject("dto",dto);
+			System.out.println(dto);
+			return mv;
+		}
+		
+		@ResponseBody
+		@RequestMapping("/reply/update/{replyId}")
+		public ResponseEntity<String> updateRply(@PathVariable("replyId") int replyId, @RequestBody FreeReplyDTO dto){
+			ResponseEntity<String> entity = null;
+			try {
+				dto.setReplyId(replyId);
+				replyService.updateReply(dto);
+				entity = new ResponseEntity<String>("success", HttpStatus.OK);
+				System.out.println(entity);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+				
+			}
+			System.out.println("업데이트 완료");
+			return entity;
+		}
 }
