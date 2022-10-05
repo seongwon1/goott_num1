@@ -30,15 +30,15 @@
 
         <div id="article">
             <div>
-                <h1>검색하세요</h1>
+                <h1>공지사항</h1>
                 
                 <div id="article-search">
                 	<div id="article-serch-wrap">
                 		<select name="type" id="search_option">
                 			<option value=""<c:out value="${pageMaker.cri.type == 'null' ? 'selected' : ''}"/> >전체</option>
-                			<option value="C"<c:out value="${pageMaker.cri.type eq 'C' ? 'selected' : ''}"/> >카테고리</option>
+<%--                 			<option value="C"<c:out value="${pageMaker.cri.type eq 'C' ? 'selected' : ''}"/> >카테고리</option>
 							<option value="W"<c:out value="${pageMaker.cri.type eq 'W' ? 'selected' : ''}"/> >작성자</option>
-							<option value="T"<c:out value="${pageMaker.cri.type eq 'T' ? 'selected' : ''}"/> >제목</option>
+							<option value="T"<c:out value="${pageMaker.cri.type eq 'T' ? 'selected' : ''}"/> >제목</option> --%>
         	       		</select>
 							
 						<input type="text" name="keyword" value="${pageMaker.cri.keyword}" onkeyup="inputEnter();">
