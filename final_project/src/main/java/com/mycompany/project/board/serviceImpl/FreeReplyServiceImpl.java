@@ -48,21 +48,16 @@ public class FreeReplyServiceImpl implements FreeReplyService{
 		return result;
 		
 	}
-
 	@Override
-	public int updateReply(FreeReplyDTO dto) {
+	public FreeReplyDTO detail(int replyId) {
 		// TODO Auto-generated method stub
-		int result = replyDao.updateReply(dto); 
-		System.out.println(dto);
-		return result;
+		return replyDao.detail(replyId);
 	}
 
 	@Override
-	public FreeReplyDTO getUpdateReply(int replyId) {
+	public void updateReply(FreeReplyDTO dto) {
 		// TODO Auto-generated method stub
-		return replyDao.getUpdateReply(replyId);
+		replyDao.updateReply(dto);
 	}
-
-	
 
 }

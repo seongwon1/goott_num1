@@ -13,7 +13,7 @@ public interface FreeReplyService {
 	public int insertReply(FreeReplyDTO dto);
 	public FreeReplyPageDTO replyList(Criteria cri);
 	public int deleteReply(FreeReplyDTO dto);
-	public int updateReply(FreeReplyDTO dto);
-	public FreeReplyDTO getUpdateReply(int free_board_id);
+	void updateReply(FreeReplyDTO dto);
+	FreeReplyDTO detail(int replyId);
 
 }

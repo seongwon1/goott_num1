@@ -58,7 +58,7 @@ public class FreeBoardController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("freeBoard/freeDetail");
 		mv.addObject("data", boardService.detail(map));
-		
+	
 		return mv;
 	}
 	

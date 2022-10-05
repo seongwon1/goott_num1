@@ -10,18 +10,19 @@
 <script>
 	let btnUpdate = document.querySelector('#btnReplyUpdate');
 	btnUpdate.addEventListener('click',function(){
-		let reply_text = document.querySelector('#detail_replytext').value;
+		let content = document.querySelector('#detail_replytext').value;
 		$.ajax({
 			type:"POST",
-			url:"/reply/update/${dto.rep_idx}",
+			url:"/reply/update/${dto.replyId}",
 			headers:{"Content-Type":"application/json;charset=UTF-8"},
-			data:JSON.stringify({reply_text:reply_text}),
+			data:JSON.stringify({content:content}),
 			dataType:"text",
 			success:function(result){
 				if(result == "success"){
+					console.log(result)
 					alert('수정완료');
 					$('#modifyReply').css("visivility","hidden");
-					listReply();
+					makeReplyContent(obj)
 				}
 			}
 		});

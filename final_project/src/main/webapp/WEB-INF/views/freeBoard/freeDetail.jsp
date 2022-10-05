@@ -120,7 +120,6 @@
 					</div>
 					<div class="reply_bottom">
 						<div class="reply_bottom_txt"></div>
-						<div id="modifyReply"></div>
 					</div>	
 				</div>
 			</li>
@@ -163,15 +162,38 @@ $(document).ready(function(){
 		},
 		success:function(obj){
 			makeReplyContent(obj);
-			$(document).on('click', '.update_reply_btn', function(e){
-				showModify(obj.replyId);
-				
-			});
+			
 			
 		}
 	})
 		
 });
+$(document).on('click', '.delete_reply_btn', function(e){
+	e.preventDefault();
+	let replyId = $(this).attr("href");	
+	
+	$.ajax({
+		data : {
+			replyId : replyId,
+			free_board_id : '${data.free_board_id}'
+		},
+		url : '/replyDelete',
+		type : 'POST',
+		success : function(result){
+			replyListInit();
+			alert('삭제가 완료되엇습니다.');
+		}
+	});		
+		
+ });	
+function updateBtn(replyId,user_id){
+	$.ajax({
+		url:"reply/detail/"+replyId,
+		success:function(result){
+			$('#modifyReply').html(result);
+		}
+	});
+}
 
 $(".insert").on("click", function(e){
 	const free_board_id = '${data.free_board_id}'
@@ -186,7 +208,7 @@ $(".insert").on("click", function(e){
 			free_board_id:free_board_id
 		},
 		success:function(data){
-			 window.open('','_self').close(); 
+			  window.close();
 		},
 		error: function (request, status, error) {
 			console.log("code: " + request.status)
@@ -197,22 +219,25 @@ $(".insert").on("click", function(e){
 	})
 	
 });
-$(document).on('click','update_reply_btn',function(){
+
+$(document).on('click', '.pageMaker_btn a', function(e){
+	e.preventDefault();
 	
-	$.ajax({
-		data : {
-			replyId : replyId,
-			free_board_id : '${data.free_board_id}'
-		},
-		url : 'replyDelete',
-		type : 'POST',
-		success : function(result){
-			replyListInit();
-			alert('삭제가 완료되엇습니다.');
-		}
-	});	
+	let page = $(this).attr("href");	
+	cri.pageNum = page;		
 	
-})
+	
+	replyListInit();
+		
+ });
+let replyListInit = function(){
+	$.getJSON("replyList", cri , function(obj){
+		
+		makeReplyContent(obj);
+		
+	});		
+}
+
 
 function makeReplyContent(obj){
 	
@@ -228,16 +253,17 @@ function makeReplyContent(obj){
 		let free_board_id = '${data.free_board_id}'
 		let reply_list = '';			
 		$(list).each(function(i,obj){
-			
+			console.log(obj)
 			reply_list += '<li>';
 			reply_list += '<div class="comment_wrap">';
 			reply_list += '<div class="reply_top">';
 			reply_list += '<span class="id_span">'+ obj.user_id+'</span>';
 			reply_list += '<span class="date_span">'+ obj.regDate +'</span>';
-			reply_list += '<button class="update_reply_btn" onclick=showModify()>수정</button><a class="delete_reply_btn" href="'+ obj.replyId +'">삭제</a>';
+			reply_list += '<button class="update_reply_btn" onclick=updateBtn('+obj.replyId + ',\''+ obj.user_id + ',\')>수정</button><a class="delete_reply_btn" href="'+ obj.replyId +'">삭제</a>';
 			reply_list += '</div>'; 
 			reply_list += '<div class="reply_bottom">';
 			reply_list += '<div class="reply_bottom_txt">'+ obj.content +'</div>';
+			reply_list += '<div id="modifyReply"></div>'
 			reply_list += '</div>';
 			reply_list += '</div>';
 			reply_list += '</li>';
@@ -274,24 +300,7 @@ function makeReplyContent(obj){
 
 };
 
-$(document).on('click', '.pageMaker_btn a', function(e){
-	e.preventDefault();
-	
-	let page = $(this).attr("href");	
-	cri.pageNum = page;		
-	
-	
-	replyListInit();
-		
- });
 
-let replyListInit = function(){
-	$.getJSON("replyList", cri , function(obj){
-		
-		makeReplyContent(obj);
-		
-	});		
-}
 
 
 </script>

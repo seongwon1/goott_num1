@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
+
 @Repository
 public class FreeReplyDAOImpl implements FreeReplyDAO{
 
@@ -36,18 +38,15 @@ public class FreeReplyDAOImpl implements FreeReplyDAO{
 		return SqlSessionTemplate.delete("replyMapper.deleteReply",replyId);
 	}
 
-	@Override
-	public int updateReply(FreeReplyDTO dto) {
-		// TODO Auto-generated method stub
-		return SqlSessionTemplate.update("replyMapper.updateReply",dto);
-	}
+	public FreeReplyDTO detail(int replyId) {
 
-	@Override
-	public FreeReplyDTO getUpdateReply(int free_board_id) {
-		// TODO Auto-generated method stub
-		return SqlSessionTemplate.selectOne("replyMapper.getUpdateReply",free_board_id);
+		return SqlSessionTemplate.selectOne("replyMapper.replyDetail",replyId);
 	}
-
+	public void updateReply(FreeReplyDTO dto) {
+		
+		SqlSessionTemplate.update("replyMapper.updateReply",dto);
+		
+	}
 	
 
 }
