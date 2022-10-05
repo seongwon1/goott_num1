@@ -47,8 +47,7 @@ public class reportBoardDAOImpl implements reportBoardDAO {
 		map.put("user_id", dto.getUser_id());
 		map.put("file", vo.getName());
 		map.put("file_url",vo.getFile_url());
-		System.out.println(vo.getName());
-		System.out.println(vo.getFile_url());
+
 		SqlSessionTemplate.update("reportBoardMapper.update",map);
 	}
 

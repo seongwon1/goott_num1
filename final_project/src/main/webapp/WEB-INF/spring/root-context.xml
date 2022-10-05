@@ -21,7 +21,7 @@
 			value="com.mysql.cj.jdbc.Driver" />
 		<!-- value의 입력 형식은 jdbc:mysql://localhost:mysql포트번호/연결할 DB명 -->
 		<property name="url"
-			value="jdbc:mysql://database-1.c0vc1omncynq.ap-northeast-2.rds.amazonaws.com/disabled?serverTimezone=Asia/Seoul&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
+			value="jdbc:mysql://database-1.c0vc1omncynq.ap-northeast-2.rds.amazonaws.com/disabled?serverTimezone=UTC&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
 
 		<property name="username" value="admin" />
 		<property name="password" value="goottnum1" />
