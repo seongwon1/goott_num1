@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.project.board.model.FreeReplyDTO;
 import com.mycompany.project.board.model.noticeBoardReplyPageDTO;
 import com.mycompany.project.board.model.noticeCriteria;
 import com.mycompany.project.board.model.noticeReplyDTO;
@@ -59,6 +60,6 @@ public class noticeBoardReplyController {
 		replyService.noticeUpdateReply(dto);
 		
 	}		
-			
+		
 	
 }

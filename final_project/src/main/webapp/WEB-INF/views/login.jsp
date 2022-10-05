@@ -23,9 +23,19 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				width: 60%;
+				width: 35%;
 				height: 60%;
+				border: 1px solid #DADADA;
 			}
+			form{
+				width: 63%;	
+			}
+			table{
+				width:100%;
+			}
+			td{
+				padding: 5px 0;
+			} 
 
 			.loginBtn {
 				width: 100%;
@@ -42,7 +52,8 @@
 			}
 			
 			input{
-				width: 100%
+				width: 100%;
+				height: 30px;
 			}
 		</style>
 		<script>
@@ -77,12 +88,14 @@
 							비밀번호
 						</td>
 					</tr>
+					
 					<tr>
-						<td><input type="password" name="passwd">
-						</td>
+						<td><input type="password" name="passwd"></td>
+					</tr>
 					<tr>
 						<td class="login">
 							<input type="submit" value="로그인" class="loginBtn">
+						</td>
 					</tr>
 					<tr>
 						<td class="join">
