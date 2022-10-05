@@ -155,11 +155,14 @@ var header = $("meta[name='_csrf_header']").attr("content");
 ///////////////////////////////////////////////
 
 $(document).ready(function(){
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+		});
 	const free_board_id = '${data.free_board_id}';
 
 	$.ajax({
 		type:'GET',
-		url:'/board/replyList',
+		url:'replyList',
 		dataType:'JSON',
 		data:{
 			free_board_id:free_board_id,
@@ -168,49 +171,19 @@ $(document).ready(function(){
 		},
 		success:function(obj){
 			makeReplyContent(obj);
-			$(document).on('click', '.update_reply_btn', function(e){
-				showModify(obj.replyId);
-				
-			});
+			
 			
 		}
 	})
 		
 });
-
-$(".insert").on("click", function(e){
-	const free_board_id = '${data.free_board_id}'
-	const userID = $('#reply_ID').val();
-	const content = $("textarea").val();
-	
+$(document).on('click', '.delete_reply_btn', function(e){
 	$(document).ajaxSend(function(e, xhr, options) {
 		xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
 		});
-	$.ajax({
-		
-		type:'POST',
-		url:'/board/merge/replyInsert',
-		data:{
-			user_id:userID,
-			content:content,
-			free_board_id:free_board_id
-		},
-		success:function(data){
-			 window.open('','_self').close(); 
-		},
-		error: function (request, status, error) {
-			console.log("code: " + request.status)
-			console.log("message: " + request.responseText)
-			console.log("error: " + error);
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}	
-	})
+	e.preventDefault();
+	let replyId = $(this).attr("href");	
 	
-});
-$(document).on('click','update_reply_btn',function(){
-	$(document).ajaxSend(function(e, xhr, options) {
-		xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
-		});
 	$.ajax({
 		data : {
 			replyId : replyId,
@@ -222,9 +195,67 @@ $(document).on('click','update_reply_btn',function(){
 			replyListInit();
 			alert('삭제가 완료되엇습니다.');
 		}
-	});	
+	});		
+		
+ });	
+function updateBtn(replyId,user_id){
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+		});
+	$.ajax({
+		url:"/board/reply/detail/"+replyId,
+		success:function(result){
+			$('#modifyReply').html(result);
+		}
+	});
+}
+
+$(".insert").on("click", function(e){
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+		});
+	const free_board_id = '${data.free_board_id}'
+	const userID = $('#reply_ID').val();
+	const content = $("textarea").val();
+	$.ajax({
+		type:'POST',
+		url:'board/merge/replyInsert',
+		data:{
+			user_id:userID,
+			content:content,
+			free_board_id:free_board_id
+		},
+		success:function(data){
+			console.log(data)
+		},
+		error: function (request, status, error) {
+			console.log("code: " + request.status)
+			console.log("message: " + request.responseText)
+			console.log("error: " + error);
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}	
+	})
 	
-})
+});
+
+$(document).on('click', '.pageMaker_btn a', function(e){
+	e.preventDefault();
+	
+	let page = $(this).attr("href");	
+	cri.pageNum = page;		
+	
+	
+	replyListInit();
+		
+ });
+let replyListInit = function(){
+	$.getJSON("replyList", cri , function(obj){
+		
+		makeReplyContent(obj);
+		
+	});		
+}
+
 
 function makeReplyContent(obj){
 	
@@ -240,16 +271,17 @@ function makeReplyContent(obj){
 		let free_board_id = '${data.free_board_id}'
 		let reply_list = '';			
 		$(list).each(function(i,obj){
-			
+			console.log(obj)
 			reply_list += '<li>';
 			reply_list += '<div class="comment_wrap">';
 			reply_list += '<div class="reply_top">';
 			reply_list += '<span class="id_span">'+ obj.user_id+'</span>';
 			reply_list += '<span class="date_span">'+ obj.regDate +'</span>';
-			reply_list += '<button class="update_reply_btn" onclick=showModify()>수정</button><a class="delete_reply_btn" href="'+ obj.replyId +'">삭제</a>';
+			reply_list += '<button class="update_reply_btn" onclick=updateBtn('+obj.replyId + ',\''+ obj.user_id + ',\')>수정</button><a class="delete_reply_btn" href="'+ obj.replyId +'">삭제</a>';
 			reply_list += '</div>'; 
 			reply_list += '<div class="reply_bottom">';
 			reply_list += '<div class="reply_bottom_txt">'+ obj.content +'</div>';
+			reply_list += '<div id="modifyReply"></div>'
 			reply_list += '</div>';
 			reply_list += '</div>';
 			reply_list += '</li>';
@@ -286,24 +318,6 @@ function makeReplyContent(obj){
 
 };
 
-$(document).on('click', '.pageMaker_btn a', function(e){
-	e.preventDefault();
-	
-	let page = $(this).attr("href");	
-	cri.pageNum = page;		
-	
-	
-	replyListInit();
-		
- });
-
-let replyListInit = function(){
-	$.getJSON("/board/replyList", cri , function(obj){
-		
-		makeReplyContent(obj);
-		
-	});		
-}
 
 
 </script>

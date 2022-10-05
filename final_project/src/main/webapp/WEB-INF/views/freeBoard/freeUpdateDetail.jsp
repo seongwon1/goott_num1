@@ -8,24 +8,25 @@
 </head>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	let btnUpdate = document.querySelector('#btnReplyUpdate');
-	btnUpdate.addEventListener('click',function(){
-		let reply_text = document.querySelector('#detail_replytext').value;
-		$.ajax({
-			type:"POST",
-			url:"/reply/update/${dto.rep_idx}",
-			headers:{"Content-Type":"application/json;charset=UTF-8"},
-			data:JSON.stringify({reply_text:reply_text}),
-			dataType:"text",
-			success:function(result){
-				if(result == "success"){
-					alert('수정완료');
-					$('#modifyReply').css("visivility","hidden");
-					listReply();
-				}
+let btnUpdate = document.querySelector('#btnReplyUpdate');
+btnUpdate.addEventListener('click',function(){
+	let content = document.querySelector('#detail_replytext').value;
+	$.ajax({
+		type:"POST",
+		url:"/reply/update/${dto.replyId}",
+		headers:{"Content-Type":"application/json;charset=UTF-8"},
+		data:JSON.stringify({content:content}),
+		dataType:"text",
+		success:function(result){
+			if(result == "success"){
+				console.log(result)
+				alert('수정완료');
+				$('#modifyReply').css("visivility","hidden");
+				makeReplyContent(obj)
 			}
-		});
+		}
 	});
+});
 </script>
 </head>
 <body>

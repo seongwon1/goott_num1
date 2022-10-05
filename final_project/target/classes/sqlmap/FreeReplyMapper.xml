@@ -25,12 +25,14 @@
   	</delete>
   	
   	<update id="updateReply">
-  		update free_reply set content = #{content},
+  		update free_reply set content = #{content}
   		where replyId = #{replyId}
   	</update>
   	
-  	<select id="getUpdateReply" resultType="com.mycompany.project.board.model.FreeReplyDTO">
-		select * from free_reply
-		where replyId = #{replyId}
+  	<select id="replyDetail" parameterType="int" resultType="com.mycompany.project.board.model.FreeReplyDTO">
+		select user_id, content, replyId, regDate
+		from free_reply
+		where
+		replyId=#{replyId};
 	</select>
 </mapper>

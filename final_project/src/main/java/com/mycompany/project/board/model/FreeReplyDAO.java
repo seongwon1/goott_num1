@@ -8,7 +8,7 @@ public interface FreeReplyDAO {
 	public List<FreeReplyDTO> replyList(Criteria cri);
 	public int replyTotal(int replyId);
 	public int deleteReply(int replyId);
-	public int updateReply(FreeReplyDTO dto);
-	public FreeReplyDTO getUpdateReply(int free_board_id);
+	public FreeReplyDTO detail(int replyId);
+	public void updateReply(FreeReplyDTO dto);
 	
 }
