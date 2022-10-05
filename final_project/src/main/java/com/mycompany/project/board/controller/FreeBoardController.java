@@ -1,9 +1,11 @@
 package com.mycompany.project.board.controller;
 
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,25 +30,34 @@ public class FreeBoardController {
 	FreeReplyService replyService;  
 	
 	@RequestMapping(value = "/freeList", method = RequestMethod.GET)
-	public String list(Model model, Criteria cri) {
+	public String list(Model model, Criteria cri, Authentication auth) {
 		model.addAttribute("boardList",boardService.listPaging(cri));
 		int total = boardService.total();
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
 		model.addAttribute("pageMaker",pageMake);
+
 		
 		return "freeBoard/freeList";
 	}
 		
 	@RequestMapping(value = "/merge/freeInsert", method = RequestMethod.GET)
-	public String insert() {
+	public ModelAndView insert(Authentication auth) {
 		
-		return "freeBoard/freeInsert";
+		ModelAndView mv = new ModelAndView();
+		String user_id = auth.getName();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user_id", user_id);
+		mv.addObject("data", map);
+		mv.setViewName("freeBoard/freeInsert");
+		return mv;
 	}
 	@RequestMapping(value = "/merge/freeInsert", method = RequestMethod.POST)
 	public ModelAndView insert(FreeBoardDTO dto) {
 		
 		boardService.insert(dto);
 		ModelAndView mv = new ModelAndView();
+
 		mv.setViewName("redirect:/board/freeList");
 		
 		return mv;

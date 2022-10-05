@@ -58,7 +58,7 @@
         			<div>${data.content}</div>
         		</div>
         		<div>
-        		<a href="fileDownload.do?fileName=${data.file_name}">${data.file_name}</a>
+        		<a href="/board/merge/fileDownload.do?fileName=${data.file_name}">${data.file_name}</a>
         				
 			</div>
         	</div>

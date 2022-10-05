@@ -91,7 +91,8 @@
 					</div>
 				
 					<div class="section_Con_Input">
-						<input type="text" name="user_id" id="user_id" class="txtInput" placeholder="글쓴이">
+						<input type="text" id="user_id" class="txtInput" placeholder="글쓴이" value="${data.user_id}" disabled>
+						<input type="hidden" name="user_id" value="${data.user_id}">
 					</div>
 			
 					<div class="section_Con_Input">

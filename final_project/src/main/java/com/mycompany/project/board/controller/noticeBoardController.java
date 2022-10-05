@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,13 +47,19 @@ public class noticeBoardController {
 	}
 		
 	@RequestMapping(value = "/merge/noticeInsert", method = RequestMethod.GET)
-	public String insert() {
+	public String insert(Authentication auth, Model model) {
+		
+		String user_id = auth.getName();		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user_id", user_id);
+		model.addAttribute("data",map);
 		
 		return "noticeBoard/noticeInsert";
 	}
 	@RequestMapping(value = "/merge/noticeInsert", method = RequestMethod.POST)
-	public ModelAndView insert(noticeBoardDTO dto,@RequestParam MultipartFile file) throws Exception{	
+	public ModelAndView insert(noticeBoardDTO dto,@RequestParam MultipartFile file, Authentication auth ) throws Exception{	
 		ModelAndView mv = new ModelAndView();
+		
 		// ���� ���ε� ó��
 		String file_name = null;
 		MultipartFile uploadFile = dto.getFile();

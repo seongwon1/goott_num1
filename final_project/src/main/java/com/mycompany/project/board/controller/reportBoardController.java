@@ -6,19 +6,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.List;
-import java.util.Locale;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,10 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mycompany.project.board.model.reportBoardPageMakerDTO;
 import com.mycompany.project.board.model.UploadVO;
 import com.mycompany.project.board.model.reportBoardCriteria;
 import com.mycompany.project.board.model.reportBoardDTO;
+import com.mycompany.project.board.model.reportBoardPageMakerDTO;
 import com.mycompany.project.board.service.reportBoardService;
 
 
@@ -52,9 +50,14 @@ public class reportBoardController {
 		System.out.println(pageMake.toString());
 		return "/reportBoard/reportBoardList";
 	}
-		
+	
 	@RequestMapping(value = "/merge/reportBoardInsert", method = RequestMethod.GET)
-	public String insert() {
+	public String insert(Authentication auth, Model model) {
+		
+		String user_id = auth.getName();		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user_id", user_id);
+		model.addAttribute("data",map);
 		
 		return "/reportBoard/reportBoardInsert";
 	}
@@ -62,8 +65,6 @@ public class reportBoardController {
 	public ModelAndView insert(reportBoardDTO dto,UploadVO vo,@RequestParam MultipartFile file) {
 		
 		
-		
-	
 		ModelAndView mv = new ModelAndView();
 		
 		MultipartFile uploadFile = vo.getFile();
@@ -260,12 +261,12 @@ public class reportBoardController {
 			File file = new File(path);
 			
 			if(file.delete()) {
-				System.out.println("�뙆�씪�궘�젣");
+				
 			}else {
-				System.out.println("�뙆�씪�궘�젣 �떎�뙣");
+				
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 		}
 		boardService.delete(rboard_id);
 		

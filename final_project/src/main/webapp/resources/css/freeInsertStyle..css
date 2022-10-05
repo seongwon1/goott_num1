@@ -228,3 +228,10 @@ html.invert {
 	filter: progid:DXImageTransform.Microsoft.BasicImage(invert=1);/* IE 6-7 */
 	-ms-filter: 'progid:DXImageTransform.Microsoft.BasicImage(invert=1)';/* IE 8 */
 }
+
+
+
+
+#user_id {
+	background-color: rgba(225, 193, 193, 0.319);
+}
