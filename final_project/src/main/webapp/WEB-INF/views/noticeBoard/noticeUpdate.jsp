@@ -43,6 +43,7 @@
 				content.focus();
 				return false;	
 			};
+			form1.action = "/board/merge/noticeUpdate?${_csrf.parameterName}=${_csrf.token}";
 			form1.submit();
 			});
 		filedelete.addEventListener('click',function(){
@@ -105,6 +106,7 @@
         <div id="section">
         	<div id="section_Con">
         		<form id="form1" name="form1" method="POST" enctype="multipart/form-data">
+        		<input type="hidden" name="nboard_id" value="${data.nboard_id}">
         			<div class="section_Con_Select">
         				<select name="category" id="category" >
         					<option>전체</option>
@@ -113,7 +115,7 @@
         					<option>지체장애인</option>
         				</select>
         			</div>
-
+		
         			<div class="section_Con_Input">
 						<input type="text" name="title" id="title" size="80" class="txtInput" value="${data.title}">
 					</div>

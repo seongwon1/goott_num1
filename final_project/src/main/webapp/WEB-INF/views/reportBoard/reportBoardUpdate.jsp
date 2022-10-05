@@ -44,7 +44,7 @@
 				content.focus();
 				return false;	
 			};
-			/* form1.action = "/board/merge/reportBoardUpdate?${_csrf.parameterName}=${_csrf.token}"; */
+			form1.action = "/board/merge/reportBoardUpdate?${_csrf.parameterName}=${_csrf.token}";
 			form1.submit();
 			});
 			fileDel.addEventListener('click',function(){
@@ -108,6 +108,7 @@
         <div id="section">
         	<div id="section_Con">
         		<form id="form1" name="form1" method="POST" enctype="multipart/form-data">
+        		<input type="hidden" name="rboard_id" value="${data.rboard_id}">
         			<div class="section_Con_Select">
         				<select name="category" id="category" >
         					<option>시설 유/무</option>

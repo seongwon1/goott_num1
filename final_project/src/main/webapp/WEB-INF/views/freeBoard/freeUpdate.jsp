@@ -36,6 +36,7 @@
 				content.focus();
 				return false;	
 			};
+			form1.action = "/board/merge/freeUpdate?${_csrf.parameterName}=${_csrf.token}";
 			form1.submit();
 			});
 		}
@@ -74,7 +75,8 @@
 			
         <div id="section">
         	<div id="section_Con">
-        		<form id="form1" name="form1" method="POST" action="/board/freeUpdate">
+        		<form id="form1" name="form1" method="POST">
+        		<input type="hidden" name="free_board_id" value="${data.free_board_id}">
         			<div class="section_Con_Select">
         				<select name="category" id="category" >
         					<option>전체</option>

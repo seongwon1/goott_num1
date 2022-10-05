@@ -101,6 +101,7 @@ public class noticeBoardController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("data", list);		
 		mv.setViewName("noticeBoard/noticeUpdate");
+		System.out.println(map+"///"+dto);
 		
 		return mv;
 	}
@@ -135,7 +136,7 @@ public class noticeBoardController {
 				} else {
 					boardService.content_update(dto);
 					mv.setViewName("redirect:/board/noticeList");
-					
+					System.out.println(dto);
 					return mv;
 				}
 					
@@ -143,7 +144,7 @@ public class noticeBoardController {
 			
 		boardService.update(dto);
 		mv.setViewName("redirect:/board/noticeList");
-		
+		System.out.println("contorller check");
 		return mv;
 	}
 	@RequestMapping(value = "/merge/noticedelete", method = RequestMethod.GET)
