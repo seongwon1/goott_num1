@@ -29,7 +29,7 @@ public class CommonController {
 	@RequestMapping("/") // 시작 페이지
 	public String home() {
 
-		return "home";
+		return "/main";
 	}
 
 	@RequestMapping("/login")
