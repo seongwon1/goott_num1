@@ -20,7 +20,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
         
         // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition);
-         max_map();
+         // max_map();
             
       });
     
@@ -56,16 +56,24 @@ var fac_infoname = document.querySelectorAll("#fac_infoname");
 var info = document.querySelectorAll(".info");
 let input_eval = document.querySelectorAll(".detail_eval");
 var array_eval = [];
+
+
+
+
+
  for(let i=0; i<address_LatLng.length;i++){
 // 주소로 좌표를 검색합니다
 geocoder.addressSearch(address_LatLng[i].innerText, function(result, status){
-	
+
     // 정상적으로 검색이 완료됐으면 
      if (status === kakao.maps.services.Status.OK) {
       // 편의시설 내용을 전역변수 array_eval에 저장
       array_eval[i] = input_eval[i].innerText;
+  	
         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
+        
+        
+        
       //  console.dir(coords);
         // 결과값으로 받은 위치를 마커로 표시합니다
           var marker = new kakao.maps.Marker({
@@ -73,7 +81,8 @@ geocoder.addressSearch(address_LatLng[i].innerText, function(result, status){
             position: coords,
             
         })  
-        
+    //      markers.push(marker);
+          
           kakao.maps.event.addListener(marker,'click',function(mouseEvent){
             // 저장된 array_eval에 문자열이 포함된 인덱스 값을 저장하는 변수
             var icon_input_restroom = array_eval[i].indexOf("대변기");
@@ -143,9 +152,14 @@ geocoder.addressSearch(address_LatLng[i].innerText, function(result, status){
                   infowindow.close();
                 })
                 });
+
+     
     	}  
 	} )
-} 
+
+}
+
+ 
 var pointer_top = document.querySelector(".pointer_top");
 
 pointer_top.addEventListener('click',function(){

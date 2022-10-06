@@ -118,6 +118,7 @@ html,bodys{
 	background-color: #343434;
 	transition: all 0.3s;
 }
+
 #article2{
 	width: 72%;
 	height: 50px;
@@ -135,10 +136,11 @@ html,bodys{
 	line-height:40px;
 	text-decoration: none;
 	font-size: 1.2rem;
-	color: black;
+	color: #fff;
 	border: 1px solid rgba(207 207 207);
 	
 }
+
 #pageNation{
     width: 88%;
     height: 100px;
