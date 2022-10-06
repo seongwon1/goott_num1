@@ -73,10 +73,8 @@
         		<form id="form1" name="form1" method="POST" enctype="multipart/form-data">
         			<div class="section_Con_Select">
         				<select name="category" id="category">
-        					<option>전체</option>
-        					<option>시각장애인</option>
-        					<option>청각장애인</option>
-        					<option>지체장애인</option>
+        					<option>공지사항</option>
+ 
         				</select>
         			</div>
 
@@ -85,7 +83,7 @@
 					</div>
 				
 					<div class="section_Con_Input">
-						<input type="text" name="user_id" id="user_id" class="txtInput" placeholder="글쓴이">
+						<input type="text" name="user_id" id="user_id" class="txtInput"	value="${userid}" readonly>
 					</div>
 			
 					<div class="section_Con_Input">

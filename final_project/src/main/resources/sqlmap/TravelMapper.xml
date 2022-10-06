@@ -21,7 +21,7 @@ mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="legPaging" resultType="com.mycompany.project.travel.model.VO">
-		select location_name,address,firstimage,parking,publictransport,wheelchair,elevator,guidehuman
+		select distinct location_name,address,firstimage,parking,publictransport,wheelchair,elevator,guidehuman
 		from 
 		travel t
 		inner join travle_info t_info
@@ -71,7 +71,7 @@ mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					and wheelchair is not null
 				</if>
 				
-				<if test="chkArry == 'D'.toString()">
+				<if test="chkArry == 'E'.toString()">
 					and guidehuman is not null
 				</if>
 			</foreach>
@@ -81,7 +81,7 @@ mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="eyesPaging" resultType="com.mycompany.project.travel.model.VO">
-		select location_name,address,firstimage,parking,braileblock,helpdog,guidehuman,brailepromotion,blindhandicapetc
+		select distinct location_name,address,firstimage,parking,braileblock,helpdog,guidehuman,brailepromotion,blindhandicapetc
 		from 
 		travel t
 		inner join travle_info t_info
@@ -140,7 +140,7 @@ mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="earsPaging" resultType="com.mycompany.project.travel.model.VO">
-		select location_name,address,firstimage,parking,signguide,videoguide,hearinghandicapetc,guidehuman
+		select distinct location_name,address,firstimage,parking,signguide,videoguide,hearinghandicapetc,guidehuman
 		from 
 		travel t
 		inner join travle_info t_info

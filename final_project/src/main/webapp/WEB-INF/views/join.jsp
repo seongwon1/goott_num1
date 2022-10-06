@@ -366,7 +366,7 @@ button{
 					document.querySelector('.pw2Text').innerHTML = msg[2];
 					document.querySelector('.pw2Text').style.color = alertColor;
 				} else {
-					msg[2] = '';
+					msg[2] = '비밀번호 일치';
 					flag[2] = 'pass';
 
 					
@@ -385,7 +385,7 @@ button{
 					document.querySelector('.pw2Text').innerHTML = msg[2];
 					document.querySelector('.pw2Text').style.color = alertColor;
 				} else {
-					msg[2] = '';
+					msg[2] = '비밀번호 일치';
 					flag[2] = 'pass';
 					
 					document.querySelector('.pw2Text').innerHTML = msg[2];
@@ -407,7 +407,7 @@ button{
 					msg[3] = "이름은 반드시 두 글자 이상 입력하셔야 합니다."
 					flag[3] = 'fail';
 				} else {
-					msg[3] = '';
+					msg[3] = '사용 가능';
 					flag[3] = 'pass';
 				}
 			})
@@ -423,7 +423,7 @@ button{
 					msg[4] = "이메일을 제대로 입력해 주세요.";
 					flag[4] = 'fail';
 				} else {
-					msg[4] = '';
+					msg[4] = '사용 가능';
 					flag[4] = 'pass';
 				}
 			})
@@ -442,7 +442,7 @@ button{
 				flag[5] = 'fail';
 				msg[5] = '주소 검색을 통해 주소를 입력해 주세요.'
 			} else {
-				msg[5] = '';
+				msg[5] = '사용 가능';
 				flag[5] = 'pass';
 			}
 

@@ -66,13 +66,17 @@
 	<body>
 
 		<div class="container">
-			<span style="color:red">${message}</span>
 			<form action="/user/login_check.do" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<table>
 					<tr>
 						<td>
 							<p class="loginHead">로그인</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span style="color:red">${message}</span>
 						</td>
 					</tr>
 					<tr>

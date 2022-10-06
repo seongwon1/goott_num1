@@ -91,11 +91,24 @@ html,bodys{
 	color: #646464;
 	
 } 
+
 input[type="text"]{
 	width: 80%;
 	height: 40px;
 	border: 1px solid rgba(207 207 207);
 	padding:10px;
+}
+.section_Con_Select > select:hover{
+	border:1px solid #000;
+	transition: all 0.3s;
+}
+input[type="text"]:hover{
+	border: 1px solid #000;
+	transition: all 0.3s;
+}
+textarea:hover{
+	border: 1px solid #000;
+	transition: all 0.3s;
 }
 input[type="button"]{
 	width: 200px;
@@ -106,9 +119,14 @@ input[type="button"]{
 	text-decoration: none;
 	font-size: 1.2rem;
 	color: black;
-	border: 1px solid rgba(207 207 207);
-	background-color: white;
+	border: none;
+	color:#fff;
+	background-color:  #343434;
 	cursor: pointer;
+}
+input[type="button"]:hover{
+	background-color: #868787;
+	transition: all 0.3s;
 }
 textarea{
 	width: 80%;
@@ -134,10 +152,15 @@ textarea{
 	line-height:40px;
 	text-decoration: none;
 	font-size: 1.2rem;
-	color: black;
-	border: 1px solid rgba(207 207 207);
+	color: #fff;
+	border: none;
+	background-color: #868787;
 	
 } 
+#article2 > div > a:hover{
+	background-color: #343434;
+	transition: all 0.3s;
+}
 #pageNation{
     width: 88%;
     height: 100px;

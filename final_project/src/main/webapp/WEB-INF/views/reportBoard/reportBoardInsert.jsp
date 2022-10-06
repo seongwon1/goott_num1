@@ -45,26 +45,15 @@
 		}
 </script>
 
-<style>
-.logo{
-    width: 100%;
-    flex-grow: 1;
-}
-
-.logo img{
-    height: 200px;
-    margin-left: 30px;
-    margin-top : 100px;
-    padding: 15px;
-    width:200px;
-}
-</style>
 <body>
 <div id="wrap">
 	<div id="container">
         <div id="header">
+
+
+            	<a href="/main"><img src="${path}/resources/image/siteLogo.png" alt=""></a>
             <div>
-            	<a href="/main"><div class="logo"><img src="${path}/resources/image/siteLogo.png" alt=""></div></a>
+
                 <span>글 작성</span>
         	
                 <ul>
@@ -106,7 +95,7 @@
 					</div>
 				
 					<div class="section_Con_Input">
-						<input type="text" name="user_id" id="user_id" class="txtInput" placeholder="글쓴이">
+						<input type="text" name="user_id" id="user_id" class="txtInput" value="${userid}" readonly>
 					</div>
 			
 					<div class="section_Con_Input">
