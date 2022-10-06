@@ -155,12 +155,12 @@ input[type = radio]{
   	display:none;
 }
 
-.category_Ele:hover > label > i{
+.category_Ele:hover > label > a > i{
 /* 카테고리 호버 */
     color: #000;
 }
 
-.category_Ele:hover > label > span{
+.category_Ele:hover > label > a >  span{
     color: #000;
     border-bottom: 3px solid #000;
 }
@@ -383,6 +383,10 @@ input[type="checkbox"]:checked + .labelActive {
     align-items: center;
     list-style-type: none;
 }
+ul li.on {
+    border-bottom:1px solid #000;
+}
+
 
 .pageInfoLeg a{
     color: #5F6368;

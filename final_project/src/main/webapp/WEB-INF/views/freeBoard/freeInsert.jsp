@@ -73,9 +73,9 @@
         			<div class="section_Con_Select">
         				<select name="category" id="category">
         					<option>전체</option>
-        					<option>시각장애인</option>
-        					<option>청각장애인</option>
-        					<option>지체장애인</option>
+        					<option>일상</option>
+        					<option>정보</option>
+        					<option>추천</option>
         				</select>
         			</div>
 

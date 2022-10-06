@@ -62,7 +62,7 @@
                     <input type="radio" name="type" id="radio1" class="radio">
                     
                     <label for="radio1" class="label1">
-                    <a href="/travelLeg">
+                    <a href="board/travelLeg">
                         <i class="fa-solid fa-wheelchair" style="color:#000;"></i>
                         <span style="color:#000; border-bottom: 3px solid #000;">지체장애</span>
                         </a>
@@ -372,10 +372,10 @@ var header = $("meta[name='_csrf_header']").attr("content");
 					    }
 					    for (var i = first; i <= last; i++) {
 					        if (currentPage == i) {
-					            pageHtml += "<li class='pageInfo_btn'><a href='#' id='" + i + "'>" + i + "</a></li>";
+					            pageHtml += "<li class='pageInfo_btn on'><a href='#' id='" + i + "'>" + i + "</a></li>";
 					        } 
 					        else {
-					            pageHtml += "<li class='pageInfo_btn'><a href='#' id='" + i + "'>" + i + "</a></li>";
+					            pageHtml += "<li class='pageInfo_btn on'><a href='#' id='" + i + "'>" + i + "</a></li>";
 					        }
 					    }
 					    if (last < totalPage) {

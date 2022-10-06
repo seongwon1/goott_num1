@@ -269,6 +269,10 @@
 <!-- wrap -->
 </body>
 <script>
+////////////////////////////////////////////////////
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+/////////////////////유효성 검사///////////////////////////
 
 let moveForm = $("#moveForm");
 let cateEle_1 = document.querySelector('.cateEle_1');
@@ -323,6 +327,11 @@ let globalCurrentPage = 1;
 		$("input[name='chkArr']:checked").each(function(i) {
 	        chkArr.push($(this).val());
 		});
+		
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
+			});
+
 
 		$.ajax({
 			type:'POST',
@@ -363,10 +372,10 @@ let globalCurrentPage = 1;
 					    }
 					    for (var i = first; i <= last; i++) {
 					        if (currentPage == i) {
-					            pageHtml += "<li class='pageInfo_btn'><a href='#' id='" + i + "'>" + i + "</a></li>";
+					            pageHtml += "<li class='pageInfo_btn on'><a href='#' id='" + i + "'>" + i + "</a></li>";
 					        } 
 					        else {
-					            pageHtml += "<li class='pageInfo_btn'><a href='#' id='" + i + "'>" + i + "</a></li>";
+					            pageHtml += "<li class='pageInfo_btn on'><a href='#' id='" + i + "'>" + i + "</a></li>";
 					        }
 					    }
 					    if (last < totalPage) {
