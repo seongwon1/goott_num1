@@ -96,7 +96,7 @@
 					</div>
 				
 					<div class="section_Con_Input">
-						<input type="text" name="user_id" id="user_id" class="txtInput" placeholder="글쓴이">
+						<input type="text" name="user_id" id="user_id" class="txtInput" value="${userid}" readonly>
 					</div>
 			
 					<div class="section_Con_Input">

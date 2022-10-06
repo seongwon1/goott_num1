@@ -92,4 +92,9 @@ public class CommonController {
 	public String main() {
 		return "/main";
 	}
+	
+	@RequestMapping("/pause")
+	public String pausePage() {
+		return "/pause";
+	}
 }

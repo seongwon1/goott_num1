@@ -104,6 +104,20 @@ html,bodys{
     margin-top: 20px;
     padding: 10px;
 }
+.detailBtn_1 > a{
+	background-color: #868787;
+}
+.detailBtn_1  > a:hover{
+	background-color: #343434;
+	transition: all 0.3s;
+}
+.detailBtn_2  > a{
+	background-color: #868787;
+}
+.detailBtn_2 > a:hover{
+	background-color: #343434;
+	transition: all 0.3s;
+}
 #article2{
 	width: 72%;
 	height: 50px;

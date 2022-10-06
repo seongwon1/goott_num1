@@ -32,7 +32,7 @@ public class FreeReplyController {
 		@ResponseBody
 		@RequestMapping(value = "/merge/replyInsert", method = RequestMethod.POST)
 		public void replyInsert(FreeReplyDTO dto) {
-			System.out.println(dto);
+
 			replyService.insertReply(dto);
 		}
 		
@@ -66,7 +66,7 @@ public class FreeReplyController {
 			FreeReplyDTO dto = replyService.detail(replyId);	
 			mv.setViewName("freeBoard/freeUpdateDetail");
 			mv.addObject("dto",dto);
-			System.out.println(dto);
+			
 			return mv;
 		}
 		
@@ -77,14 +77,9 @@ public class FreeReplyController {
 			try {
 				dto.setReplyId(replyId);
 				replyService.updateReply(dto);
-				entity = new ResponseEntity<String>("success", HttpStatus.OK);
-				System.out.println(entity);
 			} catch (Exception e) {
-				e.printStackTrace();
-				entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 				
 			}
-			System.out.println("업데이트 완료");
 			return entity;
 		}
 }

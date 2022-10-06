@@ -13,12 +13,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.mycompany.project.common.model.dao.UserDAO;
 import com.mycompany.project.common.model.dto.UserDTO;
 
 public class UserService implements UserDetailsService {
 	@Inject
 	SqlSession sqlSession;
 
+
+	
 	public UserService(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}

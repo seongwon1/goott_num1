@@ -103,7 +103,7 @@ public class TravelController {
 		vo.setSearchOp(searchOp);
 		List<VO> list = sqlSesstion.selectList("travelMapper.legPaging",vo);
 		result.put("leglist", list);
-		System.out.println(list);
+
 		return result;
 	}
 	
@@ -122,7 +122,6 @@ public class TravelController {
 		vo.setSearchOp(searchOp);
 		List<VO> list = sqlSesstion.selectList("travelMapper.earsPaging",vo);
 		result.put("earslist", list);
-		System.out.println(list);
 
 		return result;
 	}

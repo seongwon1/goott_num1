@@ -6,19 +6,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,10 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mycompany.project.board.model.reportBoardPageMakerDTO;
 import com.mycompany.project.board.model.UploadVO;
 import com.mycompany.project.board.model.reportBoardCriteria;
 import com.mycompany.project.board.model.reportBoardDTO;
+import com.mycompany.project.board.model.reportBoardPageMakerDTO;
 import com.mycompany.project.board.service.reportBoardService;
 
 
@@ -54,7 +51,10 @@ public class reportBoardController {
 	}
 		
 	@RequestMapping(value = "/merge/reportBoardInsert", method = RequestMethod.GET)
-	public String insert() {
+	public String insert(Model model, Authentication auth) {
+		
+		String userid = auth.getName();
+		model.addAttribute("userid", userid);
 		
 		return "/reportBoard/reportBoardInsert";
 	}
@@ -169,12 +169,13 @@ public class reportBoardController {
 	
 	
 	@RequestMapping(value="/reportBoardDetail", method = RequestMethod.GET)
-	public ModelAndView detail(@RequestParam Map<String, Object> map, reportBoardDTO dto) {
+	public ModelAndView detail(@RequestParam Map<String, Object> map, reportBoardDTO dto, Authentication auth) {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/reportBoard/reportBoardDetail");
 		mv.addObject("data", boardService.detail(map));
 		
+		mv.addObject("loginUser", auth.getName());
 		
 		return mv;
 	}

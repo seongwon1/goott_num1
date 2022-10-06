@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,6 +67,7 @@
         </div>
        
 		<div id="article2">
+		<c:if test="${loginUser eq data.user_id}">
 			<div class="detailBtn_1">
 				<a href="/board/merge/freeDelete?free_board_id=${data.free_board_id}">글 삭제</a>
 			</div>
@@ -73,6 +75,7 @@
 			<div class="detailBtn_1">
 				<a href="/board/merge/freeUpdate?free_board_id=${data.free_board_id}">글 수정</a>
 			</div>
+		</c:if>
 			
 			<div class="detailBtn_2">
 				<a href="/board/freeList">목록</a>
