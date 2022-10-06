@@ -49,8 +49,11 @@
 <div id="wrap">
 	<div id="container">
         <div id="header">
+
+
             	<a href="/main"><img src="${path}/resources/image/siteLogo.png" alt=""></a>
             <div>
+
                 <span>글 작성</span>
         	
                 <ul>

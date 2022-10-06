@@ -43,7 +43,7 @@
 
         <div id="article">
             <div>
-                <h1>검색하세요</h1>
+                <h1>자유게시판</h1>
                 
                 <div id="article-search">
                 	<div id="article-serch-wrap">
