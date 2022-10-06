@@ -31,6 +31,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from 
 			users
 		where 
-			userid=#{userid}
+			userid=#{userid} and del_YN='N'
 	</select>
 </mapper>

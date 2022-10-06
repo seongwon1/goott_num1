@@ -11,9 +11,16 @@ public class MemberDTO {
 	private String authority;
 	private String pause_date; 
 	private String email;
-	private int count;
+	private String count;
 	private String user_state;
+	private String del_YN;
 	
+	public String getDel_YN() {
+		return del_YN;
+	}
+	public void setDel_YN(String del_YN) {
+		this.del_YN = del_YN;
+	}
 	public String getUser_id() {
 		return user_id;
 	}
@@ -74,10 +81,10 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getCount() {
+	public String getCount() {
 		return count;
 	}
-	public void setCount(int count) {
+	public void setCount(String count) {
 		this.count = count;
 	}
 	public String getUser_state() {

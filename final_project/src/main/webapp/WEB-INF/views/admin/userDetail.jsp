@@ -72,7 +72,6 @@
 <script>
 
 	function doSubmit(id) {
-		debugger;
 		if (id == "pauseBtn") {
 			document.querySelector('#actionForm').action = "/admin/pause";
 			document.querySelector('#actionForm').submit();

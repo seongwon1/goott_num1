@@ -75,7 +75,7 @@
 
 			<div id="article2">
 
-				<c:if test="${loginUser eq data.user_id}">
+				<c:if test="${loginUser eq data.user_id || auth == '[ROLE_ADMIN]'}}">
 					<div class="detailBtn_1">
 						<a
 							href="/board/merge/reportBoardDelete?rboard_id=${data.rboard_id}">글

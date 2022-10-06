@@ -67,7 +67,7 @@ public class CommonController {
 	
 	@RequestMapping("/insert.do") //
 	public String insert(String user_id, String user_password, String user_name, String authority, 
-			String address, String address_detail, String zipcode) {
+			String address, String address_detail, String zipcode, String email) {
 
 		Map<String, Object> map = new HashMap();
 		map.put("user_id", user_id);
@@ -77,6 +77,8 @@ public class CommonController {
 		map.put("authority", authority);
 		map.put("address", address);
 		map.put("address_detail", address_detail);
+		map.put("zipcode", zipcode);
+		map.put("email", email);
 		userDao.insert(map);
 		return "/login"; // 로그인 페이지로 이동
 	}

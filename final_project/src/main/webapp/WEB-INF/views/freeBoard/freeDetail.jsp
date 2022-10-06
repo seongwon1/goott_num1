@@ -57,7 +57,7 @@
         </div>
        
 		<div id="article2">
-		<c:if test="${loginUser eq data.user_id}">
+		<c:if test="${loginUser eq data.user_id  || auth == '[ROLE_ADMIN]'}}">
 			<div class="detailBtn_1">
 				<a href="/board/merge/freeDelete?free_board_id=${data.free_board_id}">글 삭제</a>
 			</div>
@@ -90,7 +90,7 @@
 					<div>${data.content}</div>
 				</div>
 				<div id="reply_userID">
-					<input type="text" name="reply_ID" id="reply_ID">
+					<input type="text" name="reply_ID" id="reply_ID" value="${loginUser}" readonly >>
 				</div>
 				<div id="reply_Content2">
 					<textarea rows="5" cols="116" placeholder="내용"></textarea>
@@ -108,8 +108,10 @@
 					<div class="reply_top">
 						<span class="id_span"></span>
 						<span class="date_span"></span>
-						<a class="update_reply_btn">수정</a>
-						<a class="delete_reply_btn">삭제</a>
+						<c:if test="${loginUser eq data.user_id || auth == '[ROLE_ADMIN]'}">
+							<a class="update_reply_btn">수정</a>
+							<a class="delete_reply_btn">삭제</a>
+						</c:if>
 					</div>
 					<div class="reply_bottom">
 						<div class="reply_bottom_txt"></div>

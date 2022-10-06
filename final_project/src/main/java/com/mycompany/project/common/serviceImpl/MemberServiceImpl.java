@@ -42,4 +42,10 @@ public class MemberServiceImpl implements MemberService{
 	public void pauseBatch() {
 		userDao.pauseBatch();
 	}
+
+	@Override
+	public void pauseDateBatch() {
+		userDao.pauseDateBatch();
+		
+	}
 }

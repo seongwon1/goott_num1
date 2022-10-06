@@ -62,6 +62,7 @@ public class FreeBoardController {
 		mv.addObject("data", boardService.detail(map));
 		
 		mv.addObject("loginUser", auth.getName());
+		mv.addObject("auth", auth.getAuthorities());
 		
 		return mv;
 	}

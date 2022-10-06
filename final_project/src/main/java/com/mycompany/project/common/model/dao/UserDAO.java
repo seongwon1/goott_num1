@@ -22,4 +22,6 @@ public interface UserDAO{
 	MemberDTO userDetail(MemberDTO dto);
 	
 	void pauseBatch();
+	
+	void pauseDateBatch();
 }

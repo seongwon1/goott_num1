@@ -56,10 +56,10 @@
 				<table>
 					<thead>
 						<tr>
-							<th class="table_no">번호</th>
 							<th class="table_title">아이디</th>
 							<th class="table_writer">이름</th>
 							<th class="table_regdate">회원 상태</th>
+							<th class="table_regdate">등급</th>
 							<th class="table_regdate">정지 해제일</th>
 						</tr>
 					</thead>
@@ -67,11 +67,21 @@
 					<tbody>
 						<c:forEach var="row" items="${userList}">
 							<tr>
-								<td class="table_no">${row.count}</td>
 								<td class="table_cate"><a
 									href="/admin/userDetail?user_id=${row.user_id}">${row.user_id}</a></td>
 								<td class="table_title">${row.user_name}</td>
-								<td class="table_writer">${row.user_state}</td>
+								<c:choose>
+										<c:when test="${row.del_YN == 'N'}">
+											 <span style="color:crimson;">탈퇴</span>
+										</c:when>
+										<c:when test="${row.authority == 'ROLE_PAUSE'}">
+											<span style="color:blue">정지</span>
+										</c:when>
+										<c:otherwise>
+									 		<span style="color:green">정상</span>
+									 	</c:otherwise>	
+									</c:choose></td>
+								<td class="table_writer">${row.authority == 'ROLE_USER' ? "일반 회원" : "관리자"}</td>
 								<td class="table_writer">${row.pause_date}</td>
 							</tr>
 						</c:forEach>

@@ -17,4 +17,6 @@ public interface MemberService {
 	public MemberDTO userDetail(MemberDTO dto);
 
 	public void pauseBatch();
+	
+	public void pauseDateBatch();
 }

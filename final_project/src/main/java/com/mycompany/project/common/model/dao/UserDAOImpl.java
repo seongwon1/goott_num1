@@ -56,4 +56,11 @@ public class UserDAOImpl implements UserDAO {
 	 public void pauseBatch() {
 	 	sqlSession.update("user.pauseBatch");
 	 }
+	 
+
+	@Override
+	public void pauseDateBatch() {
+		sqlSession.update("user.pauseDateBatch");
+
+	}
 }

@@ -293,7 +293,6 @@ button{
 
 			//아이디
 			idCheck.addEventListener('keyup', function(){
-				console.log(idDuple)
 				if (idCheck.value.length == 0) {
 					idDuple = 0;
 					msg[0] = '아이디를 입력해 주세요.';
@@ -505,9 +504,8 @@ button{
 				xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
 				});
 			
-			if(userid.length == 0 || !ID_CHECK.test(userid)){
-				console.log('아이디가 공백이거나 유효성 검사에 실패함')
-			} else {
+			if(userid.length != 0 && ID_CHECK.test(userid)){
+				
 				$.ajax({
 					type: "get",
 					url: '/idCheck',
@@ -530,9 +528,10 @@ button{
 						}
 					},
 					error :function(){
-						console.log("통신실패")
 					}
 				})
+			} else {
+				alert("입력값을 다시 한 번 확인해 주세요.")
 			}
 		})
 	 	

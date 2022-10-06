@@ -81,7 +81,7 @@ a {
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<a href="/admin/main">관리자 페이지</a>
 				</sec:authorize>
-				<a href="/logout">로그아웃</a>
+				<a href="/logout.do">로그아웃</a>
 			</div>
 			</sec:authorize>
 		</div>

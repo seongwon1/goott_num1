@@ -80,9 +80,11 @@
         </div>
 		
 		<div id="article2">
+		<c:if test="${auth == '[ROLE_ADMIN]'}">
 			<div>	
 				<a href="/board/merge/noticeInsert">글 쓰기</a>
 			</div>
+		</c:if>
 		</div>
         
         <div id="pageNation">

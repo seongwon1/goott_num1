@@ -52,7 +52,6 @@ public class noticeReplyServiceImpl implements noticeReplyService{
 	public int noticeUpdateReply(noticeReplyDTO dto) {
 		// TODO Auto-generated method stub
 		int result = replyDao.noticeUpdateReply(dto); 
-		System.out.println(dto);
 		return result;
 	}
 

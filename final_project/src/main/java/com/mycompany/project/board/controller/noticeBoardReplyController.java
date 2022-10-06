@@ -30,7 +30,6 @@ public class noticeBoardReplyController {
 	@ResponseBody
 	@RequestMapping(value = "/noticeReplyInsert", method = RequestMethod.POST)
 	public void replyInsert(noticeReplyDTO dto) {
-		System.out.println(dto);
 		replyService.noticeInsertReply(dto);
 		
 	}
@@ -39,7 +38,6 @@ public class noticeBoardReplyController {
 	@RequestMapping(value = "/noticeReplyList", method = RequestMethod.GET)
 	public noticeBoardReplyPageDTO replyList(noticeCriteria cri) {
 		
-		System.out.println(cri);
 		return  replyService.noticeReplyList(cri);
 		
 		
