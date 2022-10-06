@@ -52,9 +52,9 @@
         		
         		<div class="section_Con_Ele2">
         			<div>${data.user_id}</div>
-        			<fmt:parseDate value="${data.regdate}" pattern="yyyy-MM-dd'T'HH:mm:ss" 
+        			<fmt:parseDate value="${data.regdate}" pattern="yyyy-MM-dd HH:mm:ss" 
 						var="date1" type="both" />
-					<div>작성일자 : <fmt:formatDate value="${date1}" pattern="yyyy-MM-dd a HH:mm:ss" /></div>
+					<div>작성일자 : <fmt:formatDate value="${date1}" pattern="yyyy-MM-dd HH:mm:ss" /></div>
         		</div>
         	
         		<div class="section_Con_Ele3">
@@ -78,6 +78,15 @@
 			첨부파일 : <a href="/board/merge/noticeBoardFileDownload.do?fileName=${data.file_name}">${data.file_name}</a>
 		
 		</div>
+
+		<div id="replyCon">
+			<div></div>
+			<div></div>
+		</div>
+        
+        <div id="pageNation">
+
+        </div>
 
         <div id="footer">
 

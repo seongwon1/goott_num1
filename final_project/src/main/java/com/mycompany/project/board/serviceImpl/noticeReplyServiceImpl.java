@@ -37,7 +37,7 @@ public class noticeReplyServiceImpl implements noticeReplyService{
 		dto.setList(replyDao.noticeReplyList(cri));
 		dto.setPageInfo(new noticeBoardPageMakerDTO(cri, replyDao.noticeReplyTotal(cri.getNboard_id())));
 		
-		return dto;
+		return dto; 
 	}
 
 	@Override

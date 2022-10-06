@@ -59,16 +59,14 @@ public class noticeBoardController {
 			String originalFileName = uploadFile.getOriginalFilename();
 			String ext = FilenameUtils.getExtension(originalFileName); // Ȯ���� ���ϱ�
 			long size = file.getSize(); //���� ������
-			System.out.println("���ϸ� : "  + originalFileName);
-			System.out.println("�뷮ũ��(byte) : " + size);
+			
 			String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."),originalFileName.length());
 			String uploadFolder = "C:\\Users\\Public\\Downloads\\";
 			
 			UUID uuid = UUID.randomUUID(); // UUID ���ϱ�
 			String[] uuids = uuid.toString().split("-");
 			String uniqueName = uuids[0];
-			System.out.println("������ �������ڿ�" + uniqueName);
-			System.out.println("Ȯ���ڸ�" + fileExtension);
+
 			file_name = uuid + "." + ext;
 			uploadFile.transferTo(new File(uploadFolder +"\\"+ uniqueName+ fileExtension ));
 		
@@ -101,7 +99,6 @@ public class noticeBoardController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("data", list);		
 		mv.setViewName("noticeBoard/noticeUpdate");
-		System.out.println(map+"///"+dto);
 		
 		return mv;
 	}
@@ -118,16 +115,14 @@ public class noticeBoardController {
 					String originalFileName = uploadFile.getOriginalFilename();
 					String ext = FilenameUtils.getExtension(originalFileName); // Ȯ���� ���ϱ�
 					long size = file.getSize(); //���� ������
-					System.out.println("���ϸ� : "  + originalFileName);
-					System.out.println("�뷮ũ��(byte) : " + size);
+				
 					String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."),originalFileName.length());
 					String uploadFolder = "C:\\Users\\Public\\Downloads\\";
 					
 					UUID uuid = UUID.randomUUID(); // UUID ���ϱ�
 					String[] uuids = uuid.toString().split("-");
 					String uniqueName = uuids[0];
-					System.out.println("������ �������ڿ�" + uniqueName);
-					System.out.println("Ȯ���ڸ�" + fileExtension);
+					
 					file_name = uuid + "." + ext;
 					uploadFile.transferTo(new File(uploadFolder +"\\"+ uniqueName+ fileExtension ));
 				
@@ -136,15 +131,13 @@ public class noticeBoardController {
 				} else {
 					boardService.content_update(dto);
 					mv.setViewName("redirect:/board/noticeList");
-					System.out.println(dto);
+
 					return mv;
 				}
-					
-				
 			
 		boardService.update(dto);
 		mv.setViewName("redirect:/board/noticeList");
-		System.out.println("contorller check");
+
 		return mv;
 	}
 	@RequestMapping(value = "/merge/noticedelete", method = RequestMethod.GET)
@@ -157,14 +150,13 @@ public class noticeBoardController {
 			File file = new File(path);
 			
 			if(file.delete()) {
-				System.out.println("���ϻ���");
+
 			}else {
-				System.out.println("���ϻ��� ����");
+
 			}
 		} catch (Exception e) {
 
 		}
-
 		
 		boardService.delete(nboard_id);
 		
@@ -182,9 +174,9 @@ public class noticeBoardController {
 			File file = new File(path);
 			
 			if(file.delete()) {
-				System.out.println("���ϻ���");
+
 			}else {
-				System.out.println("���ϻ��� ����");
+
 			}
 		} catch (Exception e) {
 
@@ -198,7 +190,6 @@ public class noticeBoardController {
 	        
 	        String filename =request.getParameter("fileName");
 	        String realFilename="";
-	        System.out.println(filename);
 	         
 	        try {
 	            String browser = request.getHeader("User-Agent"); 
@@ -210,10 +201,10 @@ public class noticeBoardController {
 	                filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
 	            }
 	        } catch (UnsupportedEncodingException ex) {
-	            System.out.println("UnsupportedEncodingException");
+
 	        }
 	        realFilename = "C:\\Users\\Public\\Downloads\\" + filename;
-	        System.out.println(realFilename);
+
 	        File file1 = new File(realFilename);
 	        if (!file1.exists()) {
 	            return ;
@@ -236,7 +227,7 @@ public class noticeBoardController {
 	            fis.close();
 	            os.close();
 	        } catch (Exception e) {
-	            System.out.println("FileNotFoundException : " + e);
+
 	        }
 	    }
 	
