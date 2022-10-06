@@ -7,11 +7,11 @@ $(document).ready(function(){
 		  var scroll_top = $(this).scrollTop();
 		  
 		  if(scroll_top > 0){
-			  $('#header').css({"position": "fixed", "top": "0px",});
+			  $('#header_container').css({"position": "fixed", "top": "0px",});
 			  
 		  }
 		  if(scroll_top < 10){
-			  $('#header').css('position','relative');
+			  $('#header_container').css('position','relative');
 			  
 		  }
 		});

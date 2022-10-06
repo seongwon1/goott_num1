@@ -23,8 +23,8 @@ html,bodys{
     justify-content: center;
     align-items: center;
 }
-#header{
-    /* 헤더영역: 로고 커뮤니티 링크 */
+/* #header{
+    헤더영역: 로고 커뮤니티 링크
     width: 100%;
     height: 90px;
     display: flex;
@@ -56,7 +56,7 @@ html,bodys{
 }
 #header > div > ul >li{
 	margin: 0 10px;	
-}
+} */
 
 #article{
     /* article:검색 타이틀 */
@@ -225,7 +225,7 @@ tbody > tr > td{
 	right:0; 
 	top:180px;
 	width:150px; 
-	background:none;
+	background:#fff;
 	z-index:10001;}
    
 .blind{
