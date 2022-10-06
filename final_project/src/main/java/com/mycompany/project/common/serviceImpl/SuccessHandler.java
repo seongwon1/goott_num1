@@ -15,7 +15,16 @@ public class SuccessHandler implements AuthenticationSuccessHandler{
 	public void onAuthenticationSuccess (HttpServletRequest request, HttpServletResponse response,
 			 Authentication authentication) throws IOException, ServletException {
 
-		response.sendRedirect("/main");
+		String auth = authentication.getAuthorities().toString();
+		
+		
+		if("[ROLE_PAUSE]".equals(auth)) {
+			
+			response.sendRedirect("/pause");
+		} else {
+		
+		 		response.sendRedirect("/main");
+		}
 //		RequestDispatcher rd = request.getRequestDispatcher("/main");
 //		rd. forward(request, response);
 	}

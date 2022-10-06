@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.project.board.model.Criteria;
-import com.mycompany.project.board.model.noticeBoardDTO;
 import com.mycompany.project.board.model.PageMakerDTO;
+import com.mycompany.project.board.model.noticeBoardDTO;
 import com.mycompany.project.board.service.noticeBoardService;
 
 
@@ -45,7 +46,10 @@ public class noticeBoardController {
 	}
 		
 	@RequestMapping(value = "/merge/noticeInsert", method = RequestMethod.GET)
-	public String insert() {
+	public String insert(Model model, Authentication auth) {
+				
+		String userid = auth.getName();
+		model.addAttribute("userid", userid);
 		
 		return "noticeBoard/noticeInsert";
 	}
@@ -84,10 +88,12 @@ public class noticeBoardController {
 	}
 	
 	@RequestMapping(value="/noticeDetail", method = RequestMethod.GET)
-	public ModelAndView detail(@RequestParam Map<String, Object> map, noticeBoardDTO dto) {
+	public ModelAndView detail(@RequestParam Map<String, Object> map, noticeBoardDTO dto, Authentication auth) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("noticeBoard/noticeDetail");
 		mv.addObject("data", boardService.detail(map));
+		
+		mv.addObject("loginUser", auth.getName());
 		
 		return mv;
 	}

@@ -1,6 +1,6 @@
 package com.mycompany.project.board.controller;
 
-
+import org.springframework.security.core.Authentication;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,10 @@ public class FreeBoardController {
 	}
 		
 	@RequestMapping(value = "/merge/freeInsert", method = RequestMethod.GET)
-	public String insert() {
+		public String insert(Model model, Authentication auth) {
+				
+				String userid = auth.getName();
+				model.addAttribute("userid", userid);
 		
 		return "freeBoard/freeInsert";
 	}
@@ -53,10 +56,12 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping(value="/freeDetail", method = RequestMethod.GET)
-	public ModelAndView detail(@RequestParam Map<String, Object> map, FreeBoardDTO dto, Criteria cri) {
+	public ModelAndView detail(@RequestParam Map<String, Object> map, FreeBoardDTO dto, Criteria cri, Authentication auth) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("freeBoard/freeDetail");
 		mv.addObject("data", boardService.detail(map));
+		
+		mv.addObject("loginUser", auth.getName());
 		
 		return mv;
 	}
