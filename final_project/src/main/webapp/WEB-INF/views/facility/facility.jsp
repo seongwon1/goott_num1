@@ -5,12 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<link rel="shortcut icon" href="${path}/resources/image/siteLogopavi.ico">
 	<link href="<c:url value="/resources/css/facility.css"/>" rel='stylesheet' />
 	<link rel="stylesheet" 
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <meta charset="UTF-8">
-<title>장애인 편의시설</title>
+<title>DreamDream 장애인 편의시설</title>
 </head>
 <body>
   

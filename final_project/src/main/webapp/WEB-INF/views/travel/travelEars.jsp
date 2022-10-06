@@ -7,12 +7,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="${path}/resources/image/siteLogopavi.ico">
 <link href="${path}/resources/css/style.css?var=1" rel="stylesheet" type="text/css">
   <script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
   <script src="${path}/resources/js/script.js"></script>
   <script src="${path}/resources/js/magnify.js"></script>
   <script src="${path}/resources/js/html2canvas.js"></script>
-	<title>Home</title>
+	<title>DreamDream 여행지</title>
 </head>
 
 <body>

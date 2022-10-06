@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DreamDream 공지사항</title>
+<link rel="shortcut icon" href="${path}/resources/image/siteLogopavi.ico">
 <link href="${path}/resources/css/freeInsertStyle..css?var=1" rel="stylesheet" type="text/css">
 <script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${path}/resources/js/magnify.js"></script>

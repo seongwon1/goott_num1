@@ -4,7 +4,8 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>DreamDream 로그인</title>
+		<link rel="shortcut icon" href="${path}/resources/image/siteLogopavi.ico">
 		<style>
 			* {
 				margin: 0;
