@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DreamDream 자유게시판</title>
+<link rel="shortcut icon" href="${path}/resources/image/siteLogopavi.ico">
 </head>
 <style>
 #modifyDiv{

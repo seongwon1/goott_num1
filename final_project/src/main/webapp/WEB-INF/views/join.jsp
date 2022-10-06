@@ -5,7 +5,8 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DreamDream 회원가입</title>
+<link rel="shortcut icon" href="${path}/resources/image/siteLogopavi.ico">
 <link type="text/css" rel="stylesheet" href="/css/regist_page.css"></link>
 </head>
 <style>
