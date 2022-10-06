@@ -74,7 +74,7 @@
 			</div>
 
 			<div id="article2">
-				
+
 				<c:if test="${loginUser eq data.user_id}">
 					<div class="detailBtn_1">
 						<a

@@ -73,6 +73,7 @@
 			</div>
 
 			<div id="article2">
+
 				<c:if test="${loginUser eq data.user_id}">
 					<div class="detailBtn_1">
 						<a href="/board/merge/noticedelete?nboard_id=${data.nboard_id}">글

@@ -7,7 +7,54 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+  <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            flex-direction:column;
+            justify-content: center;
+			align-items: center;
+        }
+        form{
+            width: 40%;
+            margin-top:40px;
+            padding:10px;
+            border: 1px solid #DADADA;
+        }
+        input[type=button]{
+            width: 100px;
+            height: 30px;
+            cursor: pointer;
+        }
+        input[type=text]{
+            width: 200px;
+            height: 30px;
+            padding: 5px;
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        div > p{
+            font-size: 1.3rem;
+            padding: 10px 5px;
+        }
+        #mainHeader{
+        	display: flex;
+        	justify-content: space-between;
+        }
+    
+        </style>
 <body>
+<div id="mainHeader">
+	<h1>회원 상세보기</h1>
+	<p>
+		<a href="/main">메인</a>
+	</p>
+</div>
 <form name="form" method="POST" id="actionForm">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	<div>

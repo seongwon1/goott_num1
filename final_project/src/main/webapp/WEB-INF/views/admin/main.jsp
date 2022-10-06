@@ -8,6 +8,37 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+<!--
+*{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        #container{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction:column;
+            align-items: center;
+        }
+        #header{
+            width: 100%;
+            border: 1px solid black;
+        }
+       #section{
+            width: 41%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position:relative;
+            top: 25%;
+            border: 1px solid #DADADA;
+        }
+        th,td{
+            padding: 10px 5px;
+        }
+</style>
 <body>
 	<h2>관리자.</h2>
 	<!-- 유저 삭제, 유저 삭제시 로그인 했을 때 알림, 유저 정지, 유저 자동 정지 해제 -->
