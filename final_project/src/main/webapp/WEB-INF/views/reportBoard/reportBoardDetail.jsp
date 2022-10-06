@@ -86,17 +86,17 @@
 			</div>
 
 			<div id="article2">
-				<div>
+				<div class="detailBtn_2">
 					<a href="/board/reportBoardList">목록</a>
 				</div>
 				<c:if test="${loginUser eq data.user_id}">
-					<div>
+					<div class="detailBtn_1">
 						<a
 							href="/board/merge/reportBoardDelete?rboard_id=${data.rboard_id}">글
 							삭제</a>
 					</div>
 
-					<div>
+					<div class="detailBtn_1">
 						<a
 							href="/board/merge/reportBoardUpdate?rboard_id=${data.rboard_id}">글
 							수정</a>
