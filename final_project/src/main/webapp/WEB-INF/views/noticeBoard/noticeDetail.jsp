@@ -21,19 +21,7 @@
 <body>
 	<div id="wrap">
 		<div id="container">
-			<div id="header">
-				<div>
-					<p>
-						<a href="/main">로고</a>
-					</p>
-					<span>상세보기</span>
-
-					<ul>
-						<li>로그인</li>
-						<li><a href="/board/noticeList">커뮤니티 링크</a></li>
-					</ul>
-				</div>
-			</div>
+<%@include file="../include/menu.jsp" %>
 
 			<div id="a11yMenu" class="a11y_menu" aria-label="접근성메뉴">
 				<h2 class="blind">
@@ -85,20 +73,21 @@
 			</div>
 
 			<div id="article2">
-				<div>
-					<a href="/board/noticeList">목록</a>
-				</div>
 				<c:if test="${loginUser eq data.user_id}">
-					<div>
+					<div class="detailBtn_1">
 						<a href="/board/merge/noticedelete?nboard_id=${data.nboard_id}">글
 							삭제</a>
 					</div>
 
-					<div>
+					<div class="detailBtn_1">
 						<a href="/board/merge/noticeUpdate?nboard_id=${data.nboard_id}">글
 							수정</a>
 					</div>
 				</c:if>
+				
+				<div class="detailBtn_2">
+					<a href="/board/noticeList">목록</a>
+				</div>
 				첨부파일 : <a
 					href="/board/merge/noticeBoardFileDownload.do?fileName=${data.file_name}">${data.file_name}</a>
 

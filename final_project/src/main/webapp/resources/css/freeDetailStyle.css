@@ -23,8 +23,8 @@ html,bodys{
     justify-content: center;
     align-items: center;
 }
-#header{
-    /* 헤더영역: 로고 커뮤니티 링크 */
+/* #header{
+    헤더영역: 로고 커뮤니티 링크
    	width: 100%;
     height: 90px;
     display: flex;
@@ -56,7 +56,50 @@ html,bodys{
 }
 #header > div > ul >li{
 	margin: 0 10px;	
+} */
+
+.header_list{
+	display: flex;
 }
+
+.header_regist {
+	text-align: right;
+	margin-top: 10px;
+	margin-right: 60px;
+	font-weight: bold;
+	font-size: 1.3rem;
+}
+
+.header_regist a{
+	padding: 10px 15px;
+}
+
+.header_logo {
+	display: flex;
+	align-items: center;
+}
+
+.header_logo img {
+	width: 155px;
+	height: 150px;
+	margin-left: 20px;
+}
+
+.header_menu {
+	width: 80%;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	list-style: none;
+	font-size: 1.5rem;
+	margin-left: 20px;
+}
+
+.header_menu li {
+	padding: 0 30px;
+}
+
 #section{
     width: 70%;
     display: flex;
