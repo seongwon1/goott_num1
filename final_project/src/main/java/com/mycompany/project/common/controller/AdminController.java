@@ -16,7 +16,7 @@ import com.mycompany.project.common.service.MemberService;
 @RequestMapping("/admin")
 @Controller
 public class AdminController {
-	
+	 
 	@Inject
 	MemberService service;
 	
