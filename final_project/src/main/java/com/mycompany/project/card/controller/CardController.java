@@ -17,22 +17,22 @@ import com.mycompany.project.card.service.CardService;
 
 
 @RequestMapping("/board")
-@Controller // ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¶ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ beanï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½.
+@Controller // ÇöÀç Å¬·¡½º¸¦ ¼­¹ö°¡ ¿Ã¶ó¿Ã ¶§ ÄÁÆ®·Ñ·¯ beanÀ¸·Î µî·ÏÀ» ÇÏ´Â °Í.
 public class CardController {
 	
 	@Autowired
 	CardService service;
-	// Model : ï¿½Ú·ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	// modelAndview : ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½Ìµï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ viewpageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Ã¼(Å¬ï¿½ï¿½ï¿½ï¿½)
-	// Ã³ï¿½ï¿½ create ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// Model : ÀÚ·á(µ¥ÀÌÅÍ)¸¦ ÀúÀåÇÏ´Â ÀúÀå¼Ò ¿ªÇÒ
+	// modelAndview : µ¥ÀÌÅÍ¿Í ÀÌµ¿ÇÏ°íÀÚ ÇÏ´Â viewpage¸¦ °°ÀÌ ÀúÀåÇÏ´Â °´Ã¼(Å¬·¡½º)
+	// Ã³À½ create ÆäÀÌÁö·Î µé¾î¿Ã ¶§¿¡ ´ëÇÑ ÀÀ´ä
 
-	@RequestMapping(value = "/card") // urlï¿½ï¿½ method ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½.(http://localhost/list)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¿ï¿½ ï¿½Þ¼ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ÛµÈ´Ù´ï¿½ ï¿½ï¿½.
+	@RequestMapping(value = "/card") // url°ú method ¸ÅÇÎ ½ÃÄÑ ÁØ´Ù.(http://localhost/card)°¡ ¿À¸é ¹Ø¿¡ ¸Þ¼­µå°¡ ½ÃÀÛµÈ´Ù´Â ¶æ.
 	public ModelAndView list(@RequestParam Map<String, Object> map) {
 		List<Map<String, Object>> list = service.list(map);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("data", list); // (key, value)
 		mv.setViewName("/card/card");
-		return mv; // ModelAndViewï¿½ï¿½ object Å¸ï¿½ï¿½ï¿½Ì´Ï±ï¿½ objectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. (list.jspï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¶ï¿½ï¿½ ï¿½ï¿½)
+		return mv; // ModelAndView°¡ object Å¸ÀÔÀÌ´Ï±î object¸¦ ¸®ÅÏÇÑ´Ù.
 	}
 
 	@ResponseBody

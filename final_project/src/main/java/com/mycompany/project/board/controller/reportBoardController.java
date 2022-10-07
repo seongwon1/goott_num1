@@ -94,6 +94,7 @@ public class reportBoardController {
 			file.transferTo(saveFile); // �떎�젣 �뙆�씪 ���옣硫붿꽌�뱶(filewriter �옉�뾽�쓣 �넀�돺寃� �븳諛⑹뿉 泥섎━�빐以��떎.)
 		} catch (IllegalStateException e) {
 		} catch (IOException e) {
+
 		}
 		vo.setName(uniqueName+fileExtension);
 		vo.setFile_url(uploadFolder+"\\" + uniqueName + fileExtension );

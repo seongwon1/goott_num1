@@ -57,18 +57,18 @@ public class noticeBoardController {
 	@RequestMapping(value = "/merge/noticeInsert", method = RequestMethod.POST)
 	public ModelAndView insert(noticeBoardDTO dto,@RequestParam MultipartFile file) throws Exception{	
 		ModelAndView mv = new ModelAndView();
-		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ Ã³ï¿½ï¿½
+		// ÆÄÀÏ ¾÷·Îµå Ã³¸®
 		String file_name = null;
 		MultipartFile uploadFile = dto.getFile();
 		if (!uploadFile.isEmpty()) {
 			String originalFileName = uploadFile.getOriginalFilename();
-			String ext = FilenameUtils.getExtension(originalFileName); // È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
-			long size = file.getSize(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			String ext = FilenameUtils.getExtension(originalFileName); //È®ÀåÀÚ ±¸ÇÏ±â
+			long size = file.getSize(); //ÆÄÀÏ »çÀÌÁî
 			
 			String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."),originalFileName.length());
 			String uploadFolder = "C:\\Users\\Public\\Downloads\\";
 			
-			UUID uuid = UUID.randomUUID(); // UUID ï¿½ï¿½ï¿½Ï±ï¿½
+			UUID uuid = UUID.randomUUID(); // UUID ±¸ÇÏ±â
 			String[] uuids = uuid.toString().split("-");
 			String uniqueName = uuids[0];
 
@@ -114,19 +114,18 @@ public class noticeBoardController {
 	public ModelAndView update(noticeBoardDTO dto,@RequestParam MultipartFile file) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		//int free_board_id = boardService.update(dto);
-		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ Ã³ï¿½ï¿½
+		// ÆÄÀÏ ¾÷·Îµå Ã³¸®
 				String file_name = null;
 				MultipartFile uploadFile = dto.getFile();
 				if (!uploadFile.isEmpty()) {
 					String originalFileName = uploadFile.getOriginalFilename();
-					String ext = FilenameUtils.getExtension(originalFileName); // È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
-					long size = file.getSize(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					String ext = FilenameUtils.getExtension(originalFileName); // È®ÀåÀÚ ±¸ÇÏ±â
+					long size = file.getSize(); //ÆÄÀÏ »çÀÌÁî
 				
 					String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."),originalFileName.length());
 					String uploadFolder = "C:\\Users\\Public\\Downloads\\";
 					
-					UUID uuid = UUID.randomUUID(); // UUID ï¿½ï¿½ï¿½Ï±ï¿½
+					UUID uuid = UUID.randomUUID(); // UUID ±¸ÇÏ±â
 					String[] uuids = uuid.toString().split("-");
 					String uniqueName = uuids[0];
 					
@@ -169,7 +168,7 @@ public class noticeBoardController {
 		
 		return "redirect:/board/noticeList";
 	}
-	
+	// Ã·ºÎÆÄÀÏ »èÁ¦
 	@RequestMapping(value = "/merge/DeleteAttachFile", method = RequestMethod.GET)
 	public String DeleteAttachFile(@RequestParam("nboard_id") int nboard_id ) {
 		String fileName = boardService.getFile_Name(nboard_id);
@@ -190,17 +189,16 @@ public class noticeBoardController {
 		}
 		return "redirect:/board/merge/noticeUpdate";
 	}
-	
+	// Ã·ºÎÆÄÀÏ ´Ù¿î·Îµå
 	 @RequestMapping(value = "/merge/noticeBoardFileDownload.do")
 	    public void fileDownload4(HttpServletRequest request,HttpServletResponse response) throws Exception {
-	        //String path =  request.getSession().getServletContext().getRealPath("C:\\Users\\Public\\Downloads");
 	        
 	        String filename =request.getParameter("fileName");
 	        String realFilename="";
 	         
 	        try {
 	            String browser = request.getHeader("User-Agent"); 
-	            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ 
+	            //ÆÄÀÏ ÀÎÄÚµù
 	            if (browser.contains("MSIE") || browser.contains("Trident")
 	                    || browser.contains("Chrome")) {
 	                filename = URLEncoder.encode(filename, "UTF-8").replaceAll("\\+", "%20");
@@ -217,7 +215,7 @@ public class noticeBoardController {
 	            return ;
 	        }
 	         
-	        // ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½        
+	        // ÆÄÀÏ¸í ÁöÁ¤    
 	        response.setContentType("application/octer-stream");
 	        response.setHeader("Content-Transfer-Encoding", "binary;");
 	        response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");

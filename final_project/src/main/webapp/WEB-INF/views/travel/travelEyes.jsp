@@ -484,8 +484,8 @@ let globalCurrentPage = 1;
 			},
 			
 			error: function (request, status, error) {
-				alert("통신에 실패했습니다.");
-				
+
+				alert("잘못된 접근 입니다. 관리자에게 문의하세요.");
 			}
 		})
 	}

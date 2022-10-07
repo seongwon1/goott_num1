@@ -443,6 +443,7 @@
 			</when>
 			
 		</choose>
+		limit 100
 	</select>
 
 </mapper>
