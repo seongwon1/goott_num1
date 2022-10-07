@@ -343,7 +343,6 @@ let globalCurrentPage = 1;
 				
 			},
 			success:function(data){
-				console.log(data)
 				if(data.eyesList.length < 12){
 					dataPerPage = data.eyesList.length
 				}
@@ -485,9 +484,6 @@ let globalCurrentPage = 1;
 			},
 			
 			error: function (request, status, error) {
-				console.log("code: " + request.status)
-				console.log("message: " + request.responseText)
-				console.log("error: " + error);
 				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				
 			}

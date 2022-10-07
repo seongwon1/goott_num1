@@ -227,9 +227,7 @@ $(".insert").on("click", function(e){
 			replyListInit();
 		},
 		error: function (request, status, error) {
-			console.log("code: " + request.status)
-			console.log("message: " + request.responseText)
-			console.log("error: " + error);
+
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}	
 	})

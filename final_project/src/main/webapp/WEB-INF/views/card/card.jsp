@@ -242,11 +242,6 @@ input[type=button] {
 		else {
 			alert('geolocation을 사용할수 없어요');
 		};
-
-/* 		document.getElementById('Gangnam').addEventListener('click',function() {
-			map.setCenter(new kakao.maps.LatLng(37.51148310935, 127.06033711446));
-		}) */
-
 		
 		// 맨 위로 이동하는 버튼을 눌렀을 때
 		top_btn.addEventListener('click',function(){
@@ -256,13 +251,14 @@ input[type=button] {
 			xhr.setRequestHeader( "${_csrf.headerName}", "${_csrf.token}" );
 		});
 		
-		function getlist() {
+	function getlist() {
 		$.ajax({
 			type:"POST",           
 			url:"/board/getList",  // 호출할 requestMapping value 이름         
 			//dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨  
 			/* contentType : "application/json; charset=UTF-8", */
-			data : $("form[name=search-form]").serialize(),
+			data : $("form[name=search-form]").serialize(), // form데이터를 한번에 추출할 수 있는 메서드인 serialize(), form안에 있는 모든 데이터의 name과 value를 취득해서 파라미터 형식으로 만들어 줍니다, name과 동일한 단어로 VO (DTO)에서  getter/setter값을 모두 지정해두어야합니다, CONTROLLER에서 인자로 넣어주면 자동으로 값을 넣어서 가져옵니다. 
+
 			success : function(result) {  // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다   
 				map_marker(result);
 			},
@@ -274,7 +270,8 @@ input[type=button] {
 	};
 
 function map_marker(result){
-	removeMarker();
+	removeMarker(); // 마커 초기화
+	clusterer.clear(); // 클러스터링 초기화
 	if(area_select.value!="" && category_select.value!=""){
 		var str;
 		$.each(result , function(i){
@@ -421,6 +418,7 @@ function map_marker(result){
 	    for ( var i = 0; i < markers.length; i++ ) {
 	        markers[i].setMap(null);
 	    }   
+	    markers = [];
 	}
 	
 	// 마커 클러스터러를 생성합니다 

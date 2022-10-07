@@ -11,17 +11,17 @@ import org.springframework.stereotype.Repository;
 public class CardDAO {
 
 	@Autowired
-	SqlSessionTemplate sqlSessionTemplate; // root-contextï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	SqlSessionTemplate sqlSessionTemplate; // root-context¿Í ¿¬°á
 
 	public List<Map<String, Object>> selectList(Map<String, Object> map) {
-		// sqlSessionTemplate.selectList <---- ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
-		// ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ Mapï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ LISTï¿½ï¿½ ï¿½Ò·ï¿½ï¿½Í¾ï¿½ï¿½Ñ´ï¿½.
+		// sqlSessionTemplate.selectList <---- °á°úÀÇ ÁýÇÕ ¸ñ·Ï ÀÚÃ¼°¡ ¸®ÅÏ.
+		// ±×·¡¼­ °á°ú ÁýÇÕÀÇ Å¸ÀÔÀÎ MapÀÇ ¸ñ·ÏÀÎ LIST·Î ºÒ·¯¿Í¾ßÇÑ´Ù.
 		return this.sqlSessionTemplate.selectList("card.select_list", map);
 	}
 
 	
 	 public List<CardDTO> selectDetail(CardDTO testDto)  throws Exception{ 
-		 return this.sqlSessionTemplate.selectList("card.select_list", testDto); 
+		 return this.sqlSessionTemplate.selectList("card.select_list", testDto); //card.select_listºÎºÐÀÌ SQL°ú ÀÏÄ¡µÇ¾î¾ß ÇÏ´Â ºÎºÐ ; 
 		 }
 
 	
