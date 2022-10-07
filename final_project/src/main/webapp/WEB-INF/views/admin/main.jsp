@@ -74,10 +74,9 @@
 								<td class="table_cate"><a
 									href="/admin/userDetail?user_id=${row.user_id}">${row.user_id}</a></td>
 								<td class="table_title">${row.user_name}</td>
-								<td>
 								<c:choose>
-										<c:when test="${row.del_YN == 'N'}">
-											 <td><span style="color:crimson;">탈퇴</span></td>
+										<c:when test="${row.del_YN == 'Y'}">
+											 <td><span style="color:red;">탈퇴</span></td>
 										</c:when>
 										<c:when test="${row.authority == 'ROLE_PAUSE'}">
 											<td><span style="color:blue">정지</span></td>
@@ -86,8 +85,22 @@
 									 		<td><span style="color:green">정상</span></td>
 									 	</c:otherwise>	
 									</c:choose>
-									</td>
-								<td class="table_writer">${row.authority == 'ROLE_USER' ? "일반 회원" : "**관리자**"}</td>
+								<td class="table_writer">
+									<c:choose>
+										<c:when test="${row.del_YN == 'Y'}">
+											<span style="color:red">탈퇴한 회원</span>
+										</c:when>
+										<c:when test="${row.authority == 'ROLE_ADMIN'}">
+											<span style="color:darkorange">**관리자**</span>
+										</c:when>
+										<c:when test="${row.authority == 'ROLE_USER'}">
+											<span style="color:green">일반 회원</span>
+										</c:when>
+										<c:when test="${row.authority == 'ROLE_PAUSE'}">
+											<span style="color:blue">정지 회원</span>
+										</c:when>
+									</c:choose>
+								</td>
 
 								<td class="table_writer">${row.pause_date}</td>
 							</tr>

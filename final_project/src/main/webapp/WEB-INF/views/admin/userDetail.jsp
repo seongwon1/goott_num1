@@ -84,7 +84,7 @@
 		<p>아이디: <c:out value="${user.user_id}"/></p>
 		<p>이름: <c:out value="${user.user_name}"/></p>
 		<p>상태: <c:choose>
-						<c:when test="${user.del_YN == 'N'}">
+						<c:when test="${user.del_YN == 'Y'}">
 							 <span style="color:crimson;">탈퇴</span>
 						</c:when>
 						<c:when test="${user.authority == 'ROLE_PAUSE'}">
