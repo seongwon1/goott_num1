@@ -25,6 +25,8 @@
         #header{
             width: 100%;
             border-bottom: 1px solid #DADADA;
+            display: flex;
+            justify-content: center;
         }
         h1{
         	position: relative;
@@ -44,7 +46,6 @@
         th,td{
             padding: 15px 30px;
             border-bottom:1px solid #DADADA;
-            
         }
 </style>
 <body>
@@ -52,7 +53,7 @@
 	<div id="wrap">
 		<div id="container">
 			<div id="header">
-				<div><a><img src="${path}/resources/image/siteLogo.png" alt=""></a></div>
+				<div><a href="/main"><img src="${path}/resources/image/siteLogo.png" alt=""></a></div>
 			</div>
 			<h1>회원관리 페이지</h1>
 			<div id="section">
@@ -98,8 +99,5 @@
 	</div>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-	$(document).ready(function(){
-	})
-</script>
+
 </html>
