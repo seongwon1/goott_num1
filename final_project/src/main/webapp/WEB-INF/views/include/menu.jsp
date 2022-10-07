@@ -86,7 +86,7 @@ a {
 			</sec:authorize>
 		</div>
 		<div class="header_list" style="width: 100%">
-			<a class="header_logo"><img src="${path}/resources/image/siteLogo.png" alt=""></a>
+			<a class="header_logo" href="/"><img src="${path}/resources/image/siteLogo.png" alt=""></a>
 			<ul class="header_menu">
 				<li><a href="/board/travelLeg">여행지추천</a></li>
 				<li><a href="/board/facilityList">편의시설 조회</a></li>
