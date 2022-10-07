@@ -343,7 +343,6 @@ let globalCurrentPage = 1;
 				
 			},
 			success:function(data){
-				console.log(data)
 				if(data.eyesList.length < 12){
 					dataPerPage = data.eyesList.length
 				}
@@ -485,8 +484,8 @@ let globalCurrentPage = 1;
 			},
 			
 			error: function (request, status, error) {
+
 				alert("잘못된 접근 입니다. 관리자에게 문의하세요.");
-				
 			}
 		})
 	}
