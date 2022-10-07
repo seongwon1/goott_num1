@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -20,29 +21,8 @@
 <div id="wrap">
    <!-- 컨테이너 -->
        <div id="container">
+       <%@include file="../include/menu.jsp" %>
         <!-- 헤더 -->
-        <div id="header">
-           <div>
-        		<p><a href="/main">로고</a></p>  		
-        		<div id="search_Con">
-        			<select name="type" id="search_option">
-        					<option value="">검색</option>
-                			<option value="D">전체</option>
-                			<option value="A">시/도</option>
-							<option value="B">구/군</option>
-							<option value="C">관광지명</option>
-        	       	</select>
-        			
-        			<input type="text" name="search" id="search" onkeyup="inputEnter();" placeholder="관광지를 검색해보세요">
-					<button type="button" id="searchBtn" ><i class="fa-solid fa-magnifying-glass"></i></button>
-        		</div>
-        		
-        		<ul>
-        			<li>로그인</li>
-        			<li><a href="/board/freeList">커뮤니티 링크</a></li>
-        		</ul>
-        	</div>
-        </div>
         
         <div id="a11yMenu" class="a11y_menu" aria-label="접근성메뉴">
 			<h2 class="blind">접근성메뉴<span><i class="fa-solid fa-x"></i></span></h2>
@@ -124,6 +104,8 @@
 						<label for="chkArr5" class="labelActive"><i class="fa-solid fa-user"></i><span>안내요원</span></label>
 					</li>
 				</ul>
+				
+        		
 				<!-- 지역 select box --> 
 				<div class="category_area">
                     <p>지역선택</p>
@@ -148,6 +130,20 @@
                 			<option value="제주도" <c:out value="${pageMaker.cri.keyword eq '제주도'?'selected':'' }"/>>제주도</option>
                         </select>
                     </div>
+                    
+                    
+					<div id="search_Con">
+        			<select name="type" id="search_option">
+        					<option value="">검색</option>
+                			<option value="D">전체</option>
+                			<option value="A">시/도</option>
+							<option value="B">구/군</option>
+							<option value="C">관광지명</option>
+        	       	</select>
+        			
+        			<input type="text" name="search" id="search" onkeyup="inputEnter();" placeholder="관광지를 검색해보세요">
+					<button type="button" id="searchBtn" ><i class="fa-solid fa-magnifying-glass"></i></button>
+        		</div>
                 </div>
             </div>
         </div>
@@ -373,10 +369,10 @@ var header = $("meta[name='_csrf_header']").attr("content");
 					    }
 					    for (var i = first; i <= last; i++) {
 					        if (currentPage == i) {
-					            pageHtml += "<li class='pageInfo_btn on'><a href='#' id='" + i + "'>" + i + "</a></li>";
+					            pageHtml += "<li class='pageInfo_btn active'><a href='#' id='" + i + "'>" + i + "</a></li>";
 					        } 
 					        else {
-					            pageHtml += "<li class='pageInfo_btn on'><a href='#' id='" + i + "'>" + i + "</a></li>";
+					            pageHtml += "<li class='pageInfo_btn active'><a href='#' id='" + i + "'>" + i + "</a></li>";
 					        }
 					    }
 					    if (last < totalPage) {
