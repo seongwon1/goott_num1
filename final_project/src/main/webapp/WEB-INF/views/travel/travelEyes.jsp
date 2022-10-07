@@ -484,8 +484,8 @@ let globalCurrentPage = 1;
 			},
 			
 			error: function (request, status, error) {
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				
+
+				alert("잘못된 접근 입니다. 관리자에게 문의하세요.");
 			}
 		})
 	}
