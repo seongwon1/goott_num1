@@ -52,7 +52,7 @@
 	<div id="wrap">
 		<div id="container">
 			<div id="header">
-				<div><a><img src="${path}/resources/image/siteLogo.png" alt=""></a></div>
+				<div><a href="/"><img src="${path}/resources/image/siteLogo.png" alt="" style="width:150px; height:140px; transform: translate(19px,19px);"></a></div>
 			</div>
 			<h1>회원관리 페이지</h1>
 			<div id="section">
