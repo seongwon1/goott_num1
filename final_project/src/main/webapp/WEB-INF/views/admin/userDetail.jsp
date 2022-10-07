@@ -78,7 +78,7 @@
 	<div><a href="/main"><img src="${path}/resources/image/siteLogo.png" alt=""></a></div>
 	<h1>회원 정보 관리</h1>
 </div>
-<form name="form" method="POST" id="actionForm">
+<form name="form" method="POST" id="actionForm"> 
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	<div>
 		<p>아이디: <c:out value="${user.user_id}"/></p>
