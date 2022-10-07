@@ -73,7 +73,7 @@
 				<table>
 					<tr>
 						<td>
-							<p class="loginHead">로그인</p>
+							<p class="loginHead">로그인</p> 
 						</td>
 					</tr>
 					<tr>
