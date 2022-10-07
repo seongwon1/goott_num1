@@ -25,8 +25,8 @@ a {
 	position:sticky;
 	top:0px;
 	background-color: #fff;
+	z-index: 10001;
 } 
-
 .header_list{
 	display: flex;
 	border-bottom: 1px solid lightgray;
