@@ -57,7 +57,7 @@
         </div>
        
 		<div id="article2">
-		<c:if test="${loginUser eq data.user_id  || auth == '[ROLE_ADMIN]'}}">
+		<c:if test="${loginUser eq data.user_id  || auth == '[ROLE_ADMIN]'}">
 			<div class="detailBtn_1">
 				<a href="/board/merge/freeDelete?free_board_id=${data.free_board_id}">글 삭제</a>
 			</div>
@@ -227,9 +227,6 @@ $(".insert").on("click", function(e){
 			replyListInit();
 		},
 		error: function (request, status, error) {
-			console.log("code: " + request.status)
-			console.log("message: " + request.responseText)
-			console.log("error: " + error);
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}	
 	})
@@ -265,14 +262,17 @@ function makeReplyContent(obj){
 		let list = obj.list;
 		let pf = obj.pageInfo;
 		let free_board_id = '${data.free_board_id}'
-		let reply_list = '';			
+		let reply_list = '';
+		let loginUser = "${loginUser}";
 		$(list).each(function(i,obj){
 			reply_list += '<li>';
 			reply_list += '<div class="comment_wrap">';
 			reply_list += '<div class="reply_top">';
 			reply_list += '<span class="id_span">'+ obj.user_id+'</span>';
 			reply_list += '<span class="date_span">'+ obj.regDate +'</span>';
-			reply_list += '<button class="update_reply_btn" onclick=updateBtn('+obj.replyId + ',\''+ obj.user_id + ',\')>수정</button><a class="delete_reply_btn" href="'+ obj.replyId +'">삭제</a>';
+			if(loginUser == obj.user_id) {
+				reply_list += '<button class="update_reply_btn" onclick=updateBtn('+obj.replyId + ',\''+ obj.user_id + ',\')>수정</button><a class="delete_reply_btn" href="'+ obj.replyId +'">삭제</a>';
+			}
 			reply_list += '</div>'; 
 			reply_list += '<div class="reply_bottom">';
 			reply_list += '<div class="reply_bottom_txt">'+ obj.content +'</div>';

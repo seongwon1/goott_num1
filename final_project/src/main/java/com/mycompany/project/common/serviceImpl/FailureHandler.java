@@ -11,9 +11,9 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 public class FailureHandler implements AuthenticationFailureHandler {
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-			AuthenticationException exception) throws IOException, ServletException {
-		response.sendRedirect("/login");
-//		request.setAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
-//		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+		AuthenticationException exception) throws IOException, ServletException {
+		request.setAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
+//		response.sendRedirect("/login");
+		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
 	}
 }

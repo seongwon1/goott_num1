@@ -70,6 +70,7 @@
 								<td class="table_cate"><a
 									href="/admin/userDetail?user_id=${row.user_id}">${row.user_id}</a></td>
 								<td class="table_title">${row.user_name}</td>
+								<td>
 								<c:choose>
 										<c:when test="${row.del_YN == 'N'}">
 											 <span style="color:crimson;">탈퇴</span>
@@ -80,8 +81,9 @@
 										<c:otherwise>
 									 		<span style="color:green">정상</span>
 									 	</c:otherwise>	
-									</c:choose></td>
-								<td class="table_writer">${row.authority == 'ROLE_USER' ? "일반 회원" : "관리자"}</td>
+									</c:choose>
+									</td>
+								<td class="table_writer">${row.authority == 'ROLE_USER' ? "일반 회원" : "**관리자**"}</td>
 								<td class="table_writer">${row.pause_date}</td>
 							</tr>
 						</c:forEach>

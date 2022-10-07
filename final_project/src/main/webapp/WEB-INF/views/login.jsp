@@ -6,6 +6,7 @@
 		<meta charset="UTF-8">
 		<title>DreamDream 로그인</title>
 		<link rel="shortcut icon" href="${path}/resources/image/siteLogopavi.ico">
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<style>
 			* {
 				margin: 0;
@@ -77,11 +78,11 @@
 					</tr>
 					<tr>
 						<td>
-							<span style="color:red">${message}</span>
 						</td>
 					</tr>
 					<tr>
 						<td>
+							<p style="color:red">${message}</p>
 							<p>아이디</p>
 						</td>
 					</tr>
@@ -111,3 +112,4 @@
 			</form>
 		</div>
 	</body>
+</html>

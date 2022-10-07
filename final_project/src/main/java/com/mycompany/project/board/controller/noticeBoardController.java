@@ -38,7 +38,7 @@ public class noticeBoardController {
 	@RequestMapping(value = "/noticeList", method = RequestMethod.GET)
 	public String list(Model model, Criteria cri, Authentication auth) {
 		model.addAttribute("boardList",boardService.listPaging(cri));
-		int total = boardService.total();
+		int total = boardService.total(cri);
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
 		model.addAttribute("pageMaker",pageMake);
 		model.addAttribute("auth", auth.getAuthorities());

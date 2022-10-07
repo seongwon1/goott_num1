@@ -44,9 +44,9 @@ public class noticeBoardDAOImpl implements noticeBoardDAO {
 	}
 	
 	@Override
-	public int total() {
+	public int total(Criteria cri) {
 		// TODO Auto-generated method stub
-		return SqlSessionTemplate.selectOne("noticeBoardMapper.total");
+		return SqlSessionTemplate.selectOne("noticeBoardMapper.total",cri);
 	}
 
 	@Override

@@ -124,7 +124,7 @@ update user
 set
 authority = user_state,
 user_state = '',
-pause_date = NULL
+PAUSE_DATE = NULL
 where user_id in (
     select A.user_id from
     (
@@ -138,19 +138,6 @@ where user_id in (
     authority = 'ROLE_PAUSE'
     )A
 )
-]]>
-</update>
-
-
-<update id="pauseDateBatch">
-
-<![CDATA[ 
-update user
-set
-pause_date = NULL
-where 
-pause_date < now()
-
 ]]>
 </update>
 

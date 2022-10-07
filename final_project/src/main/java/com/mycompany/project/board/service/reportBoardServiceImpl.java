@@ -58,8 +58,8 @@ public class reportBoardServiceImpl implements reportBoardService {
 		return mapper.listPaging(cri);
 	}
 	@Override
-	public int total() {
-		return mapper.total();
+	public int total(reportBoardCriteria cri) {
+		return mapper.total(cri);
 	}
 	@Override
 	public void insert(reportBoardDTO dto, UploadVO vo) {

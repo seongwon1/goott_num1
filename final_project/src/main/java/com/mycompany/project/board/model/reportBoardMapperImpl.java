@@ -25,9 +25,9 @@ public class reportBoardMapperImpl implements reportBoardMapper {
 	}
 
 	@Override
-	public int total() {
+	public int total(reportBoardCriteria cri) {
 		
-		return sqlsession.selectOne("reportBoardMapper.total");
+		return sqlsession.selectOne("reportBoardMapper.total",cri);
 	}
 
 

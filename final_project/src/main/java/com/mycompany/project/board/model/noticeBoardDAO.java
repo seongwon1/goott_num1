@@ -10,7 +10,7 @@ public interface noticeBoardDAO {
 	Map<String,Object> detail(Map<String,Object> map);
 	int delete(int nboard_id);
 	public List<noticeBoardDTO> list();
-	public int total();
+	public int total(Criteria cri);
 	List<noticeBoardDTO> listPaging(Criteria cri);
 	String getFileName(noticeBoardDTO dto);
 	String getFileUrl(int nboard_id);

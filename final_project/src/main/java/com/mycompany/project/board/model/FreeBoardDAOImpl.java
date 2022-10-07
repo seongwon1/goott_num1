@@ -56,9 +56,9 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
 	}
 	
 	@Override
-	public int total() {
+	public int total(Criteria cri) {
 		// TODO Auto-generated method stub
-		return SqlSessionTemplate.selectOne("FreeBoardMapper.total");
+		return SqlSessionTemplate.selectOne("FreeBoardMapper.total",cri);
 	}
 	@Override
 	public List<VO> homePaging(Criteria cri) {

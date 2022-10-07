@@ -20,7 +20,7 @@ public interface reportBoardService {
 	Map<String, Object> detail(Map<String,Object> map);
 	List<reportBoardDTO> list();
 	List<reportBoardDTO> listPaging(reportBoardCriteria cri);
-	int total();
+	int total(reportBoardCriteria cri);
 	void update(reportBoardDTO dto, UploadVO vo);
 	int delete(int rboard_id);
 	String getUrl(int rboard_id);

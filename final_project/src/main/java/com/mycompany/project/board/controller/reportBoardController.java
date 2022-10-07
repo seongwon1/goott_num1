@@ -43,7 +43,7 @@ public class reportBoardController {
 	@RequestMapping(value = "/reportBoardList", method = RequestMethod.GET)
 	public String list(Model model, reportBoardCriteria cri) {
 		model.addAttribute("boardList",boardService.listPaging(cri));
-		int total = boardService.total();
+		int total = boardService.total(cri);
 		reportBoardPageMakerDTO pageMake = new reportBoardPageMakerDTO(cri, total);
 		model.addAttribute("pageMaker",pageMake);
 
@@ -93,9 +93,7 @@ public class reportBoardController {
 		try {
 			file.transferTo(saveFile); // �떎�젣 �뙆�씪 ���옣硫붿꽌�뱶(filewriter �옉�뾽�쓣 �넀�돺寃� �븳諛⑹뿉 泥섎━�빐以��떎.)
 		} catch (IllegalStateException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		vo.setName(uniqueName+fileExtension);
 		vo.setFile_url(uploadFolder+"\\" + uniqueName + fileExtension );

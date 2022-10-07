@@ -12,7 +12,7 @@ public interface noticeBoardService {
 	Map<String, Object> detail(Map<String,Object> map);
 	List<noticeBoardDTO> list();
 	List<noticeBoardDTO> listPaging(Criteria cri);
-	int total();
+	int total(Criteria cri);
 	int delete(int nboard_id);
 	String getFileName(noticeBoardDTO dto);
 	String getUrl(int nboard_id);

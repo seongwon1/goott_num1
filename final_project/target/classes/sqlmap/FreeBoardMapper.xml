@@ -16,7 +16,7 @@
 			<include refid="criteria"></include>
 		</if>
 		order by free_board_id desc) as A
-		limit #{skip},#{amount};  
+		limit #{skip},#{amount};
 	</select>
 	
 	<select id="total" resultType="int">

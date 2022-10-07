@@ -18,5 +18,4 @@ public interface MemberService {
 
 	public void pauseBatch();
 	
-	public void pauseDateBatch();
 }

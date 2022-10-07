@@ -84,9 +84,7 @@ function setInvertOff(){
 
 function setZoom(num){
 	num = num ? 10 : -10;
-	console.log(num)
 	var zoom = document.body.style.zoom;
-	console.log(zoom);
 	var zoomNum = zoom === "" || !zoom ? 100 : parseInt(zoom);
 	$("#zoomNum").text(zoomNum + num);
 	document.body.style.zoom = (zoomNum + num)+"%";

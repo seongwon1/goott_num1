@@ -60,7 +60,17 @@
 	<div>
 		<p>아이디: <c:out value="${user.user_id}"/></p>
 		<p>이름: <c:out value="${user.user_name}"/></p>
-		<p>상태: <c:out value="${user.authority == 'ROLE_PAUSE' ? '정지' : '정상'}"/></p>
+		<p>상태: <c:choose>
+						<c:when test="${user.del_YN == 'N'}">
+							 <span style="color:crimson;">탈퇴</span>
+						</c:when>
+						<c:when test="${user.authority == 'ROLE_PAUSE'}">
+							<span style="color:blue">정지</span>
+						</c:when>
+						<c:otherwise>
+					 		<span style="color:green">정상</span>
+					 	</c:otherwise>	
+					</c:choose></p>
 		<p>정지 해제일: <input type="text" value="${user.pause_date}" name="count"/>
 		<input  type="button" id="pauseBtn" onclick="doSubmit(this.id)" value="정지 적용"></p>
 		 <p><input type="button" id="userDelBtn" onclick="doSubmit(this.id)" value="회원 삭제"></p>

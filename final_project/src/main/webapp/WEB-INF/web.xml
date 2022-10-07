@@ -78,7 +78,7 @@
 
 	<error-page>
 		<error-code>500</error-code>
-		<location>/user/login</location>
+		<location>/login</location>
 	</error-page>
 
 	<!-- 세션 타임아웃 설정 -->

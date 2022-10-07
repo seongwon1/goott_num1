@@ -46,8 +46,8 @@ public class noticeBoardServiceImpl implements noticeBoardService {
 		return boardDAO.listPaging(cri);
 	}
 	@Override
-	public int total() {
-		return boardDAO.total();
+	public int total(Criteria cri) {
+		return boardDAO.total(cri);
 	}
 
 	@Override

@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="refresh" content="2, /main">
+<title></title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="shortcut icon"
+	href="${path}/resources/image/siteLogopavi.ico">
+<link href="${path}/resources/css/pausePage.css" rel="stylesheet" />
 </head>
+
 <body>
-<h1>아이디 정지</h1>
+	<img src="${path}/resources/image/accessDenied.jpg" alt=""
+		class="denied_img" width="600px">
 </body>
+<script src="<c:url value="/resources/js/pausePage.js"/>"></script>
 </html>

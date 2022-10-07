@@ -16,7 +16,7 @@ public interface FreeBoardDAO {
 	Map<String,Object> detail(Map<String,Object> map);
 	List<FreeBoardDTO> list();
 	List<FreeBoardDTO> listPaging(Criteria cri);
-	int total();
+	int total(Criteria cri);
 	
 	
 

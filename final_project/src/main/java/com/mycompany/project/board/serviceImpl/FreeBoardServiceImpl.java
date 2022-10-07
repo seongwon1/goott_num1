@@ -52,8 +52,8 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return boardDAO.listPaging(cri);
 	}
 	@Override
-	public int total() {
-		return boardDAO.total();
+	public int total(Criteria cri) {
+		return boardDAO.total(cri);
 	}
 	
 	

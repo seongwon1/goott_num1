@@ -30,7 +30,7 @@ public class FreeBoardController {
 	@RequestMapping(value = "/freeList", method = RequestMethod.GET)
 	public String list(Model model, Criteria cri) {
 		model.addAttribute("boardList",boardService.listPaging(cri));
-		int total = boardService.total();
+		int total = boardService.total(cri);
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
 		model.addAttribute("pageMaker",pageMake);
 		
@@ -63,7 +63,6 @@ public class FreeBoardController {
 		
 		mv.addObject("loginUser", auth.getName());
 		mv.addObject("auth", auth.getAuthorities());
-		
 		return mv;
 	}
 	

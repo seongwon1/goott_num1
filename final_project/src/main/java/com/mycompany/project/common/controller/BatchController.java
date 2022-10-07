@@ -19,8 +19,4 @@ public class BatchController {
 		memberService.pauseBatch();
 	}
 	
-	@Scheduled(cron="0/10 * * * * *")
-	public void pauseDateBatch() {
-		memberService.pauseDateBatch();
-	}
 }

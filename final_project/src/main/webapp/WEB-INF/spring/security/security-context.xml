@@ -43,16 +43,11 @@
 			username-parameter="userid" password-parameter="passwd"/>
 
 		<session-management>
-
-			<!-- max-sessions="1" 동시접속 막기 error-if-maximu m-exceeded="true" 로그인 세션 
-				초과시 에러 옵션 expired-url="/user/login" 세션 만료시 이동할 주소 -->
-
+			<!-- max-sessions="1" 동시접속 막기 error-if-maximu m-exceeded="true" 로그인 세션초과시 에러 옵션 expired-url="/user/login" 세션 만료시 이동할 주소 -->
 			<concurrency-control max-sessions="1" expired-url="/login.do" error-if-maximum-exceeded="true" />
-
 		</session-management>
 
 		<!-- 접근권한이 없는 경우의 코드 -->
-
 		<access-denied-handler ref="deniedHandler" />
 
 	</http>
@@ -74,8 +69,7 @@
 	</beans:bean>
 
 	<!-- 비밀번호 암호화를 위한 빈 -->
-	<beans:bean id="pwdEncoder"
-		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<beans:bean id="pwdEncoder"	class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 </beans:beans>
  

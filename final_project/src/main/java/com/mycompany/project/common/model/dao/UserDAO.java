@@ -23,5 +23,4 @@ public interface UserDAO{
 	
 	void pauseBatch();
 	
-	void pauseDateBatch();
 }

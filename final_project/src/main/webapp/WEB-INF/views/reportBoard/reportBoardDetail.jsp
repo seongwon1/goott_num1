@@ -75,17 +75,15 @@
 
 			<div id="article2">
 
-				<c:if test="${loginUser eq data.user_id || auth == '[ROLE_ADMIN]'}}">
+				<c:if test="${loginUser eq data.user_id || auth == '[ROLE_ADMIN]'}">
 					<div class="detailBtn_1">
 						<a
-							href="/board/merge/reportBoardDelete?rboard_id=${data.rboard_id}">글
-							삭제</a>
+							href="/board/merge/reportBoardDelete?rboard_id=${data.rboard_id}">글삭제</a>
 					</div>
 
 					<div class="detailBtn_1">
 						<a
-							href="/board/merge/reportBoardUpdate?rboard_id=${data.rboard_id}">글
-							수정</a>
+							href="/board/merge/reportBoardUpdate?rboard_id=${data.rboard_id}">글수정</a>
 					</div>
 				</c:if>
 				<div class="detailBtn_2">

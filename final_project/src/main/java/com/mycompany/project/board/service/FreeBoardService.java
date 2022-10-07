@@ -15,7 +15,7 @@ public interface FreeBoardService {
 	Map<String, Object> detail(Map<String,Object> map);
 	List<FreeBoardDTO> listPaging(Criteria cri);
 	List<FreeBoardDTO> list();	
-	int total();
+	int total(Criteria cri);
 
 	
 	List<VO> homePaing(Criteria cri);
