@@ -24,13 +24,11 @@
         }
         #header{
             width: 100%;
-            border-bottom: 1px solid #DADADA;
-            display: flex;
-            justify-content: center;
+            border: 1px solid black;
         }
         h1{
         	position: relative;
-        	top:5%;
+        	top:15%;
         	margin-bottom:20px;
         }
        #section{
@@ -39,13 +37,14 @@
             flex-direction: column;
             align-items: center;
             position:relative;
-            top: 5%;
+            top: 15%;
         	border: 1px solid #DADADA;
         }
         
         th,td{
             padding: 15px 30px;
             border-bottom:1px solid #DADADA;
+            
         }
 </style>
 <body>
@@ -53,7 +52,7 @@
 	<div id="wrap">
 		<div id="container">
 			<div id="header">
-				<div><a href="/main"><img src="${path}/resources/image/siteLogo.png" alt=""></a></div>
+				<div><a><img src="${path}/resources/image/siteLogo.png" alt=""></a></div>
 			</div>
 			<h1>회원관리 페이지</h1>
 			<div id="section">
@@ -74,7 +73,6 @@
 								<td class="table_cate"><a
 									href="/admin/userDetail?user_id=${row.user_id}">${row.user_id}</a></td>
 								<td class="table_title">${row.user_name}</td>
-								<td>
 								<c:choose>
 										<c:when test="${row.del_YN == 'N'}">
 											 <td><span style="color:crimson;">탈퇴</span></td>
@@ -86,9 +84,7 @@
 									 		<td><span style="color:green">정상</span></td>
 									 	</c:otherwise>	
 									</c:choose>
-									</td>
-								<td class="table_writer">${row.authority == 'ROLE_USER' ? "일반 회원" : "**관리자**"}</td>
-
+								<td class="table_writer">${row.authority == 'ROLE_USER' ? "일반 회원" : "관리자"}</td>
 								<td class="table_writer">${row.pause_date}</td>
 							</tr>
 						</c:forEach>
@@ -99,5 +95,8 @@
 	</div>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script>
+	$(document).ready(function(){
+	})
+</script>
 </html>

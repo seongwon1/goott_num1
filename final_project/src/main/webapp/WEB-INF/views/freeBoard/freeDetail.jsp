@@ -90,7 +90,7 @@
 					<div>${data.content}</div>
 				</div>
 				<div id="reply_userID">
-					<input type="text" name="reply_ID" id="reply_ID" value="${loginUser}" readonly >>
+					<input type="text" name="reply_ID" id="reply_ID" value="${loginUser}" readonly >
 				</div>
 				<div id="reply_Content2">
 					<textarea rows="5" cols="116" placeholder="내용"></textarea>
