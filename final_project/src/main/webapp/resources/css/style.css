@@ -56,11 +56,11 @@ a{
 	margin: 0 10px;	
 }
 #search_Con{
-	width: 90%;
+	width: 450px;
     height: 50px;
     margin-top: 10px;
     position:relative;
-    right:50px;
+    right:480px;
     display: flex;
     justify-content: center;
     align-items:center;
@@ -68,7 +68,7 @@ a{
 	border: 1px solid rgba(207 207 207);
 }
 #search_Con > input[type="text"]{
-	width: 70%;
+	width:55%;
     height: 50px;
     padding: 20px;
     font-size: 1.5rem;
@@ -83,6 +83,8 @@ a{
 #search_Con > button{
 	width: 13%;
     height: 44px;
+   	position:absolute;
+   	right:10px;
     border-radius: 100%;
     border: none;
     cursor: pointer;
