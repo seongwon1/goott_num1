@@ -17,7 +17,7 @@
         <div class="header">
 
             <div>
-                <img src="${path}/resources/image/main_image2.png" alt="" class="main_img" width="430px">
+                <img src="${path}/resources/image/main_image2.png" alt="" class="main_img" width="420px">
             </div>
 
         </div>
